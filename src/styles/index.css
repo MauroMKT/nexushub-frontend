@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Touch target minimo 44px e focus visibile per accessibilita' (Sezione 5.2) */
+button, a, input, select {
+  min-height: 40px;
+}
+:focus-visible {
+  outline: 2px solid #3E7C9A;
+  outline-offset: 2px;
+}

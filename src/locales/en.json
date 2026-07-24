@@ -1,0 +1,71 @@
+{
+  "app_name": "NexusHub CRM",
+  "nav": {
+    "dashboard": "Dashboard",
+    "clients": "Clients",
+    "pipeline": "Pipeline",
+    "calendar": "Calendar",
+    "tasks": "Tasks & Reminders",
+    "settings": "Settings"
+  },
+  "login": {
+    "title": "Sign in",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "no_account": "Don't have an account?",
+    "register_link": "Register your company"
+  },
+  "register": {
+    "title": "Register your company",
+    "company_name": "Company name",
+    "sector": "Sector",
+    "admin_full_name": "Your full name",
+    "admin_email": "Email",
+    "admin_password": "Password",
+    "submit": "Create account",
+    "have_account": "Already have an account?",
+    "login_link": "Sign in"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "total_clients": "Total clients",
+    "appointments_this_week": "Appointments this week",
+    "tasks_due": "Tasks due",
+    "open_deals": "Open deals",
+    "pipeline_value": "Pipeline value"
+  },
+  "clients": {
+    "title": "Clients",
+    "new_client": "New client",
+    "name": "Name",
+    "company": "Company",
+    "email": "Email",
+    "phone": "Phone",
+    "sector": "Sector",
+    "save": "Save"
+  },
+  "pipeline": {
+    "title": "Sales Pipeline"
+  },
+  "calendar": {
+    "title": "Calendar",
+    "new_appointment": "New appointment"
+  },
+  "tasks": {
+    "title": "Tasks & Reminders",
+    "new_task": "New task",
+    "done": "Done"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "team": "Team",
+    "invite": "Invite member"
+  },
+  "common": {
+    "logout": "Log out",
+    "loading": "Loading...",
+    "cancel": "Cancel"
+  }
+}

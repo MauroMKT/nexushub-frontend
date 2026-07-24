@@ -1,0 +1,10 @@
+{
+  "name": "NexusHub CRM",
+  "short_name": "NexusHub",
+  "description": "CRM All-in-One modulare",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAF8",
+  "theme_color": "#A9D6E5",
+  "icons": []
+}
