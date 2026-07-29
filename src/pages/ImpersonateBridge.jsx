@@ -15,7 +15,7 @@ export default function ImpersonateBridge() {
     const token = params.get("token");
     if (token) {
       saveToken(token);
-      window.location.replace("/");
+      window.location.replace("/dashboard");
     } else {
       window.location.replace("/login");
     }

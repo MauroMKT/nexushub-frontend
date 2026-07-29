@@ -100,7 +100,7 @@ export default function Register() {
         payload.admin_email = payload.admin_email || form.email;
       }
       await register(payload);
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       setError(err.message);
     } finally {
