@@ -3,14 +3,54 @@ import { useTranslation } from "react-i18next";
 
 import { api } from "../api";
 import Card from "../components/Card";
+import ChatPanel from "../components/ChatPanel";
+import ClientDocumentsPanel from "../components/ClientDocumentsPanel";
+import ImportClientsModal from "../components/ImportClientsModal";
 
 const emptyForm = { name: "", company: "", email: "", phone: "", sector: "" };
+
+function PortalInviteButton({ client, t }) {
+  const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState(client.email || "");
+  const [password, setPassword] = useState("");
+  const [done, setDone] = useState(false);
+
+  async function handleInvite(e) {
+    e.preventDefault();
+    await api.invitePortalClient(client.id, { email, password });
+    setDone(true);
+    setOpen(false);
+  }
+
+  if (!open) {
+    return (
+      <button onClick={() => setOpen(true)} className="text-xs text-primary hover:underline mt-2">
+        {done ? t("clients.portal_invited") : t("clients.portal_invite")}
+      </button>
+    );
+  }
+
+  return (
+    <form onSubmit={handleInvite} className="mt-2 space-y-1 bg-bg rounded-xl2 p-2">
+      <input type="email" required placeholder={t("portal.email")} value={email}
+             onChange={(e) => setEmail(e.target.value)} className="w-full text-xs border border-slate-200 rounded-xl2 px-2 py-1" />
+      <input type="password" required placeholder={t("portal.password")} value={password}
+             onChange={(e) => setPassword(e.target.value)} className="w-full text-xs border border-slate-200 rounded-xl2 px-2 py-1" />
+      <button type="submit" className="w-full bg-primary hover:bg-primary/80 rounded-xl2 px-2 py-1 text-xs font-medium">
+        {t("clients.portal_invite_send")}
+      </button>
+    </form>
+  );
+}
 
 export default function Clients() {
   const { t } = useTranslation();
   const [clients, setClients] = useState([]);
   const [form, setForm] = useState(emptyForm);
   const [showForm, setShowForm] = useState(false);
+  const [openChatId, setOpenChatId] = useState(null);
+  const [openDocsId, setOpenDocsId] = useState(null);
+  const [showImport, setShowImport] = useState(false);
 
   function refresh() {
     api.listClients().then(setClients).catch(() => {});
@@ -30,13 +70,25 @@ export default function Clients() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold">{t("clients.title")}</h1>
-        <button
-          onClick={() => setShowForm((s) => !s)}
-          className="bg-primary hover:bg-primary/80 text-ink font-semibold rounded-xl2 px-4 py-2 text-sm"
-        >
-          + {t("clients.new_client")}
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setShowImport(true)}
+            className="bg-secondary hover:bg-secondary/80 text-ink font-semibold rounded-xl2 px-4 py-2 text-sm"
+          >
+            📥 {t("import.button")}
+          </button>
+          <button
+            onClick={() => setShowForm((s) => !s)}
+            className="bg-primary hover:bg-primary/80 text-ink font-semibold rounded-xl2 px-4 py-2 text-sm"
+          >
+            + {t("clients.new_client")}
+          </button>
+        </div>
       </div>
+
+      {showImport && (
+        <ImportClientsModal onClose={() => setShowImport(false)} onImported={refresh} />
+      )}
 
       {showForm && (
         <Card className="mb-6">
@@ -76,6 +128,41 @@ export default function Clients() {
                     {tag.name}
                   </span>
                 ))}
+              </div>
+            )}
+            <PortalInviteButton client={c} t={t} />
+            <button
+              onClick={() => setOpenChatId((prev) => (prev === c.id ? null : c.id))}
+              className="text-xs text-primary hover:underline mt-2 block"
+            >
+              💬 {t("chat.client_chat_title")}
+            </button>
+            {openChatId === c.id && (
+              <div className="mt-2 border border-slate-100 rounded-xl2 h-72 overflow-hidden">
+                <ChatPanel
+                  resetKey={c.id}
+                  fetchMessages={(after) => api.listClientChat(c.id, after)}
+                  sendMessage={(body) => api.sendClientChat(c.id, body)}
+                  emptyLabel={t("chat.client_chat_empty")}
+                  placeholder={t("chat.client_chat_placeholder")}
+                  myLabelMatcher={(m) => m.sender_type === "team"}
+                />
+              </div>
+            )}
+            <button
+              onClick={() => setOpenDocsId((prev) => (prev === c.id ? null : c.id))}
+              className="text-xs text-primary hover:underline mt-2 block"
+            >
+              📄 {t("documents.title")}
+            </button>
+            {openDocsId === c.id && (
+              <div className="mt-2 border border-slate-100 rounded-xl2 p-2">
+                <ClientDocumentsPanel
+                  listDocuments={() => api.listClientDocuments(c.id)}
+                  uploadDocument={(payload) => api.uploadClientDocument(c.id, payload)}
+                  downloadDocument={(docId) => api.downloadClientDocument(c.id, docId)}
+                  deleteDocument={(docId) => api.deleteClientDocument(c.id, docId)}
+                />
               </div>
             )}
           </Card>

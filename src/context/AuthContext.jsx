@@ -2,8 +2,16 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 import { api, clearToken, hasToken, saveToken } from "../api";
 import { changeLanguage } from "../i18n";
+import { applyTenantTheme } from "../theme";
 
 const AuthContext = createContext(null);
+
+// Applica anche il tema white-label del tenant (colori, Fase 4) subito dopo aver
+// caricato l'utente, così l'interfaccia riflette il branding scelto in Impostazioni
+// ovunque nell'app, non solo nella pagina Impostazioni.
+function loadThemeSilently() {
+  api.getTenantSettings().then(applyTenantTheme).catch(() => {});
+}
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -15,6 +23,7 @@ export function AuthProvider({ children }) {
         .then((u) => {
           setUser(u);
           changeLanguage(u.language || "it");
+          loadThemeSilently();
         })
         .catch(() => clearToken())
         .finally(() => setLoading(false));
@@ -29,6 +38,7 @@ export function AuthProvider({ children }) {
     const me = await api.me();
     setUser(me);
     changeLanguage(me.language || "it");
+    loadThemeSilently();
   }
 
   async function register(payload) {
@@ -37,6 +47,7 @@ export function AuthProvider({ children }) {
     const me = await api.me();
     setUser(me);
     changeLanguage(me.language || "it");
+    loadThemeSilently();
   }
 
   function logout() {
@@ -45,7 +56,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, setUser }}>
       {children}
     </AuthContext.Provider>
   );

@@ -37,6 +37,17 @@ export default function CalendarPage() {
     return clients.find((c) => c.id === id)?.name;
   }
 
+  async function handleConfirm(id) {
+    await api.confirmAppointment(id);
+    refresh();
+  }
+
+  async function handleReject(id) {
+    if (!window.confirm(t("calendar.confirm_reject"))) return;
+    await api.deleteAppointment(id);
+    refresh();
+  }
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -93,14 +104,31 @@ export default function CalendarPage() {
 
       <div className="space-y-2">
         {appointments.map((a) => (
-          <Card key={a.id} className="flex items-center justify-between">
-            <div>
-              <div className="font-medium">{a.title}</div>
+          <Card key={a.id} className="flex items-center justify-between gap-3">
+            <div className="min-w-0">
+              <div className="font-medium flex items-center gap-2 flex-wrap">
+                {a.title}
+                {a.is_public_booking && (
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-accent/50">{t("calendar.public_booking_badge")}</span>
+                )}
+              </div>
               <div className="text-sm text-ink/60">
                 {new Date(a.start_time).toLocaleString()} {clientName(a.client_id) ? `· ${clientName(a.client_id)}` : ""}
               </div>
             </div>
-            <span className="text-xs px-2 py-1 rounded-full bg-secondary/40 capitalize">{a.status}</span>
+            <div className="flex items-center gap-2 shrink-0">
+              {a.is_public_booking && a.status === "scheduled" && (
+                <>
+                  <button onClick={() => handleConfirm(a.id)} className="text-xs bg-secondary hover:bg-secondary/80 rounded-xl2 px-2 py-1">
+                    {t("calendar.confirm")}
+                  </button>
+                  <button onClick={() => handleReject(a.id)} className="text-xs text-red-500 hover:underline">
+                    {t("calendar.reject")}
+                  </button>
+                </>
+              )}
+              <span className="text-xs px-2 py-1 rounded-full bg-secondary/40 capitalize">{a.status}</span>
+            </div>
           </Card>
         ))}
       </div>
