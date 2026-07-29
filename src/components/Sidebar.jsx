@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 
 // Sidebar moduli attivabili (Sezione 5.2 del documento: layout con sidebar dei moduli)
 const ITEMS = [
-  { to: "/", key: "dashboard", icon: "🏠" },
+  { to: "/dashboard", key: "dashboard", icon: "🏠" },
   { to: "/clients", key: "clients", icon: "👥" },
   { to: "/contacts", key: "contacts", icon: "📇" },
   { to: "/pipeline", key: "pipeline", icon: "📊" },
@@ -31,7 +31,7 @@ export default function Sidebar() {
           <NavLink
             key={item.to}
             to={item.to}
-            end={item.to === "/"}
+            end={item.to === "/dashboard"}
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2 rounded-xl2 text-sm font-medium transition-colors ${
                 isActive ? "bg-primary/40 text-ink" : "text-ink/70 hover:bg-secondary/30"
