@@ -5,6 +5,7 @@ import CalendarPage from "./pages/CalendarPage";
 import Clients from "./pages/Clients";
 import Contacts from "./pages/Contacts";
 import Dashboard from "./pages/Dashboard";
+import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Pipeline from "./pages/Pipeline";
 import PortalDashboard from "./pages/PortalDashboard";
@@ -25,6 +26,9 @@ import Guide from "./pages/Guide";
 export default function App() {
   return (
     <Routes>
+      {/* Landing pubblica di vendita del CRM */}
+      <Route path="/" element={<Landing />} />
+
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
@@ -36,7 +40,7 @@ export default function App() {
       <Route path="/impersonate" element={<ImpersonateBridge />} />
 
       <Route element={<ProtectedLayout />}>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/clients" element={<Clients />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/pipeline" element={<Pipeline />} />
