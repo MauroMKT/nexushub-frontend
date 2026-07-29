@@ -231,6 +231,8 @@ export default function Settings() {
 
             {companyForm.account_type === "azienda" && (
               <>
+                <TextField label={t("register.trade_name")} value={companyForm.trade_name}
+                           onChange={(v) => setCompanyForm((f) => ({ ...f, trade_name: v }))} />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <TextField label={t("register.vat_number")} value={companyForm.vat_number}
                              onChange={(v) => setCompanyForm((f) => ({ ...f, vat_number: v }))} />
@@ -244,9 +246,13 @@ export default function Settings() {
               </>
             )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <TextField label={t("register.address")} value={companyForm.address}
-                         onChange={(v) => setCompanyForm((f) => ({ ...f, address: v }))} />
+            <TextField label={t("register.address")} value={companyForm.address}
+                       onChange={(v) => setCompanyForm((f) => ({ ...f, address: v }))} />
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <TextField label={t("register.zip_code")} value={companyForm.zip_code}
+                         onChange={(v) => setCompanyForm((f) => ({ ...f, zip_code: v }))} />
+              <TextField label={t("register.country")} value={companyForm.country}
+                         onChange={(v) => setCompanyForm((f) => ({ ...f, country: v }))} />
               <TextField label={companyForm.account_type === "azienda" ? t("register.company_phone") : t("register.individual_phone")}
                          value={companyForm.phone}
                          onChange={(v) => setCompanyForm((f) => ({ ...f, phone: v }))} />

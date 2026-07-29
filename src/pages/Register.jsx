@@ -15,10 +15,13 @@ const initialForm = {
   // azienda
   company_type: "srl",
   legal_name: "",
+  trade_name: "",
   sector: "",
   vat_number: "",
   pec: "",
   address: "",
+  zip_code: "",
+  country: "",
   phone: "",
   email: "",
   contact_full_name: "",
@@ -114,6 +117,13 @@ export default function Register() {
             </div>
           </div>
 
+          {/* Lingua dell'account: campo esplicito nel form, distinto dall'icona
+              bandiera in alto che serve solo a tradurre la pagina di registrazione. */}
+          <div>
+            <label className="text-sm font-medium block mb-1">{t("register.language_label")}</label>
+            <LanguageFlagSelect value={langVariant} onChange={handleLanguageChange} className="w-full" />
+          </div>
+
           {isAzienda ? (
             <>
               <div className="grid grid-cols-2 gap-3">
@@ -133,6 +143,9 @@ export default function Register() {
                 </div>
               </div>
 
+              <Field label={t("register.trade_name")} value={form.trade_name}
+                     onChange={(v) => update("trade_name", v)} hint={t("register.trade_name_hint")} />
+
               <Field label={t("register.sector")} value={form.sector}
                      onChange={(v) => update("sector", v)} />
 
@@ -151,9 +164,13 @@ export default function Register() {
                        onChange={(v) => update("pec", v)} hint={t("register.pec_hint")} />
               )}
 
-              <div className="grid grid-cols-2 gap-3">
-                <Field label={t("register.address")} value={form.address}
-                       onChange={(v) => update("address", v)} />
+              <Field label={t("register.address")} value={form.address}
+                     onChange={(v) => update("address", v)} />
+              <div className="grid grid-cols-3 gap-3">
+                <Field label={t("register.zip_code")} value={form.zip_code}
+                       onChange={(v) => update("zip_code", v)} />
+                <Field label={t("register.country")} value={form.country}
+                       onChange={(v) => update("country", v)} />
                 <Field label={t("register.company_phone")} value={form.phone}
                        onChange={(v) => update("phone", v)} />
               </div>
@@ -182,6 +199,12 @@ export default function Register() {
                        onChange={(v) => update("full_name", v)} required />
                 <Field label={t("register.individual_address")} value={form.address}
                        onChange={(v) => update("address", v)} />
+                <div className="grid grid-cols-2 gap-3">
+                  <Field label={t("register.zip_code")} value={form.zip_code}
+                         onChange={(v) => update("zip_code", v)} />
+                  <Field label={t("register.country")} value={form.country}
+                         onChange={(v) => update("country", v)} />
+                </div>
                 <div className="grid grid-cols-2 gap-3">
                   <Field label={t("register.individual_phone")} value={form.phone}
                          onChange={(v) => update("phone", v)} />
