@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import Card from "../components/Card";
 import LanguageFlagSelect, { findLanguageOption } from "../components/LanguageFlagSelect";
+import i18n, { changeLanguage } from "../i18n";
 import { useAuth } from "../context/AuthContext";
 import { api } from "../api";
 
@@ -40,7 +41,19 @@ export default function Register() {
   const { register } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState(initialForm);
-  const [langVariant, setLangVariant] = useState("it");
+  // Lingua di VISUALIZZAZIONE della pagina (icona bandiera in alto a destra):
+  // cambia solo la traduzione dell'interfaccia mostrata in questo momento,
+  // tramite i18n.changeLanguage(). Inizializzata sulla lingua i18n corrente.
+  const [pageLangVariant, setPageLangVariant] = useState(
+    () => findLanguageOption(i18n.language).variant
+  );
+  // Lingua scelta per l'ACCOUNT che si sta registrando (campo esplicito nel form):
+  // stato indipendente dalla lingua di visualizzazione della pagina. Viene salvata
+  // in form.language e inviata al backend come preferenza dell'account (non deve
+  // toccare né essere toccata dalla traduzione della pagina corrente).
+  const [accountLangVariant, setAccountLangVariant] = useState(
+    () => findLanguageOption(initialForm.language).variant
+  );
   const [vatInfo, setVatInfo] = useState(null);
   const [error, setError] = useState(null);
   const [busy, setBusy] = useState(false);
@@ -61,8 +74,17 @@ export default function Register() {
     return () => clearTimeout(handle);
   }, [form.vat_number, form.account_type]);
 
-  function handleLanguageChange(opt) {
-    setLangVariant(opt.variant);
+  // Bandiera in alto: cambia SOLO la lingua di visualizzazione della pagina di
+  // registrazione (non tocca form.language, la preferenza dell'account).
+  function handlePageLanguageChange(opt) {
+    setPageLangVariant(opt.variant);
+    changeLanguage(opt.i18nCode);
+  }
+
+  // Campo "Lingua" nel form: cambia SOLO la preferenza salvata per l'account che
+  // si sta creando (non tocca la lingua con cui è mostrata la pagina in questo momento).
+  function handleAccountLanguageChange(opt) {
+    setAccountLangVariant(opt.variant);
     update("language", opt.i18nCode);
   }
 
@@ -94,7 +116,7 @@ export default function Register() {
       <Card className="w-full max-w-xl">
         <div className="flex items-start justify-between mb-1">
           <h1 className="text-2xl font-bold text-primary">NexusHub CRM</h1>
-          <LanguageFlagSelect value={langVariant} onChange={handleLanguageChange} />
+          <LanguageFlagSelect value={pageLangVariant} onChange={handlePageLanguageChange} />
         </div>
         <h2 className="text-lg font-semibold mb-4">{t("register.title")}</h2>
         {error && <div className="bg-accent/30 text-ink text-sm rounded-xl2 p-2 mb-3">{error}</div>}
@@ -117,11 +139,11 @@ export default function Register() {
             </div>
           </div>
 
-          {/* Lingua dell'account: campo esplicito nel form, distinto dall'icona
+          {/* Lingua dell'account: campo esplicito nel form, indipendente dall'icona
               bandiera in alto che serve solo a tradurre la pagina di registrazione. */}
           <div>
             <label className="text-sm font-medium block mb-1">{t("register.language_label")}</label>
-            <LanguageFlagSelect value={langVariant} onChange={handleLanguageChange} className="w-full" />
+            <LanguageFlagSelect value={accountLangVariant} onChange={handleAccountLanguageChange} className="w-full" />
           </div>
 
           {isAzienda ? (
