@@ -32,6 +32,7 @@
     "company_name": "Nombre de la empresa",
     "sector": "Sector",
     "company_type": "Tipo de empresa",
+    "company_type_hint": "Indica la forma jurídica según la legislación de tu país (ej. S.L., S.A., Autónomo)",
     "company_type_spa": "Sociedad Anónima (S.p.A.)",
     "company_type_srl": "Sociedad de Responsabilidad Limitada (S.r.l.)",
     "company_type_srls": "Sociedad de Responsabilidad Limitada Simplificada (S.r.l.s.)",

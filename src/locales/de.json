@@ -32,6 +32,7 @@
     "company_name": "Name des Unternehmens",
     "sector": "Branche",
     "company_type": "Unternehmensform",
+    "company_type_hint": "Geben Sie die Rechtsform gemäß den Gesetzen Ihres Landes an (z. B. GmbH, AG, Einzelunternehmen)",
     "company_type_spa": "Aktiengesellschaft (S.p.A.)",
     "company_type_srl": "Gesellschaft mit beschränkter Haftung (S.r.l.)",
     "company_type_srls": "Vereinfachte GmbH (S.r.l.s.)",

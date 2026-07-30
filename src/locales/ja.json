@@ -32,6 +32,7 @@
     "company_name": "会社名",
     "sector": "業種",
     "company_type": "会社の種類",
+    "company_type_hint": "自国の法律に基づく法人形態を入力してください（例：株式会社、合同会社、個人事業主）",
     "company_type_spa": "株式会社 (S.p.A.)",
     "company_type_srl": "有限責任会社 (S.r.l.)",
     "company_type_srls": "簡易有限責任会社 (S.r.l.s.)",

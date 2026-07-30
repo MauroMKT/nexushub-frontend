@@ -32,6 +32,7 @@
     "company_name": "Company name",
     "sector": "Sector",
     "company_type": "Company type",
+    "company_type_hint": "Enter the legal form as defined by your country's law (e.g. LLC, Ltd, Inc., Sole Proprietorship)",
     "company_type_spa": "Joint-Stock Company (S.p.A.)",
     "company_type_srl": "Limited Liability Company (S.r.l.)",
     "company_type_srls": "Simplified Limited Liability Company (S.r.l.s.)",
