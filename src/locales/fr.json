@@ -41,7 +41,7 @@
     "legal_name": "Raison sociale",
     "trade_name": "Nom commercial",
     "trade_name_hint": "Si différent de la raison sociale (facultatif)",
-    "vat_number": "Numéro de TVA",
+    "vat_number": "Numéro d'identification fiscale",
     "vat_number_hint": "Le pays est détecté automatiquement à partir du format",
     "vat_country_detected": "Pays détecté : {{country}}",
     "address": "Adresse",

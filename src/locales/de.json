@@ -41,7 +41,7 @@
     "legal_name": "Firmenname",
     "trade_name": "Handelsname",
     "trade_name_hint": "Falls abweichend vom Firmennamen (optional)",
-    "vat_number": "USt-IdNr.",
+    "vat_number": "Steuerliche Identifikationsnummer",
     "vat_number_hint": "Das Land wird automatisch anhand des Formats erkannt",
     "vat_country_detected": "Erkanntes Land: {{country}}",
     "address": "Adresse",

@@ -41,7 +41,7 @@
     "legal_name": "Ragione sociale",
     "trade_name": "Nome commerciale",
     "trade_name_hint": "Se diverso dalla ragione sociale (facoltativo)",
-    "vat_number": "Partita IVA",
+    "vat_number": "Codice identificativo fiscale",
     "vat_number_hint": "Il paese viene riconosciuto automaticamente dal formato",
     "vat_country_detected": "Paese rilevato: {{country}}",
     "address": "Indirizzo",
