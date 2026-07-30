@@ -129,7 +129,7 @@ export default function WhatsAppHub() {
       <div className="relative overflow-hidden rounded-xl2 bg-gradient-to-r from-secondary/40 via-primary/20 to-accent/20 p-6 shadow-sm">
         <h1 className="text-2xl font-extrabold text-ink flex items-center gap-2">💬 {t("nav.whatsapp")}</h1>
         <p className="text-xs text-ink/75 mt-1">
-          Inbox condivisa multicanale conforme alle policy Meta. Gestisci le conversazioni WhatsApp con i clienti e invia messaggi template approvati.
+          {t("whatsapp.banner_desc")}
         </p>
       </div>
 
@@ -142,13 +142,13 @@ export default function WhatsAppHub() {
               onClick={() => setShowTemplates(false)}
               className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider ${!showTemplates ? "border-b-2 border-primary text-ink bg-slate-50/50" : "text-ink/60"}`}
             >
-              Conversazioni
+              {t("whatsapp.tab_conversations")}
             </button>
             <button
               onClick={() => setShowTemplates(true)}
               className={`flex-1 py-3 text-xs font-bold uppercase tracking-wider ${showTemplates ? "border-b-2 border-primary text-ink bg-slate-50/50" : "text-ink/60"}`}
             >
-              Gestione Template
+              {t("whatsapp.tab_templates")}
             </button>
           </div>
 
@@ -166,26 +166,26 @@ export default function WhatsAppHub() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="font-semibold text-sm text-ink truncate">{c.name}</div>
-                    <div className="text-xs text-ink/60 truncate">{c.company || "Privato"}</div>
+                    <div className="text-xs text-ink/60 truncate">{c.company || t("whatsapp.private_label")}</div>
                     {c.whatsapp && <div className="text-[10px] text-green-600 font-semibold">{c.whatsapp}</div>}
                   </div>
                 </div>
               ))}
               {clients.length === 0 && (
-                <div className="text-center text-sm text-ink/40 py-8">Nessun cliente registrato.</div>
+                <div className="text-center text-sm text-ink/40 py-8">{t("whatsapp.no_clients")}</div>
               )}
             </div>
           ) : (
             /* Template Management */
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
               <form onSubmit={handleCreateTemplate} className="space-y-3 bg-slate-50 p-3 rounded-lg border border-slate-100">
-                <div className="text-xs font-bold text-ink/80">Nuovo Template Meta</div>
+                <div className="text-xs font-bold text-ink/80">{t("whatsapp.new_template_title")}</div>
                 <input
-                  type="text" required placeholder="Nome template (es. benvenuto)" value={tplName} onChange={(e) => setTplName(e.target.value)}
+                  type="text" required placeholder={t("whatsapp.template_name_placeholder")} value={tplName} onChange={(e) => setTplName(e.target.value)}
                   className="w-full border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs outline-none"
                 />
                 <textarea
-                  required placeholder="Contenuto approvato..." value={tplContent} onChange={(e) => setTplContent(e.target.value)}
+                  required placeholder={t("whatsapp.template_content_placeholder")} value={tplContent} onChange={(e) => setTplContent(e.target.value)}
                   rows={2}
                   className="w-full border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs outline-none"
                 />
@@ -193,25 +193,25 @@ export default function WhatsAppHub() {
                   type="submit"
                   className="w-full bg-secondary hover:bg-secondary/90 text-ink font-semibold rounded-lg py-1.5 text-xs transition-colors"
                 >
-                  Salva e Invia a Meta
+                  {t("whatsapp.save_template_button")}
                 </button>
               </form>
 
               <div className="space-y-2">
-                <div className="text-xs font-bold text-ink/80">I tuoi Template</div>
-                {templates.map(t => (
-                  <div key={t.id} className="bg-white p-3 rounded-lg border border-slate-100 text-xs space-y-1 hover:border-primary/50 transition-colors">
+                <div className="text-xs font-bold text-ink/80">{t("whatsapp.your_templates_title")}</div>
+                {templates.map(tpl => (
+                  <div key={tpl.id} className="bg-white p-3 rounded-lg border border-slate-100 text-xs space-y-1 hover:border-primary/50 transition-colors">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-ink">{t.name}</span>
-                      <span className="text-[9px] bg-green-150 text-green-700 font-bold px-1.5 py-0.5 rounded-full">Approvato</span>
+                      <span className="font-bold text-ink">{tpl.name}</span>
+                      <span className="text-[9px] bg-green-150 text-green-700 font-bold px-1.5 py-0.5 rounded-full">{t("whatsapp.approved_badge")}</span>
                     </div>
-                    <p className="text-ink/75 italic">"{t.content}"</p>
+                    <p className="text-ink/75 italic">"{tpl.content}"</p>
                     <div className="flex items-center justify-end gap-1 pt-1 border-t border-slate-100">
                       <button
-                        onClick={() => handleSendTemplate(t)}
+                        onClick={() => handleSendTemplate(tpl)}
                         className="bg-primary/40 hover:bg-primary/60 text-ink font-semibold px-2 py-1 rounded text-[10px] transition-colors"
                       >
-                        Invia a Chat
+                        {t("whatsapp.send_to_chat_button")}
                       </button>
                       <button
                         onClick={() => handleDeleteTemplate(t.id)}
@@ -239,20 +239,20 @@ export default function WhatsAppHub() {
                   </div>
                   <div>
                     <div className="font-bold text-sm text-ink">{activeClient.name}</div>
-                    <div className="text-xs text-ink/60">{activeClient.phone || "Nessun telefono registrato"}</div>
+                    <div className="text-xs text-ink/60">{activeClient.phone || t("whatsapp.no_phone")}</div>
                   </div>
                 </div>
                 {/* Sandbox simulator panel */}
                 <form onSubmit={handleSimulateInbound} className="flex items-center gap-2">
                   <input
-                    type="text" required placeholder="Simula risposta cliente..." value={simText} onChange={(e) => setSimText(e.target.value)}
+                    type="text" required placeholder={t("whatsapp.simulate_reply_placeholder")} value={simText} onChange={(e) => setSimText(e.target.value)}
                     className="border border-slate-200 rounded-lg px-2 py-1 text-xs outline-none w-44"
                   />
                   <button
                     type="submit"
                     className="bg-ink hover:bg-ink/90 text-white font-semibold rounded-lg px-2.5 py-1 text-xs transition-colors"
                   >
-                    Simula Ricezione
+                    {t("whatsapp.simulate_receive_button")}
                   </button>
                 </form>
               </div>
@@ -287,7 +287,7 @@ export default function WhatsAppHub() {
               <form onSubmit={handleSend} className="p-4 border-t border-slate-100 flex items-center gap-3 bg-white">
                 <input
                   type="text"
-                  placeholder="Scrivi un messaggio di testo libero..."
+                  placeholder={t("whatsapp.message_placeholder")}
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   className="flex-1 border border-slate-200 rounded-xl2 px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-0"
@@ -296,14 +296,14 @@ export default function WhatsAppHub() {
                   type="submit"
                   className="bg-secondary hover:bg-secondary/90 text-ink font-semibold rounded-xl2 px-5 py-2.5 text-sm transition-transform active:scale-95 shadow-sm"
                 >
-                  Invia
+                  {t("whatsapp.send_button")}
                 </button>
               </form>
             </>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center text-ink/40 space-y-2">
               <div className="text-4xl">💬</div>
-              <div className="text-sm">Seleziona un cliente per iniziare a chattare.</div>
+              <div className="text-sm">{t("whatsapp.select_client_prompt")}</div>
             </div>
           )}
         </div>

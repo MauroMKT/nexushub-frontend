@@ -106,21 +106,21 @@ export default function EmailMarketing() {
       <div className="relative overflow-hidden rounded-xl2 bg-gradient-to-r from-accent/30 via-primary/20 to-secondary/30 p-8 shadow-sm">
         <h1 className="text-3xl font-extrabold text-ink tracking-tight">✉️ {t("nav.email")}</h1>
         <p className="text-ink/80 mt-2 max-w-xl text-sm leading-relaxed">
-          Crea campagne newsletter drag & drop o automatizza le sequenze di email di follow-up collegate direttamente alle fasi della tua pipeline di vendita.
+          {t("email_marketing.banner_desc")}
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
+
         {/* Newsletter Campaigns */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-ink">Campagne Newsletter</h2>
+            <h2 className="text-xl font-bold text-ink">{t("email_marketing.campaigns_title")}</h2>
             <button
               onClick={() => setShowCampForm(s => !s)}
               className="bg-accent hover:bg-accent/80 text-ink font-semibold rounded-xl2 px-4 py-2 text-xs transition-colors shadow-sm"
             >
-              {showCampForm ? "Annulla" : "+ Nuova Campagna"}
+              {showCampForm ? t("email_marketing.cancel_button") : t("email_marketing.new_campaign_button")}
             </button>
           </div>
 
@@ -128,23 +128,23 @@ export default function EmailMarketing() {
             <Card className="border border-slate-100 shadow-md">
               <form onSubmit={handleCreateCampaign} className="space-y-4">
                 <div>
-                  <label className="text-xs font-semibold text-ink/70 block mb-1">Titolo Campagna (Interno)</label>
+                  <label className="text-xs font-semibold text-ink/70 block mb-1">{t("email_marketing.campaign_title_label")}</label>
                   <input
-                    type="text" required placeholder="Es. Promozione di Fine Estate" value={campTitle} onChange={(e) => setCampTitle(e.target.value)}
+                    type="text" required placeholder={t("email_marketing.campaign_title_placeholder")} value={campTitle} onChange={(e) => setCampTitle(e.target.value)}
                     className="w-full border border-slate-200 rounded-xl2 px-3 py-2 text-sm outline-none"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-ink/70 block mb-1">Oggetto dell'Email</label>
+                  <label className="text-xs font-semibold text-ink/70 block mb-1">{t("email_marketing.subject_label")}</label>
                   <input
-                    type="text" required placeholder="Es. Non perderti le novità!" value={campSubject} onChange={(e) => setCampSubject(e.target.value)}
+                    type="text" required placeholder={t("email_marketing.subject_placeholder")} value={campSubject} onChange={(e) => setCampSubject(e.target.value)}
                     className="w-full border border-slate-200 rounded-xl2 px-3 py-2 text-sm outline-none"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-ink/70 block mb-1">Corpo dell'Email (HTML/Testo)</label>
+                  <label className="text-xs font-semibold text-ink/70 block mb-1">{t("email_marketing.body_label")}</label>
                   <textarea
-                    required placeholder="Ciao! Ecco la nostra promozione..." value={campBody} onChange={(e) => setCampBody(e.target.value)}
+                    required placeholder={t("email_marketing.body_placeholder")} value={campBody} onChange={(e) => setCampBody(e.target.value)}
                     rows={4}
                     className="w-full border border-slate-200 rounded-xl2 px-3 py-2 text-sm outline-none font-sans"
                   />
@@ -153,7 +153,7 @@ export default function EmailMarketing() {
                   type="submit"
                   className="w-full bg-secondary hover:bg-secondary/90 text-ink font-semibold rounded-xl2 px-4 py-2.5 text-sm transition-all"
                 >
-                  Salva Campagna
+                  {t("email_marketing.save_campaign_button")}
                 </button>
               </form>
             </Card>
@@ -166,18 +166,18 @@ export default function EmailMarketing() {
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="font-bold text-sm text-ink">{camp.title}</h3>
-                    <p className="text-xs text-ink/60">Oggetto: {camp.subject}</p>
+                    <p className="text-xs text-ink/60">{t("email_marketing.subject_prefix")}: {camp.subject}</p>
                   </div>
                   {camp.sent_count === 0 ? (
                     <button
                       onClick={() => handleSendCampaign(camp.id)}
                       className="bg-primary hover:bg-primary/95 text-ink font-bold px-3 py-1.5 rounded-lg text-xs transition-colors"
                     >
-                      🚀 Invia Ora
+                      🚀 {t("email_marketing.send_now_button")}
                     </button>
                   ) : (
                     <span className="text-[10px] bg-slate-100 text-slate-500 font-bold px-2 py-1 rounded-lg">
-                      Inviata
+                      {t("email_marketing.sent_badge")}
                     </span>
                   )}
                 </div>
@@ -185,17 +185,17 @@ export default function EmailMarketing() {
                 {camp.sent_count > 0 && (
                   <div className="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-slate-100 text-center">
                     <div className="bg-slate-50/70 p-2 rounded-lg">
-                      <div className="text-xs text-slate-400">Inviate</div>
+                      <div className="text-xs text-slate-400">{t("email_marketing.sent_label")}</div>
                       <div className="text-sm font-bold text-ink">{camp.sent_count}</div>
                     </div>
                     <div className="bg-green-50/70 p-2 rounded-lg">
-                      <div className="text-xs text-green-500">Aperte</div>
+                      <div className="text-xs text-green-500">{t("email_marketing.opened_label")}</div>
                       <div className="text-sm font-bold text-green-700">
                         {camp.open_count} <span className="text-[10px] font-normal">({Math.round((camp.open_count/camp.sent_count)*100)}%)</span>
                       </div>
                     </div>
                     <div className="bg-blue-50/70 p-2 rounded-lg">
-                      <div className="text-xs text-blue-500">Cliccate</div>
+                      <div className="text-xs text-blue-500">{t("email_marketing.clicked_label")}</div>
                       <div className="text-sm font-bold text-blue-700">
                         {camp.click_count} <span className="text-[10px] font-normal">({Math.round((camp.click_count/camp.sent_count)*100)}%)</span>
                       </div>
@@ -205,7 +205,7 @@ export default function EmailMarketing() {
               </Card>
             ))}
             {campaigns.length === 0 && (
-              <div className="text-center text-sm text-ink/40 py-8">Nessuna campagna creata.</div>
+              <div className="text-center text-sm text-ink/40 py-8">{t("email_marketing.no_campaigns")}</div>
             )}
           </div>
         </div>
@@ -213,12 +213,12 @@ export default function EmailMarketing() {
         {/* Marketing Follow-up Sequences */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-ink">Sequenze Automatiche</h2>
+            <h2 className="text-xl font-bold text-ink">{t("email_marketing.sequences_title")}</h2>
             <button
               onClick={() => setShowSeqForm(s => !s)}
               className="bg-primary hover:bg-primary/80 text-ink font-semibold rounded-xl2 px-4 py-2 text-xs transition-colors shadow-sm"
             >
-              {showSeqForm ? "Annulla" : "+ Nuova Sequenza"}
+              {showSeqForm ? t("email_marketing.cancel_button") : t("email_marketing.new_sequence_button")}
             </button>
           </div>
 
@@ -226,19 +226,19 @@ export default function EmailMarketing() {
             <Card className="border border-slate-100 shadow-md">
               <form onSubmit={handleCreateSequence} className="space-y-4">
                 <div>
-                  <label className="text-xs font-semibold text-ink/70 block mb-1">Nome Sequenza</label>
+                  <label className="text-xs font-semibold text-ink/70 block mb-1">{t("email_marketing.sequence_name_label")}</label>
                   <input
-                    type="text" required placeholder="Es. Follow-up Lead Iniziale" value={seqName} onChange={(e) => setSeqName(e.target.value)}
+                    type="text" required placeholder={t("email_marketing.sequence_name_placeholder")} value={seqName} onChange={(e) => setSeqName(e.target.value)}
                     className="w-full border border-slate-200 rounded-xl2 px-3 py-2 text-sm outline-none"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-ink/70 block mb-1">Trigger (Fase Pipeline)</label>
+                  <label className="text-xs font-semibold text-ink/70 block mb-1">{t("email_marketing.trigger_stage_label")}</label>
                   <select
                     value={seqStage} required onChange={(e) => setSeqStage(e.target.value)}
                     className="w-full border border-slate-200 rounded-xl2 px-3 py-2 text-sm bg-white outline-none"
                   >
-                    <option value="">Seleziona...</option>
+                    <option value="">{t("email_marketing.select_placeholder")}</option>
                     {stages.map(st => (
                       <option key={st.id} value={st.id}>{st.name}</option>
                     ))}
@@ -246,10 +246,10 @@ export default function EmailMarketing() {
                 </div>
                 <div>
                   <label className="text-xs font-semibold text-ink/70 block mb-1">
-                    Step della Sequenza (un'email per riga formato: <span className="font-mono bg-slate-100 p-0.5 rounded">GiorniRitardo | Oggetto | Corpo</span>)
+                    {t("email_marketing.steps_label_prefix")} <span className="font-mono bg-slate-100 p-0.5 rounded">{t("email_marketing.steps_label_format")}</span>
                   </label>
                   <textarea
-                    required placeholder="1 | Benvenuto! | Grazie per esserti registrato.&#13;3 | Come possiamo aiutarti? | Hai domande sul servizio?"
+                    required placeholder={t("email_marketing.steps_placeholder")}
                     value={seqSteps} onChange={(e) => setSeqSteps(e.target.value)}
                     rows={4}
                     className="w-full border border-slate-200 rounded-xl2 px-3 py-2 text-xs outline-none font-mono"
@@ -259,7 +259,7 @@ export default function EmailMarketing() {
                   type="submit"
                   className="w-full bg-secondary hover:bg-secondary/90 text-ink font-semibold rounded-xl2 px-4 py-2.5 text-sm transition-all"
                 >
-                  Salva Sequenza
+                  {t("email_marketing.save_sequence_button")}
                 </button>
               </form>
             </Card>
@@ -274,12 +274,12 @@ export default function EmailMarketing() {
                   <div className="space-y-1">
                     <div className="font-semibold text-sm text-ink">{seq.name}</div>
                     <div className="text-xs text-ink/60">
-                      Attivata al cambio fase pipeline: <span className="font-semibold">{stages.find(st => st.id === seq.trigger_stage_id)?.name || seq.trigger_stage_id}</span>
+                      {t("email_marketing.triggered_at_label")}: <span className="font-semibold">{stages.find(st => st.id === seq.trigger_stage_id)?.name || seq.trigger_stage_id}</span>
                     </div>
                     <div className="space-y-1 mt-2">
                       {steps.map((st, i) => (
                         <div key={i} className="text-[10px] bg-slate-50 border border-slate-100 text-ink/80 px-2 py-1 rounded">
-                          📧 <span className="font-bold">Giorno {st.delay_days}</span>: {st.subject} - <span className="italic">"{st.body.slice(0, 30)}..."</span>
+                          📧 <span className="font-bold">{t("email_marketing.day_label")} {st.delay_days}</span>: {st.subject} - <span className="italic">"{st.body.slice(0, 30)}..."</span>
                         </div>
                       ))}
                     </div>
@@ -294,7 +294,7 @@ export default function EmailMarketing() {
               );
             })}
             {sequences.length === 0 && (
-              <div className="text-center text-sm text-ink/40 py-8">Nessuna sequenza di follow-up attiva.</div>
+              <div className="text-center text-sm text-ink/40 py-8">{t("email_marketing.no_sequences")}</div>
             )}
           </div>
         </div>

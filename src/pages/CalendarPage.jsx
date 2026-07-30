@@ -64,12 +64,12 @@ export default function CalendarPage() {
         <Card className="mb-6">
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="md:col-span-2">
-              <label className="text-sm font-medium block mb-1">Titolo</label>
+              <label className="text-sm font-medium block mb-1">{t("calendar.field_title")}</label>
               <input required value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })}
                      className="w-full border border-slate-200 rounded-xl2 px-3 py-2" />
             </div>
             <div>
-              <label className="text-sm font-medium block mb-1">Cliente</label>
+              <label className="text-sm font-medium block mb-1">{t("calendar.field_client")}</label>
               <select value={form.client_id} onChange={(e) => setForm({ ...form, client_id: e.target.value })}
                       className="w-full border border-slate-200 rounded-xl2 px-3 py-2">
                 <option value="">-</option>
@@ -77,18 +77,18 @@ export default function CalendarPage() {
               </select>
             </div>
             <div>
-              <label className="text-sm font-medium block mb-1">Luogo</label>
+              <label className="text-sm font-medium block mb-1">{t("calendar.field_location")}</label>
               <input value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })}
                      className="w-full border border-slate-200 rounded-xl2 px-3 py-2" />
             </div>
             <div>
-              <label className="text-sm font-medium block mb-1">Inizio</label>
+              <label className="text-sm font-medium block mb-1">{t("calendar.field_start")}</label>
               <input type="datetime-local" required value={form.start_time}
                      onChange={(e) => setForm({ ...form, start_time: e.target.value })}
                      className="w-full border border-slate-200 rounded-xl2 px-3 py-2" />
             </div>
             <div>
-              <label className="text-sm font-medium block mb-1">Fine</label>
+              <label className="text-sm font-medium block mb-1">{t("calendar.field_end")}</label>
               <input type="datetime-local" required value={form.end_time}
                      onChange={(e) => setForm({ ...form, end_time: e.target.value })}
                      className="w-full border border-slate-200 rounded-xl2 px-3 py-2" />
