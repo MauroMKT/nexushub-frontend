@@ -8,13 +8,11 @@ import i18n, { changeLanguage } from "../i18n";
 import { useAuth } from "../context/AuthContext";
 import { api } from "../api";
 
-const COMPANY_TYPES = ["spa", "srl", "srls", "ditta_individuale", "libero_professionista"];
-
 const initialForm = {
   account_type: "azienda",
   language: "it",
   // azienda
-  company_type: "srl",
+  company_type: "",
   legal_name: "",
   trade_name: "",
   sector: "",
@@ -151,18 +149,8 @@ export default function Register() {
               <div className="grid grid-cols-2 gap-3">
                 <Field label={t("register.legal_name")} value={form.legal_name}
                        onChange={(v) => update("legal_name", v)} required />
-                <div>
-                  <label className="text-sm font-medium block mb-1">{t("register.company_type")}</label>
-                  <select
-                    value={form.company_type}
-                    onChange={(e) => update("company_type", e.target.value)}
-                    className="w-full border border-slate-200 rounded-xl2 px-3 py-2"
-                  >
-                    {COMPANY_TYPES.map((ct) => (
-                      <option key={ct} value={ct}>{t(`register.company_type_${ct}`)}</option>
-                    ))}
-                  </select>
-                </div>
+                <Field label={t("register.company_type")} value={form.company_type}
+                       onChange={(v) => update("company_type", v)} hint={t("register.company_type_hint")} />
               </div>
 
               <Field label={t("register.trade_name")} value={form.trade_name}
