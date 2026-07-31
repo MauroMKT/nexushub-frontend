@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
-import { api } from "../api";
+import { api, clearToken, clearViewTenantId } from "../api";
 import Card from "../components/Card";
 import LanguageFlagSelect, { findLanguageOption } from "../components/LanguageFlagSelect";
 import { useAuth } from "../context/AuthContext";
 import { changeLanguage } from "../i18n";
 import { applyTenantTheme } from "../theme";
 
-const COMPANY_TYPES = ["spa", "srl", "srls", "ditta_individuale", "libero_professionista"];
-
 export default function Settings() {
   const { t } = useTranslation();
   const { user, setUser } = useAuth();
+  const navigate = useNavigate();
   const [tenant, setTenant] = useState(null);
   const [team, setTeam] = useState([]);
   const [inviteEmail, setInviteEmail] = useState("");
@@ -34,6 +34,10 @@ export default function Settings() {
   const [billingCycle, setBillingCycle] = useState("monthly");
   const [billingMsg, setBillingMsg] = useState(null);
   const [billingBusy, setBillingBusy] = useState(false);
+  const [deletePassword, setDeletePassword] = useState("");
+  const [deleteConfirmText, setDeleteConfirmText] = useState("");
+  const [deleteMsg, setDeleteMsg] = useState(null);
+  const [deleteBusy, setDeleteBusy] = useState(false);
 
   function refresh() {
     api.getTenantSettings().then((tn) => { setTenant(tn); setCompanyForm(tn); }).catch(() => {});
@@ -146,6 +150,27 @@ export default function Settings() {
     refresh();
   }
 
+  // Cancellazione definitiva del proprio account/azienda: azione irreversibile,
+  // riservata all'admin del tenant, protetta da conferma testuale + password.
+  async function handleDeleteAccount(e) {
+    e.preventDefault();
+    setDeleteMsg(null);
+    if (deleteConfirmText.trim() !== "ELIMINA") {
+      setDeleteMsg(t("settings.danger_zone_confirm_text_error"));
+      return;
+    }
+    setDeleteBusy(true);
+    try {
+      await api.deleteOwnTenant(deletePassword);
+      clearToken();
+      clearViewTenantId();
+      navigate("/login");
+    } catch (e2) {
+      setDeleteMsg(e2.message);
+      setDeleteBusy(false);
+    }
+  }
+
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">{t("settings.title")}</h1>
@@ -158,6 +183,10 @@ export default function Settings() {
         </div>
         <p className="text-xs text-ink/50 mt-2">
           Piano attuale: <span className="font-medium capitalize">{tenant?.plan}</span> · Settore: {tenant?.sector || "-"}
+          {" · "}
+          <button onClick={() => navigate("/modules")} className="underline hover:text-ink">
+            {t("settings.manage_modules_link")}
+          </button>
         </p>
       </Card>
 
@@ -214,18 +243,8 @@ export default function Settings() {
               <TextField label={t("register.legal_name")} value={companyForm.name}
                          onChange={(v) => setCompanyForm((f) => ({ ...f, name: v }))} />
               {companyForm.account_type === "azienda" && (
-                <div>
-                  <label className="text-sm font-medium block mb-1">{t("register.company_type")}</label>
-                  <select
-                    value={companyForm.company_type || "srl"}
-                    onChange={(e) => setCompanyForm((f) => ({ ...f, company_type: e.target.value }))}
-                    className="w-full border border-slate-200 rounded-xl2 px-3 py-2 text-sm"
-                  >
-                    {COMPANY_TYPES.map((ct) => (
-                      <option key={ct} value={ct}>{t(`register.company_type_${ct}`)}</option>
-                    ))}
-                  </select>
-                </div>
+                <TextField label={t("register.company_type")} value={companyForm.company_type}
+                           onChange={(v) => setCompanyForm((f) => ({ ...f, company_type: v }))} />
               )}
             </div>
 
@@ -430,6 +449,43 @@ export default function Settings() {
           </div>
         )}
       </Card>
+
+      {user?.role === "admin" && (
+        <Card className="border-red-200">
+          <h2 className="font-semibold mb-2 text-red-700">{t("settings.danger_zone_title")}</h2>
+          <p className="text-xs text-ink/60 mb-3">{t("settings.danger_zone_hint")}</p>
+          <form onSubmit={handleDeleteAccount} className="space-y-3 max-w-md">
+            <div>
+              <label className="text-sm font-medium block mb-1">
+                {t("settings.danger_zone_confirm_label")}
+              </label>
+              <input
+                value={deleteConfirmText}
+                onChange={(e) => setDeleteConfirmText(e.target.value)}
+                placeholder="ELIMINA"
+                className="w-full border border-red-200 rounded-xl2 px-3 py-2 text-sm"
+              />
+            </div>
+            <div>
+              <label className="text-sm font-medium block mb-1">{t("settings.danger_zone_password_label")}</label>
+              <input
+                type="password" required
+                value={deletePassword}
+                onChange={(e) => setDeletePassword(e.target.value)}
+                className="w-full border border-red-200 rounded-xl2 px-3 py-2 text-sm"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={deleteBusy}
+              className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl2 px-4 py-2 text-sm disabled:opacity-40"
+            >
+              {deleteBusy ? t("settings.danger_zone_deleting") : t("settings.danger_zone_delete_button")}
+            </button>
+            {deleteMsg && <p className="text-xs text-red-600">{deleteMsg}</p>}
+          </form>
+        </Card>
+      )}
     </div>
   );
 }
