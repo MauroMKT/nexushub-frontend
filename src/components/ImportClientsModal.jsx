@@ -10,6 +10,7 @@ const CLIENT_COLUMNS = [
   { key: "email", labelKey: "clients.email" },
   { key: "phone", labelKey: "clients.phone" },
   { key: "sector", labelKey: "clients.sector" },
+  { key: "notes", labelKey: "clients.notes" },
 ];
 
 export default function ImportClientsModal({ onClose, onImported }) {

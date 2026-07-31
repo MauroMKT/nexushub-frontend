@@ -180,6 +180,11 @@ export default function ImportModal({
             <p className="text-sm mb-2">
               {t("import.created")}: {result.created} · {t("import.updated")}: {result.updated} · {t("import.skipped")}: {result.skipped}
             </p>
+            {(result.contacts_created > 0 || result.contacts_updated > 0) && (
+              <p className="text-xs text-ink/60 mb-2">
+                {t("import.contacts_synced")}: {t("import.created")} {result.contacts_created} · {t("import.updated")} {result.contacts_updated}
+              </p>
+            )}
             {result.errors.length > 0 && (
               <ul className="text-xs text-red-500 list-disc list-inside mb-2">
                 {result.errors.map((e, i) => <li key={i}>{e}</li>)}
