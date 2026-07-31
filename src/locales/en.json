@@ -224,7 +224,8 @@
     "save": "Save",
     "portal_invite": "Enable portal access",
     "portal_invited": "Portal access enabled",
-    "portal_invite_send": "Send credentials"
+    "portal_invite_send": "Send credentials",
+    "notes": "Notes"
   },
   "contacts": {
     "title": "Phonebook",
@@ -483,7 +484,8 @@
     "close": "Close",
     "title_contacts": "Import contacts",
     "duplicate_update_contact": "Update the existing contact",
-    "other_fields_note": "Other fields detected in the file (saved but not converted):"
+    "other_fields_note": "Other fields detected in the file (saved but not converted):",
+    "contacts_synced": "Linked address book contacts"
   },
   "accounting": {
     "title": "Accounting",

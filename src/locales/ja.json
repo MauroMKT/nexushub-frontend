@@ -224,7 +224,8 @@
     "save": "保存",
     "portal_invite": "顧客ポータルを有効化",
     "portal_invited": "顧客ポータルが有効化されました",
-    "portal_invite_send": "ログイン情報を送信"
+    "portal_invite_send": "ログイン情報を送信",
+    "notes": "メモ"
   },
   "contacts": {
     "title": "連絡先",
@@ -483,7 +484,8 @@
     "close": "閉じる",
     "title_contacts": "連絡先をインポート",
     "duplicate_update_contact": "既存の連絡先を更新",
-    "other_fields_note": "ファイル内で検出されたその他のフィールド（保存されますが変換されません）："
+    "other_fields_note": "ファイル内で検出されたその他のフィールド（保存されますが変換されません）：",
+    "contacts_synced": "連携された連絡先"
   },
   "accounting": {
     "title": "経理",

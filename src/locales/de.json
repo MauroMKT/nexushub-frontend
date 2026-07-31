@@ -224,7 +224,8 @@
     "save": "Speichern",
     "portal_invite": "Portal-Zugang aktivieren",
     "portal_invited": "Portal-Zugang aktiviert",
-    "portal_invite_send": "Zugangsdaten senden"
+    "portal_invite_send": "Zugangsdaten senden",
+    "notes": "Notizen"
   },
   "contacts": {
     "title": "Telefonbuch",
@@ -483,7 +484,8 @@
     "close": "Schließen",
     "title_contacts": "Kontakte importieren",
     "duplicate_update_contact": "Bestehenden Kontakt aktualisieren",
-    "other_fields_note": "Weitere in der Datei erkannte Felder (gespeichert, aber nicht umgewandelt):"
+    "other_fields_note": "Weitere in der Datei erkannte Felder (gespeichert, aber nicht umgewandelt):",
+    "contacts_synced": "Verknüpfte Kontakte im Adressbuch"
   },
   "accounting": {
     "title": "Buchhaltung",

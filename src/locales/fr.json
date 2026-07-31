@@ -224,7 +224,8 @@
     "save": "Enregistrer",
     "portal_invite": "Activer l'accès au portail",
     "portal_invited": "Accès au portail activé",
-    "portal_invite_send": "Envoyer les identifiants"
+    "portal_invite_send": "Envoyer les identifiants",
+    "notes": "Notes"
   },
   "contacts": {
     "title": "Répertoire Téléphonique",
@@ -483,7 +484,8 @@
     "close": "Fermer",
     "title_contacts": "Importer des contacts",
     "duplicate_update_contact": "Mettre à jour le contact existant",
-    "other_fields_note": "Autres champs détectés dans le fichier (enregistrés mais non convertis) :"
+    "other_fields_note": "Autres champs détectés dans le fichier (enregistrés mais non convertis) :",
+    "contacts_synced": "Contacts du carnet d'adresses liés"
   },
   "accounting": {
     "title": "Comptabilité",

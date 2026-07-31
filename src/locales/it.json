@@ -224,7 +224,8 @@
     "save": "Salva",
     "portal_invite": "Attiva accesso portale",
     "portal_invited": "Accesso portale attivato",
-    "portal_invite_send": "Invia credenziali"
+    "portal_invite_send": "Invia credenziali",
+    "notes": "Note"
   },
   "contacts": {
     "title": "Rubrica Telefonica",
@@ -483,7 +484,8 @@
     "close": "Chiudi",
     "title_contacts": "Importa contatti",
     "duplicate_update_contact": "Aggiorna il contatto esistente",
-    "other_fields_note": "Altri campi rilevati nel file (salvati ma non convertiti):"
+    "other_fields_note": "Altri campi rilevati nel file (salvati ma non convertiti):",
+    "contacts_synced": "Contatti Rubrica collegati"
   },
   "accounting": {
     "title": "Contabilità",

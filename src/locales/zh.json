@@ -224,7 +224,8 @@
     "save": "保存",
     "portal_invite": "启用客户门户访问",
     "portal_invited": "客户门户访问已启用",
-    "portal_invite_send": "发送登录凭证"
+    "portal_invite_send": "发送登录凭证",
+    "notes": "备注"
   },
   "contacts": {
     "title": "通讯录",
@@ -483,7 +484,8 @@
     "close": "关闭",
     "title_contacts": "导入联系人",
     "duplicate_update_contact": "更新现有联系人",
-    "other_fields_note": "文件中检测到的其他字段（已保存但未转换）："
+    "other_fields_note": "文件中检测到的其他字段（已保存但未转换）：",
+    "contacts_synced": "已关联的通讯录联系人"
   },
   "accounting": {
     "title": "财务",

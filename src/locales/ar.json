@@ -224,7 +224,8 @@
     "save": "حفظ",
     "portal_invite": "تفعيل الوصول إلى البوابة",
     "portal_invited": "تم تفعيل الوصول إلى البوابة",
-    "portal_invite_send": "إرسال بيانات الدخول"
+    "portal_invite_send": "إرسال بيانات الدخول",
+    "notes": "ملاحظات"
   },
   "contacts": {
     "title": "دفتر الهاتف",
@@ -483,7 +484,8 @@
     "close": "إغلاق",
     "title_contacts": "استيراد جهات الاتصال",
     "duplicate_update_contact": "تحديث جهة الاتصال الحالية",
-    "other_fields_note": "حقول أخرى تم اكتشافها في الملف (تم حفظها دون تحويلها):"
+    "other_fields_note": "حقول أخرى تم اكتشافها في الملف (تم حفظها دون تحويلها):",
+    "contacts_synced": "جهات اتصال دفتر العناوين المرتبطة"
   },
   "accounting": {
     "title": "المحاسبة",

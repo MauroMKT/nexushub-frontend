@@ -224,7 +224,8 @@
     "save": "Guardar",
     "portal_invite": "Activar acceso al portal",
     "portal_invited": "Acceso al portal activado",
-    "portal_invite_send": "Enviar credenciales"
+    "portal_invite_send": "Enviar credenciales",
+    "notes": "Notas"
   },
   "contacts": {
     "title": "Agenda Telefónica",
@@ -483,7 +484,8 @@
     "close": "Cerrar",
     "title_contacts": "Importar contactos",
     "duplicate_update_contact": "Actualizar el contacto existente",
-    "other_fields_note": "Otros campos detectados en el archivo (guardados pero no convertidos):"
+    "other_fields_note": "Otros campos detectados en el archivo (guardados pero no convertidos):",
+    "contacts_synced": "Contactos de la agenda vinculados"
   },
   "accounting": {
     "title": "Contabilidad",
