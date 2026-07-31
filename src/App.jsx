@@ -20,6 +20,7 @@ import PlatformAdmin from "./pages/PlatformAdmin";
 import TeamChat from "./pages/TeamChat";
 import Accounting from "./pages/Accounting";
 import Guide from "./pages/Guide";
+import Modules from "./pages/Modules";
 
 // Routing Fase 1, 2 & estensioni (rubrica, notifiche, white-label, portale clienti, calendar).
 export default function App() {
@@ -49,6 +50,7 @@ export default function App() {
         <Route path="/accounting" element={<Accounting />} />
         <Route path="/guide" element={<Guide />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/modules" element={<Modules />} />
         <Route path="/platform-admin" element={<PlatformAdmin />} />
       </Route>
 

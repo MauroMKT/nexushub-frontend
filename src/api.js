@@ -90,6 +90,7 @@ export const api = {
   inviteTeamMember: (payload) => request("/team", { method: "POST", body: payload }),
   getTenantSettings: () => request("/settings/tenant"),
   updateTenantSettings: (payload) => request("/settings/tenant", { method: "PUT", body: payload }),
+  deleteOwnTenant: (password) => request("/settings/tenant", { method: "DELETE", body: { password } }),
 
   // --- Automations & Blueprints (M5) ---
   listRules: () => request("/automations/rules"),
@@ -202,6 +203,17 @@ export const api = {
   platformAdminSuspendTenant: (id) => request(`/platform-admin/tenants/${id}`, { method: "DELETE" }),
   platformAdminTenantUsers: (id) => request(`/platform-admin/tenants/${id}/users`),
   platformAdminCreateAdmin: (payload) => request("/platform-admin/admins", { method: "POST", body: payload }),
+  platformAdminDeleteTenantPermanent: (id) => request(`/platform-admin/tenants/${id}/permanent`, { method: "DELETE" }),
+
+  // --- Super Admin: gestione moduli di settore per un tenant qualsiasi ---
+  platformAdminListTenantModules: (id) => request(`/platform-admin/tenants/${id}/modules`),
+  platformAdminActivateTenantModule: (id, slug) => request(`/platform-admin/tenants/${id}/modules/${slug}`, { method: "POST" }),
+  platformAdminDeactivateTenantModule: (id, slug) => request(`/platform-admin/tenants/${id}/modules/${slug}`, { method: "DELETE" }),
+
+  // --- Moduli di settore: autoattivazione lato cliente (Fase 9) ---
+  listModulesCatalog: () => request("/modules/catalog"),
+  activateModule: (slug) => request(`/modules/${slug}`, { method: "POST" }),
+  deactivateModule: (slug) => request(`/modules/${slug}`, { method: "DELETE" }),
 };
 
 // --- Token separato per la sessione del portale clienti (non va mai mischiato
