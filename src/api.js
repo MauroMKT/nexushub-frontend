@@ -10,6 +10,21 @@ function getPortalToken() {
   return localStorage.getItem("nexushub_portal_token");
 }
 
+// Modalità "Entra come" del super admin (Fase 7 rivista): il super admin resta
+// SEMPRE autenticato con il proprio token; questo id serve solo a chiedere al
+// backend di far vedere i dati di un tenant specifico (header X-View-Tenant-Id),
+// senza mai generare un token separato o fare login con le credenziali del
+// cliente. Vedi PlatformAdmin.jsx e AuthContext.jsx.
+function getViewTenantId() {
+  return localStorage.getItem("nexushub_view_tenant_id");
+}
+export function setViewTenantId(tenantId) {
+  localStorage.setItem("nexushub_view_tenant_id", tenantId);
+}
+export function clearViewTenantId() {
+  localStorage.removeItem("nexushub_view_tenant_id");
+}
+
 async function request(path, { method = "GET", body, auth = true, portalAuth = false } = {}) {
   const headers = { "Content-Type": "application/json" };
   if (portalAuth) {
@@ -18,6 +33,8 @@ async function request(path, { method = "GET", body, auth = true, portalAuth = f
   } else if (auth) {
     const token = getToken();
     if (token) headers["Authorization"] = `Bearer ${token}`;
+    const viewTenantId = getViewTenantId();
+    if (viewTenantId) headers["X-View-Tenant-Id"] = viewTenantId;
   }
   const res = await fetch(`${BASE_URL}${path}`, {
     method,
@@ -184,7 +201,6 @@ export const api = {
   platformAdminUpdateTenant: (id, payload) => request(`/platform-admin/tenants/${id}`, { method: "PUT", body: payload }),
   platformAdminSuspendTenant: (id) => request(`/platform-admin/tenants/${id}`, { method: "DELETE" }),
   platformAdminTenantUsers: (id) => request(`/platform-admin/tenants/${id}/users`),
-  platformAdminImpersonate: (id) => request(`/platform-admin/tenants/${id}/impersonate`, { method: "POST" }),
   platformAdminCreateAdmin: (payload) => request("/platform-admin/admins", { method: "POST", body: payload }),
 };
 

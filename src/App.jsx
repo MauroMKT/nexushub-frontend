@@ -17,7 +17,6 @@ import Automations from "./pages/Automations";
 import WhatsAppHub from "./pages/WhatsAppHub";
 import EmailMarketing from "./pages/EmailMarketing";
 import PlatformAdmin from "./pages/PlatformAdmin";
-import ImpersonateBridge from "./pages/ImpersonateBridge";
 import TeamChat from "./pages/TeamChat";
 import Accounting from "./pages/Accounting";
 import Guide from "./pages/Guide";
@@ -35,9 +34,6 @@ export default function App() {
       {/* Portale clienti: sessione separata dal team, nessuna sidebar interna */}
       <Route path="/portal/login" element={<PortalLogin />} />
       <Route path="/portal" element={<PortalDashboard />} />
-
-      {/* Ponte per il token di impersonate generato dal super admin (Fase 7) */}
-      <Route path="/impersonate" element={<ImpersonateBridge />} />
 
       <Route element={<ProtectedLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
