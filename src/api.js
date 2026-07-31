@@ -70,6 +70,8 @@ export const api = {
   createClient: (payload) => request("/clients", { method: "POST", body: payload }),
   updateClient: (id, payload) => request(`/clients/${id}`, { method: "PUT", body: payload }),
   deleteClient: (id) => request(`/clients/${id}`, { method: "DELETE" }),
+  // Porta un nominativo dalla Rubrica ai Clienti (Fase 9.8)
+  createClientFromContact: (contactId) => request(`/clients/from-contact/${contactId}`, { method: "POST" }),
 
   listStages: () => request("/pipeline/stages"),
   listDeals: () => request("/pipeline/deals"),
