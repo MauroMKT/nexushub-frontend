@@ -128,6 +128,9 @@ export const api = {
   updateContact: (id, payload) => request(`/contacts/${id}`, { method: "PUT", body: payload }),
   deleteContact: (id) => request(`/contacts/${id}`, { method: "DELETE" }),
   importContactsFromClients: () => request("/contacts/import-from-clients", { method: "POST" }),
+  // Import Rubrica da file CSV/JSON/XML (Fase 9.5, distinto da import-from-clients sopra)
+  previewContactImport: (payload) => request("/contacts/import/preview", { method: "POST", body: payload }),
+  commitContactImport: (payload) => request("/contacts/import/commit", { method: "POST", body: payload }),
 
   // --- Notifiche ---
   listNotifications: (unreadOnly = false) => request(`/notifications?unread_only=${unreadOnly}`),
