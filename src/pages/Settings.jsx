@@ -29,6 +29,15 @@ export default function Settings() {
   const [pwMsg, setPwMsg] = useState(null);
   const [companyForm, setCompanyForm] = useState(null);
   const [companyMsg, setCompanyMsg] = useState(null);
+  // Fase 9.8: configurazione SMTP per l'invio reale delle campagne Email
+  // Marketing. Stato separato da companyForm perché smtp_password è scrivibile
+  // ma mai restituito dalla API (vedi schemas.TenantOut): partiamo sempre da
+  // un campo vuoto, così l'utente vede se sta per sovrascriverla o no.
+  const [smtpForm, setSmtpForm] = useState({
+    smtp_host: "", smtp_port: "", smtp_username: "", smtp_password: "",
+    smtp_from_email: "", smtp_from_name: "", smtp_use_tls: true,
+  });
+  const [smtpMsg, setSmtpMsg] = useState(null);
   const [billingStatus, setBillingStatus] = useState(null);
   const [billingPlans, setBillingPlans] = useState([]);
   const [billingCycle, setBillingCycle] = useState("monthly");
@@ -40,7 +49,20 @@ export default function Settings() {
   const [deleteBusy, setDeleteBusy] = useState(false);
 
   function refresh() {
-    api.getTenantSettings().then((tn) => { setTenant(tn); setCompanyForm(tn); }).catch(() => {});
+    api.getTenantSettings().then((tn) => {
+      setTenant(tn);
+      setCompanyForm(tn);
+      setSmtpForm((f) => ({
+        ...f,
+        smtp_host: tn.smtp_host || "",
+        smtp_port: tn.smtp_port || "",
+        smtp_username: tn.smtp_username || "",
+        smtp_from_email: tn.smtp_from_email || "",
+        smtp_from_name: tn.smtp_from_name || "",
+        smtp_use_tls: tn.smtp_use_tls !== false,
+        smtp_password: "", // mai restituita dalla API, vedi commento sopra
+      }));
+    }).catch(() => {});
     api.listTeam().then(setTeam).catch(() => {});
     api.googleCalendarStatus().then(setGcalStatus).catch(() => {});
     api.billingStatus().then(setBillingStatus).catch(() => {});
@@ -109,6 +131,23 @@ export default function Settings() {
     setTenant(saved);
     setCompanyForm(saved);
     setCompanyMsg(t("settings.data_updated"));
+  }
+
+  async function handleSmtpSave(e) {
+    e.preventDefault();
+    setSmtpMsg(null);
+    // Non inviamo smtp_password se lasciata vuota: l'utente potrebbe voler
+    // aggiornare solo host/porta senza dover reinserire la password già salvata.
+    const { smtp_password, ...rest } = smtpForm;
+    const payload = { ...rest, smtp_port: smtpForm.smtp_port ? Number(smtpForm.smtp_port) : null };
+    if (smtp_password) payload.smtp_password = smtp_password;
+    try {
+      const saved = await api.updateTenantSettings(payload);
+      setTenant(saved);
+      setSmtpMsg(t("settings.smtp_saved"));
+    } catch (err) {
+      setSmtpMsg(err.message);
+    }
   }
 
   async function handleColorChange(field, value) {
@@ -347,6 +386,54 @@ export default function Settings() {
             </button>
           </div>
         )}
+      </Card>
+
+      <Card>
+        <h2 className="font-semibold mb-3">{t("settings.smtp_title")}</h2>
+        <p className="text-xs text-ink/50 mb-3">{t("settings.smtp_hint")}</p>
+        {tenant && (
+          <p className="text-xs mb-3">
+            {tenant.smtp_configured ? (
+              <span className="text-green-600 font-medium">✅ {t("settings.smtp_configured_yes")}</span>
+            ) : (
+              <span className="text-ink/50">{t("settings.smtp_configured_no")}</span>
+            )}
+          </p>
+        )}
+        <form onSubmit={handleSmtpSave} className="space-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <TextField label={t("settings.smtp_host")} value={smtpForm.smtp_host}
+                       onChange={(v) => setSmtpForm((f) => ({ ...f, smtp_host: v }))} />
+            <TextField label={t("settings.smtp_port")} value={smtpForm.smtp_port}
+                       onChange={(v) => setSmtpForm((f) => ({ ...f, smtp_port: v }))} />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <TextField label={t("settings.smtp_username")} value={smtpForm.smtp_username}
+                       onChange={(v) => setSmtpForm((f) => ({ ...f, smtp_username: v }))} />
+            <TextField label={t("settings.smtp_password")} type="password" value={smtpForm.smtp_password}
+                       onChange={(v) => setSmtpForm((f) => ({ ...f, smtp_password: v }))} />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <TextField label={t("settings.smtp_from_email")} type="email" value={smtpForm.smtp_from_email}
+                       onChange={(v) => setSmtpForm((f) => ({ ...f, smtp_from_email: v }))} />
+            <TextField label={t("settings.smtp_from_name")} value={smtpForm.smtp_from_name}
+                       onChange={(v) => setSmtpForm((f) => ({ ...f, smtp_from_name: v }))} />
+          </div>
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
+            <input
+              type="checkbox"
+              checked={smtpForm.smtp_use_tls}
+              onChange={(e) => setSmtpForm((f) => ({ ...f, smtp_use_tls: e.target.checked }))}
+            />
+            {t("settings.smtp_use_tls")}
+          </label>
+          <div className="flex items-center gap-3">
+            <button type="submit" className="bg-primary hover:bg-primary/80 text-ink font-semibold rounded-xl2 px-4 py-2 text-sm">
+              {t("settings.save")}
+            </button>
+            {smtpMsg && <span className="text-xs text-ink/60">{smtpMsg}</span>}
+          </div>
+        </form>
       </Card>
 
       <Card>

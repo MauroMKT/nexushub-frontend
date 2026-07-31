@@ -9,7 +9,10 @@ export default function EmailMarketing() {
   const [campaigns, setCampaigns] = useState([]);
   const [sequences, setSequences] = useState([]);
   const [stages, setStages] = useState([]);
-  
+  const [tenant, setTenant] = useState(null);
+  const [sendingId, setSendingId] = useState(null);
+  const [sendError, setSendError] = useState(null);
+
   // Campaign Form
   const [campTitle, setCampTitle] = useState("");
   const [campSubject, setCampSubject] = useState("");
@@ -26,6 +29,7 @@ export default function EmailMarketing() {
     api.listEmailCampaigns().then(setCampaigns).catch(console.error);
     api.listEmailSequences().then(setSequences).catch(console.error);
     api.listStages().then(setStages).catch(console.error);
+    api.getTenantSettings().then(setTenant).catch(console.error);
   }
 
   useEffect(refresh, []);
@@ -51,11 +55,15 @@ export default function EmailMarketing() {
   }
 
   async function handleSendCampaign(id) {
+    setSendError(null);
+    setSendingId(id);
     try {
       await api.sendEmailCampaign(id);
       refresh();
     } catch (err) {
-      console.error(err);
+      setSendError(err.message);
+    } finally {
+      setSendingId(null);
     }
   }
 
@@ -109,6 +117,18 @@ export default function EmailMarketing() {
           {t("email_marketing.banner_desc")}
         </p>
       </div>
+
+      {tenant && !tenant.smtp_configured && (
+        <div className="bg-accent/30 text-ink text-sm rounded-xl2 p-4">
+          {t("email_marketing.smtp_not_configured_hint")}
+        </div>
+      )}
+
+      {sendError && (
+        <div className="bg-red-50 text-red-700 text-sm rounded-xl2 p-4 border border-red-200">
+          {sendError}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
@@ -168,12 +188,17 @@ export default function EmailMarketing() {
                     <h3 className="font-bold text-sm text-ink">{camp.title}</h3>
                     <p className="text-xs text-ink/60">{t("email_marketing.subject_prefix")}: {camp.subject}</p>
                   </div>
-                  {camp.sent_count === 0 ? (
+                  {camp.status === "draft" || camp.status === "failed" ? (
                     <button
                       onClick={() => handleSendCampaign(camp.id)}
-                      className="bg-primary hover:bg-primary/95 text-ink font-bold px-3 py-1.5 rounded-lg text-xs transition-colors"
+                      disabled={sendingId === camp.id}
+                      className="bg-primary hover:bg-primary/95 text-ink font-bold px-3 py-1.5 rounded-lg text-xs transition-colors disabled:opacity-50"
                     >
-                      🚀 {t("email_marketing.send_now_button")}
+                      🚀 {sendingId === camp.id
+                        ? t("email_marketing.sending_label")
+                        : camp.status === "failed"
+                        ? t("email_marketing.retry_button")
+                        : t("email_marketing.send_now_button")}
                     </button>
                   ) : (
                     <span className="text-[10px] bg-slate-100 text-slate-500 font-bold px-2 py-1 rounded-lg">
@@ -182,23 +207,15 @@ export default function EmailMarketing() {
                   )}
                 </div>
 
-                {camp.sent_count > 0 && (
-                  <div className="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-slate-100 text-center">
-                    <div className="bg-slate-50/70 p-2 rounded-lg">
-                      <div className="text-xs text-slate-400">{t("email_marketing.sent_label")}</div>
-                      <div className="text-sm font-bold text-ink">{camp.sent_count}</div>
-                    </div>
+                {camp.status !== "draft" && (
+                  <div className="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-slate-100 text-center">
                     <div className="bg-green-50/70 p-2 rounded-lg">
-                      <div className="text-xs text-green-500">{t("email_marketing.opened_label")}</div>
-                      <div className="text-sm font-bold text-green-700">
-                        {camp.open_count} <span className="text-[10px] font-normal">({Math.round((camp.open_count/camp.sent_count)*100)}%)</span>
-                      </div>
+                      <div className="text-xs text-green-500">{t("email_marketing.sent_label")}</div>
+                      <div className="text-sm font-bold text-green-700">{camp.sent_count}</div>
                     </div>
-                    <div className="bg-blue-50/70 p-2 rounded-lg">
-                      <div className="text-xs text-blue-500">{t("email_marketing.clicked_label")}</div>
-                      <div className="text-sm font-bold text-blue-700">
-                        {camp.click_count} <span className="text-[10px] font-normal">({Math.round((camp.click_count/camp.sent_count)*100)}%)</span>
-                      </div>
+                    <div className="bg-red-50/70 p-2 rounded-lg">
+                      <div className="text-xs text-red-500">{t("email_marketing.failed_label")}</div>
+                      <div className="text-sm font-bold text-red-700">{camp.failed_count}</div>
                     </div>
                   </div>
                 )}

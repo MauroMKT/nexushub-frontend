@@ -6,6 +6,7 @@ import Card from "../components/Card";
 import ChatPanel from "../components/ChatPanel";
 import ClientDocumentsPanel from "../components/ClientDocumentsPanel";
 import ImportClientsModal from "../components/ImportClientsModal";
+import PickContactModal from "../components/PickContactModal";
 
 const emptyForm = { name: "", company: "", email: "", phone: "", sector: "" };
 
@@ -51,6 +52,7 @@ export default function Clients() {
   const [openChatId, setOpenChatId] = useState(null);
   const [openDocsId, setOpenDocsId] = useState(null);
   const [showImport, setShowImport] = useState(false);
+  const [showPickContact, setShowPickContact] = useState(false);
   const [sectorFilter, setSectorFilter] = useState("");
   const [sortOrder, setSortOrder] = useState("az");
 
@@ -89,7 +91,13 @@ export default function Clients() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold">{t("clients.title")}</h1>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
+          <button
+            onClick={() => setShowPickContact(true)}
+            className="bg-white border border-slate-200 hover:bg-slate-50 text-ink font-medium rounded-xl2 px-4 py-2 text-sm"
+          >
+            📇 {t("clients.add_from_contacts")}
+          </button>
           <button
             onClick={() => setShowImport(true)}
             className="bg-secondary hover:bg-secondary/80 text-ink font-semibold rounded-xl2 px-4 py-2 text-sm"
@@ -107,6 +115,10 @@ export default function Clients() {
 
       {showImport && (
         <ImportClientsModal onClose={() => setShowImport(false)} onImported={refresh} />
+      )}
+
+      {showPickContact && (
+        <PickContactModal onClose={() => setShowPickContact(false)} onCreated={refresh} />
       )}
 
       <div className="flex gap-2 mb-4 flex-wrap">
