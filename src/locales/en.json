@@ -244,7 +244,8 @@
     "email": "Email",
     "company": "Company",
     "save": "Save",
-    "empty": "No contacts found."
+    "empty": "No contacts found.",
+    "import_from_file": "Import from file"
   },
   "pipeline": {
     "title": "Sales Pipeline"
@@ -479,7 +480,10 @@
     "created": "Created",
     "updated": "Updated",
     "skipped": "Skipped",
-    "close": "Close"
+    "close": "Close",
+    "title_contacts": "Import contacts",
+    "duplicate_update_contact": "Update the existing contact",
+    "other_fields_note": "Other fields detected in the file (saved but not converted):"
   },
   "accounting": {
     "title": "Accounting",

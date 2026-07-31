@@ -244,7 +244,8 @@
     "email": "E-Mail",
     "company": "Unternehmen",
     "save": "Speichern",
-    "empty": "Keine Kontakte gefunden."
+    "empty": "Keine Kontakte gefunden.",
+    "import_from_file": "Aus Datei importieren"
   },
   "pipeline": {
     "title": "Verkaufspipeline"
@@ -479,7 +480,10 @@
     "created": "Erstellt",
     "updated": "Aktualisiert",
     "skipped": "Übersprungen",
-    "close": "Schließen"
+    "close": "Schließen",
+    "title_contacts": "Kontakte importieren",
+    "duplicate_update_contact": "Bestehenden Kontakt aktualisieren",
+    "other_fields_note": "Weitere in der Datei erkannte Felder (gespeichert, aber nicht umgewandelt):"
   },
   "accounting": {
     "title": "Buchhaltung",
