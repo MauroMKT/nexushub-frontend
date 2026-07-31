@@ -16,6 +16,7 @@ const ITEMS = [
   { to: "/email", key: "email", icon: "✉️" },
   { to: "/chat", key: "chat", icon: "💬" },
   { to: "/accounting", key: "accounting", icon: "🧾" },
+  { to: "/modules", key: "modules", icon: "🧩" },
   { to: "/guide", key: "guide", icon: "📖" },
   { to: "/settings", key: "settings", icon: "⚙️" },
 ];
