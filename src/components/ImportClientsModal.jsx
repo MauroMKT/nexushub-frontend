@@ -121,8 +121,8 @@ export default function ImportClientsModal({ onClose, onImported }) {
                     <table className="w-full text-xs">
                       <thead>
                         <tr className="text-left text-ink/50">
-                          <th className="pr-2">Nome</th><th className="pr-2">Azienda</th>
-                          <th className="pr-2">Email</th><th className="pr-2">Telefono</th><th>Settore</th>
+                          <th className="pr-2">{t("clients.name")}</th><th className="pr-2">{t("clients.company")}</th>
+                          <th className="pr-2">{t("clients.email")}</th><th className="pr-2">{t("clients.phone")}</th><th>{t("clients.sector")}</th>
                         </tr>
                       </thead>
                       <tbody>

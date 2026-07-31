@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import { api } from "../api";
 import { useAuth } from "../context/AuthContext";
+import { getModuleName } from "../utils/moduleI18n";
 
 // Sidebar moduli attivabili (Sezione 5.2 del documento: layout con sidebar dei moduli)
 const ITEMS = [
@@ -41,7 +42,8 @@ export default function Sidebar() {
   // sia i 4 pilota bespoke di Fase 9.1 (route fissa in PILOT_NAV_META, con
   // etichetta tradotta in 9 lingue) sia i ~18 moduli "generici" di Fase 9.3
   // (route dinamica /sector/<slug>, etichetta presa dal nome del modulo nel
-  // catalogo, non ancora tradotto in tutte le lingue come il resto dell'app).
+  // catalogo — anche questo tradotto in tutte le 9 lingue da Fase 9.4, vedi
+  // getModuleName in utils/moduleI18n.js).
   const [dedicatedModules, setDedicatedModules] = useState([]);
 
   useEffect(() => {
@@ -78,7 +80,7 @@ export default function Sidebar() {
         ))}
         {dedicatedModules.map((m) => {
           const meta = PILOT_NAV_META[m.dedicated_route];
-          const label = meta ? t(`nav.${meta.key}`) : (i18n.language?.startsWith("it") ? m.name_it : m.name_en);
+          const label = meta ? t(`nav.${meta.key}`) : getModuleName(m, i18n.language);
           const icon = meta ? meta.icon : "📋";
           return (
             <NavLink
@@ -105,7 +107,7 @@ export default function Sidebar() {
             }
           >
             <span aria-hidden="true">🛡️</span>
-            <span>Super Admin</span>
+            <span>{t("nav.super_admin")}</span>
           </NavLink>
         )}
       </nav>
