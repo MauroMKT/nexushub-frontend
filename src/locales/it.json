@@ -13,7 +13,8 @@
     "chat": "Chat Team",
     "accounting": "Contabilità",
     "guide": "Guida",
-    "settings": "Impostazioni"
+    "settings": "Impostazioni",
+    "modules": "Moduli"
   },
   "login": {
     "title": "Accedi",
@@ -85,7 +86,6 @@
     "address": "Indirizzo",
     "zip_code": "CAP",
     "country": "Nazione",
-    "language_label": "Lingua",
     "company_phone": "N. Telefono Azienda",
     "company_email": "Email Aziendale",
     "pec": "PEC",
@@ -309,7 +309,15 @@
     "billing_per_year": "/anno",
     "billing_upgrade": "Passa a questo piano",
     "billing_manage": "Gestisci abbonamento",
-    "billing_not_configured": "I pagamenti non sono ancora attivi su questo account: contatta l'amministratore della piattaforma."
+    "billing_not_configured": "I pagamenti non sono ancora attivi su questo account: contatta l'amministratore della piattaforma.",
+    "danger_zone_title": "Zona pericolosa",
+    "danger_zone_hint": "La cancellazione dell'account è definitiva e irreversibile: verranno eliminati tutti i dati (clienti, trattative, fatture, chat, documenti, moduli attivati e utenti del team).",
+    "danger_zone_confirm_label": "Digita ELIMINA per confermare",
+    "danger_zone_confirm_text_error": "Devi digitare ELIMINA per confermare",
+    "danger_zone_password_label": "Password attuale",
+    "danger_zone_delete_button": "Cancella definitivamente il mio account",
+    "danger_zone_deleting": "Cancellazione in corso…",
+    "manage_modules_link": "Gestisci moduli di settore"
   },
   "portal": {
     "title": "Area Clienti",
@@ -442,5 +450,16 @@
     "logout": "Esci",
     "loading": "Caricamento...",
     "cancel": "Annulla"
+  },
+  "modules": {
+    "title": "Moduli di settore",
+    "subtitle": "Attiva i moduli dedicati al tuo settore. Alcuni richiedono un piano superiore.",
+    "activate": "Attiva",
+    "deactivate": "Disattiva",
+    "active_badge": "Attivo",
+    "locked_hint": "Richiede il piano {{plan}}",
+    "upgrade_cta": "Fai l'upgrade",
+    "loading": "Caricamento moduli…",
+    "back_to_settings": "Torna alle impostazioni"
   }
 }

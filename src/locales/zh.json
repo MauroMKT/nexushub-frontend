@@ -13,7 +13,8 @@
     "chat": "团队聊天",
     "accounting": "财务",
     "guide": "使用指南",
-    "settings": "设置"
+    "settings": "设置",
+    "modules": "模块"
   },
   "login": {
     "title": "登录",
@@ -85,7 +86,6 @@
     "address": "地址",
     "zip_code": "邮政编码",
     "country": "国家",
-    "language_label": "语言",
     "company_phone": "公司电话",
     "company_email": "公司邮箱",
     "pec": "认证电子邮件 (PEC)",
@@ -309,7 +309,15 @@
     "billing_per_year": "/年",
     "billing_upgrade": "切换到此套餐",
     "billing_manage": "管理订阅",
-    "billing_not_configured": "此账户尚未启用付款功能：请联系平台管理员。"
+    "billing_not_configured": "此账户尚未启用付款功能：请联系平台管理员。",
+    "danger_zone_title": "危险区域",
+    "danger_zone_hint": "删除账户是永久且不可逆的：所有数据都将被清除(客户、交易、发票、聊天记录、文档、已激活的模块和团队成员)。",
+    "danger_zone_confirm_label": "输入 ELIMINA 以确认",
+    "danger_zone_confirm_text_error": "必须输入 ELIMINA 才能确认",
+    "danger_zone_password_label": "当前密码",
+    "danger_zone_delete_button": "永久删除我的账户",
+    "danger_zone_deleting": "正在删除…",
+    "manage_modules_link": "管理行业模块"
   },
   "portal": {
     "title": "客户专区",
@@ -442,5 +450,16 @@
     "logout": "退出登录",
     "loading": "加载中...",
     "cancel": "取消"
+  },
+  "modules": {
+    "title": "行业模块",
+    "subtitle": "激活适用于您所在行业的专属模块。部分模块需要更高级的套餐。",
+    "activate": "激活",
+    "deactivate": "停用",
+    "active_badge": "已激活",
+    "locked_hint": "需要 {{plan}} 套餐",
+    "upgrade_cta": "升级",
+    "loading": "正在加载模块…",
+    "back_to_settings": "返回设置"
   }
 }

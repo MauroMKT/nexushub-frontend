@@ -13,7 +13,8 @@
     "chat": "Team-Chat",
     "accounting": "Buchhaltung",
     "guide": "Anleitung",
-    "settings": "Einstellungen"
+    "settings": "Einstellungen",
+    "modules": "Module"
   },
   "login": {
     "title": "Anmelden",
@@ -85,7 +86,6 @@
     "address": "Adresse",
     "zip_code": "PLZ",
     "country": "Land",
-    "language_label": "Sprache",
     "company_phone": "Telefonnummer des Unternehmens",
     "company_email": "Geschäftliche E-Mail",
     "pec": "Zertifizierte E-Mail (PEC)",
@@ -309,7 +309,15 @@
     "billing_per_year": "/Jahr",
     "billing_upgrade": "Zu diesem Plan wechseln",
     "billing_manage": "Abonnement verwalten",
-    "billing_not_configured": "Zahlungen sind für dieses Konto noch nicht aktiv: wenden Sie sich an den Plattform-Administrator."
+    "billing_not_configured": "Zahlungen sind für dieses Konto noch nicht aktiv: wenden Sie sich an den Plattform-Administrator.",
+    "danger_zone_title": "Gefahrenzone",
+    "danger_zone_hint": "Das Löschen des Kontos ist endgültig und unwiderruflich: alle Daten werden gelöscht (Kunden, Deals, Rechnungen, Chats, Dokumente, aktivierte Module und Teammitglieder).",
+    "danger_zone_confirm_label": "Gib ELIMINA ein, um zu bestätigen",
+    "danger_zone_confirm_text_error": "Du musst ELIMINA eingeben, um zu bestätigen",
+    "danger_zone_password_label": "Aktuelles Passwort",
+    "danger_zone_delete_button": "Mein Konto endgültig löschen",
+    "danger_zone_deleting": "Wird gelöscht…",
+    "manage_modules_link": "Branchenmodule verwalten"
   },
   "portal": {
     "title": "Kundenbereich",
@@ -442,5 +450,16 @@
     "logout": "Abmelden",
     "loading": "Laden...",
     "cancel": "Abbrechen"
+  },
+  "modules": {
+    "title": "Branchenmodule",
+    "subtitle": "Aktiviere die Module für deine Branche. Einige erfordern einen höheren Plan.",
+    "activate": "Aktivieren",
+    "deactivate": "Deaktivieren",
+    "active_badge": "Aktiv",
+    "locked_hint": "Erfordert den Plan {{plan}}",
+    "upgrade_cta": "Upgrade",
+    "loading": "Module werden geladen…",
+    "back_to_settings": "Zurück zu Einstellungen"
   }
 }

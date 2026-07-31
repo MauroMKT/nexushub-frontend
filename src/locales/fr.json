@@ -13,7 +13,8 @@
     "chat": "Chat d'équipe",
     "accounting": "Comptabilité",
     "guide": "Guide",
-    "settings": "Paramètres"
+    "settings": "Paramètres",
+    "modules": "Modules"
   },
   "login": {
     "title": "Connexion",
@@ -85,7 +86,6 @@
     "address": "Adresse",
     "zip_code": "Code postal",
     "country": "Pays",
-    "language_label": "Langue",
     "company_phone": "Téléphone de l'entreprise",
     "company_email": "E-mail de l'entreprise",
     "pec": "PEC (e-mail certifié)",
@@ -309,7 +309,15 @@
     "billing_per_year": "/an",
     "billing_upgrade": "Passer à ce plan",
     "billing_manage": "Gérer l'abonnement",
-    "billing_not_configured": "Les paiements ne sont pas encore actifs sur ce compte : contactez l'administrateur de la plateforme."
+    "billing_not_configured": "Les paiements ne sont pas encore actifs sur ce compte : contactez l'administrateur de la plateforme.",
+    "danger_zone_title": "Zone dangereuse",
+    "danger_zone_hint": "La suppression du compte est définitive et irréversible : toutes les données seront effacées (clients, affaires, factures, messages, documents, modules activés et membres de l'équipe).",
+    "danger_zone_confirm_label": "Tapez ELIMINA pour confirmer",
+    "danger_zone_confirm_text_error": "Vous devez taper ELIMINA pour confirmer",
+    "danger_zone_password_label": "Mot de passe actuel",
+    "danger_zone_delete_button": "Supprimer définitivement mon compte",
+    "danger_zone_deleting": "Suppression en cours…",
+    "manage_modules_link": "Gérer les modules sectoriels"
   },
   "portal": {
     "title": "Espace Client",
@@ -442,5 +450,16 @@
     "logout": "Se déconnecter",
     "loading": "Chargement...",
     "cancel": "Annuler"
+  },
+  "modules": {
+    "title": "Modules sectoriels",
+    "subtitle": "Activez les modules dédiés à votre secteur. Certains nécessitent un plan supérieur.",
+    "activate": "Activer",
+    "deactivate": "Désactiver",
+    "active_badge": "Actif",
+    "locked_hint": "Nécessite le plan {{plan}}",
+    "upgrade_cta": "Mettre à niveau",
+    "loading": "Chargement des modules…",
+    "back_to_settings": "Retour aux paramètres"
   }
 }

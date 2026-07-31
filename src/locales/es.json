@@ -13,7 +13,8 @@
     "chat": "Chat de equipo",
     "accounting": "Contabilidad",
     "guide": "Guía",
-    "settings": "Configuración"
+    "settings": "Configuración",
+    "modules": "Módulos"
   },
   "login": {
     "title": "Iniciar sesión",
@@ -85,7 +86,6 @@
     "address": "Dirección",
     "zip_code": "Código postal",
     "country": "País",
-    "language_label": "Idioma",
     "company_phone": "Teléfono de la empresa",
     "company_email": "Correo electrónico de la empresa",
     "pec": "Correo certificado (PEC)",
@@ -309,7 +309,15 @@
     "billing_per_year": "/año",
     "billing_upgrade": "Cambiar a este plan",
     "billing_manage": "Gestionar suscripción",
-    "billing_not_configured": "Los pagos aún no están activos en esta cuenta: contacta al administrador de la plataforma."
+    "billing_not_configured": "Los pagos aún no están activos en esta cuenta: contacta al administrador de la plataforma.",
+    "danger_zone_title": "Zona de peligro",
+    "danger_zone_hint": "Eliminar la cuenta es permanente e irreversible: se borrarán todos los datos (clientes, negocios, facturas, chats, documentos, módulos activados y miembros del equipo).",
+    "danger_zone_confirm_label": "Escribe ELIMINA para confirmar",
+    "danger_zone_confirm_text_error": "Debes escribir ELIMINA para confirmar",
+    "danger_zone_password_label": "Contraseña actual",
+    "danger_zone_delete_button": "Eliminar mi cuenta definitivamente",
+    "danger_zone_deleting": "Eliminando…",
+    "manage_modules_link": "Gestionar módulos sectoriales"
   },
   "portal": {
     "title": "Área de Clientes",
@@ -442,5 +450,16 @@
     "logout": "Cerrar sesión",
     "loading": "Cargando...",
     "cancel": "Cancelar"
+  },
+  "modules": {
+    "title": "Módulos sectoriales",
+    "subtitle": "Activa los módulos dedicados a tu sector. Algunos requieren un plan superior.",
+    "activate": "Activar",
+    "deactivate": "Desactivar",
+    "active_badge": "Activo",
+    "locked_hint": "Requiere el plan {{plan}}",
+    "upgrade_cta": "Mejorar plan",
+    "loading": "Cargando módulos…",
+    "back_to_settings": "Volver a ajustes"
   }
 }

@@ -13,7 +13,8 @@
     "chat": "دردشة الفريق",
     "accounting": "المحاسبة",
     "guide": "الدليل",
-    "settings": "الإعدادات"
+    "settings": "الإعدادات",
+    "modules": "الوحدات"
   },
   "login": {
     "title": "تسجيل الدخول",
@@ -85,7 +86,6 @@
     "address": "العنوان",
     "zip_code": "الرمز البريدي",
     "country": "الدولة",
-    "language_label": "اللغة",
     "company_phone": "هاتف الشركة",
     "company_email": "البريد الإلكتروني للشركة",
     "pec": "البريد الإلكتروني الموثّق (PEC)",
@@ -309,7 +309,15 @@
     "billing_per_year": "/سنويًا",
     "billing_upgrade": "التبديل إلى هذه الخطة",
     "billing_manage": "إدارة الاشتراك",
-    "billing_not_configured": "الدفع غير مفعّل بعد لهذا الحساب: يرجى التواصل مع مسؤول المنصة."
+    "billing_not_configured": "الدفع غير مفعّل بعد لهذا الحساب: يرجى التواصل مع مسؤول المنصة.",
+    "danger_zone_title": "منطقة الخطر",
+    "danger_zone_hint": "حذف الحساب نهائي ولا رجعة فيه: سيتم مسح جميع البيانات (العملاء، الصفقات، الفواتير، المحادثات، المستندات، الوحدات المفعّلة وأعضاء الفريق).",
+    "danger_zone_confirm_label": "اكتب ELIMINA للتأكيد",
+    "danger_zone_confirm_text_error": "يجب كتابة ELIMINA للتأكيد",
+    "danger_zone_password_label": "كلمة المرور الحالية",
+    "danger_zone_delete_button": "حذف حسابي نهائيًا",
+    "danger_zone_deleting": "جارٍ الحذف…",
+    "manage_modules_link": "إدارة وحدات القطاع"
   },
   "portal": {
     "title": "منطقة العملاء",
@@ -442,5 +450,16 @@
     "logout": "تسجيل الخروج",
     "loading": "جارٍ التحميل...",
     "cancel": "إلغاء"
+  },
+  "modules": {
+    "title": "وحدات القطاع",
+    "subtitle": "فعّل الوحدات المخصصة لقطاعك. بعضها يتطلب خطة أعلى.",
+    "activate": "تفعيل",
+    "deactivate": "إلغاء التفعيل",
+    "active_badge": "مفعّل",
+    "locked_hint": "يتطلب خطة {{plan}}",
+    "upgrade_cta": "الترقية",
+    "loading": "جارٍ تحميل الوحدات…",
+    "back_to_settings": "العودة إلى الإعدادات"
   }
 }

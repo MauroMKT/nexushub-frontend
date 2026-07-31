@@ -13,7 +13,8 @@
     "chat": "チームチャット",
     "accounting": "経理",
     "guide": "ガイド",
-    "settings": "設定"
+    "settings": "設定",
+    "modules": "モジュール"
   },
   "login": {
     "title": "ログイン",
@@ -85,7 +86,6 @@
     "address": "住所",
     "zip_code": "郵便番号",
     "country": "国",
-    "language_label": "言語",
     "company_phone": "会社の電話番号",
     "company_email": "会社のメールアドレス",
     "pec": "認証メール（PEC）",
@@ -309,7 +309,15 @@
     "billing_per_year": "／年",
     "billing_upgrade": "このプランに切り替える",
     "billing_manage": "サブスクリプションを管理",
-    "billing_not_configured": "このアカウントではまだ支払い機能が有効になっていません。プラットフォーム管理者にお問い合わせください。"
+    "billing_not_configured": "このアカウントではまだ支払い機能が有効になっていません。プラットフォーム管理者にお問い合わせください。",
+    "danger_zone_title": "危険ゾーン",
+    "danger_zone_hint": "アカウントの削除は永久的で元に戻せません。すべてのデータ(顧客、案件、請求書、チャット、書類、有効化したモジュール、チームメンバー)が消去されます。",
+    "danger_zone_confirm_label": "確認のため ELIMINA と入力してください",
+    "danger_zone_confirm_text_error": "確認のため ELIMINA と入力する必要があります",
+    "danger_zone_password_label": "現在のパスワード",
+    "danger_zone_delete_button": "アカウントを完全に削除する",
+    "danger_zone_deleting": "削除中…",
+    "manage_modules_link": "業種別モジュールを管理"
   },
   "portal": {
     "title": "顧客ポータル",
@@ -442,5 +450,16 @@
     "logout": "ログアウト",
     "loading": "読み込み中...",
     "cancel": "キャンセル"
+  },
+  "modules": {
+    "title": "業種別モジュール",
+    "subtitle": "業種に特化したモジュールを有効化できます。一部は上位プランが必要です。",
+    "activate": "有効化",
+    "deactivate": "無効化",
+    "active_badge": "有効",
+    "locked_hint": "{{plan}} プランが必要です",
+    "upgrade_cta": "アップグレード",
+    "loading": "モジュールを読み込み中…",
+    "back_to_settings": "設定に戻る"
   }
 }

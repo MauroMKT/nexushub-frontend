@@ -13,7 +13,8 @@
     "chat": "Team Chat",
     "accounting": "Accounting",
     "guide": "Guide",
-    "settings": "Settings"
+    "settings": "Settings",
+    "modules": "Modules"
   },
   "login": {
     "title": "Sign in",
@@ -85,7 +86,6 @@
     "address": "Address",
     "zip_code": "ZIP / Postal code",
     "country": "Country",
-    "language_label": "Language",
     "company_phone": "Company phone number",
     "company_email": "Company email",
     "pec": "Certified email (PEC)",
@@ -309,7 +309,15 @@
     "billing_per_year": "/year",
     "billing_upgrade": "Switch to this plan",
     "billing_manage": "Manage subscription",
-    "billing_not_configured": "Payments are not active on this account yet: contact the platform administrator."
+    "billing_not_configured": "Payments are not active on this account yet: contact the platform administrator.",
+    "danger_zone_title": "Danger zone",
+    "danger_zone_hint": "Deleting your account is permanent and irreversible: all data will be erased (clients, deals, invoices, chats, documents, activated modules and team members).",
+    "danger_zone_confirm_label": "Type ELIMINA to confirm",
+    "danger_zone_confirm_text_error": "You must type ELIMINA to confirm",
+    "danger_zone_password_label": "Current password",
+    "danger_zone_delete_button": "Permanently delete my account",
+    "danger_zone_deleting": "Deleting…",
+    "manage_modules_link": "Manage sector modules"
   },
   "portal": {
     "title": "Client Area",
@@ -442,5 +450,16 @@
     "logout": "Log out",
     "loading": "Loading...",
     "cancel": "Cancel"
+  },
+  "modules": {
+    "title": "Sector modules",
+    "subtitle": "Activate the modules dedicated to your sector. Some require a higher plan.",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "active_badge": "Active",
+    "locked_hint": "Requires the {{plan}} plan",
+    "upgrade_cta": "Upgrade",
+    "loading": "Loading modules…",
+    "back_to_settings": "Back to settings"
   }
 }
