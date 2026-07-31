@@ -225,7 +225,8 @@
     "portal_invite": "Portal-Zugang aktivieren",
     "portal_invited": "Portal-Zugang aktiviert",
     "portal_invite_send": "Zugangsdaten senden",
-    "notes": "Notizen"
+    "notes": "Notizen",
+    "all_sectors": "Alle Branchen"
   },
   "contacts": {
     "title": "Telefonbuch",
@@ -555,7 +556,9 @@
     "logout": "Abmelden",
     "loading": "Laden...",
     "cancel": "Abbrechen",
-    "entering": "Anmeldung läuft..."
+    "entering": "Anmeldung läuft...",
+    "sort_az": "Name (A-Z)",
+    "sort_za": "Name (Z-A)"
   },
   "modules": {
     "title": "Branchenmodule",

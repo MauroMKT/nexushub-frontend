@@ -225,7 +225,8 @@
     "portal_invite": "启用客户门户访问",
     "portal_invited": "客户门户访问已启用",
     "portal_invite_send": "发送登录凭证",
-    "notes": "备注"
+    "notes": "备注",
+    "all_sectors": "所有行业"
   },
   "contacts": {
     "title": "通讯录",
@@ -555,7 +556,9 @@
     "logout": "退出登录",
     "loading": "加载中...",
     "cancel": "取消",
-    "entering": "正在登录…"
+    "entering": "正在登录…",
+    "sort_az": "姓名（A-Z）",
+    "sort_za": "姓名（Z-A）"
   },
   "modules": {
     "title": "行业模块",

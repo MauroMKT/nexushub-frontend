@@ -225,7 +225,8 @@
     "portal_invite": "Activar acceso al portal",
     "portal_invited": "Acceso al portal activado",
     "portal_invite_send": "Enviar credenciales",
-    "notes": "Notas"
+    "notes": "Notas",
+    "all_sectors": "Todos los sectores"
   },
   "contacts": {
     "title": "Agenda Telefónica",
@@ -555,7 +556,9 @@
     "logout": "Cerrar sesión",
     "loading": "Cargando...",
     "cancel": "Cancelar",
-    "entering": "Iniciando sesión..."
+    "entering": "Iniciando sesión...",
+    "sort_az": "Nombre (A-Z)",
+    "sort_za": "Nombre (Z-A)"
   },
   "modules": {
     "title": "Módulos sectoriales",

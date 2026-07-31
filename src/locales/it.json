@@ -225,7 +225,8 @@
     "portal_invite": "Attiva accesso portale",
     "portal_invited": "Accesso portale attivato",
     "portal_invite_send": "Invia credenziali",
-    "notes": "Note"
+    "notes": "Note",
+    "all_sectors": "Tutti i settori"
   },
   "contacts": {
     "title": "Rubrica Telefonica",
@@ -555,7 +556,9 @@
     "logout": "Esci",
     "loading": "Caricamento...",
     "cancel": "Annulla",
-    "entering": "Accesso in corso..."
+    "entering": "Accesso in corso...",
+    "sort_az": "Nome (A-Z)",
+    "sort_za": "Nome (Z-A)"
   },
   "modules": {
     "title": "Moduli di settore",

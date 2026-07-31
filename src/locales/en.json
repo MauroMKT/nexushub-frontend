@@ -225,7 +225,8 @@
     "portal_invite": "Enable portal access",
     "portal_invited": "Portal access enabled",
     "portal_invite_send": "Send credentials",
-    "notes": "Notes"
+    "notes": "Notes",
+    "all_sectors": "All sectors"
   },
   "contacts": {
     "title": "Phonebook",
@@ -555,7 +556,9 @@
     "logout": "Log out",
     "loading": "Loading...",
     "cancel": "Cancel",
-    "entering": "Signing in..."
+    "entering": "Signing in...",
+    "sort_az": "Name (A-Z)",
+    "sort_za": "Name (Z-A)"
   },
   "modules": {
     "title": "Sector modules",
