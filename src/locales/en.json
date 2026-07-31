@@ -18,7 +18,8 @@
     "engineering": "Technical Projects",
     "agencyProjects": "Agency Projects",
     "realEstate": "Properties",
-    "hospitality": "Hospitality"
+    "hospitality": "Hospitality",
+    "super_admin": "Super Admin"
   },
   "pilotModules": {
     "common": {
@@ -414,7 +415,8 @@
     "danger_zone_password_label": "Current password",
     "danger_zone_delete_button": "Permanently delete my account",
     "danger_zone_deleting": "Deleting…",
-    "manage_modules_link": "Manage sector modules"
+    "manage_modules_link": "Manage sector modules",
+    "danger_zone_confirm_word": "ELIMINA"
   },
   "portal": {
     "title": "Client Area",
@@ -546,7 +548,8 @@
   "common": {
     "logout": "Log out",
     "loading": "Loading...",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "entering": "Signing in..."
   },
   "modules": {
     "title": "Sector modules",

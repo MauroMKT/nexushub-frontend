@@ -18,7 +18,8 @@
     "engineering": "技術案件",
     "agencyProjects": "代理店プロジェクト",
     "realEstate": "物件",
-    "hospitality": "ホスピタリティ"
+    "hospitality": "ホスピタリティ",
+    "super_admin": "スーパー管理者"
   },
   "pilotModules": {
     "common": {
@@ -414,7 +415,8 @@
     "danger_zone_password_label": "現在のパスワード",
     "danger_zone_delete_button": "アカウントを完全に削除する",
     "danger_zone_deleting": "削除中…",
-    "manage_modules_link": "業種別モジュールを管理"
+    "manage_modules_link": "業種別モジュールを管理",
+    "danger_zone_confirm_word": "ELIMINA"
   },
   "portal": {
     "title": "顧客ポータル",
@@ -546,7 +548,8 @@
   "common": {
     "logout": "ログアウト",
     "loading": "読み込み中...",
-    "cancel": "キャンセル"
+    "cancel": "キャンセル",
+    "entering": "ログイン中…"
   },
   "modules": {
     "title": "業種別モジュール",

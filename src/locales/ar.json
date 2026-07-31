@@ -18,7 +18,8 @@
     "engineering": "المشاريع الفنية",
     "agencyProjects": "مشاريع الوكالة",
     "realEstate": "العقارات",
-    "hospitality": "الضيافة"
+    "hospitality": "الضيافة",
+    "super_admin": "المشرف العام"
   },
   "pilotModules": {
     "common": {
@@ -414,7 +415,8 @@
     "danger_zone_password_label": "كلمة المرور الحالية",
     "danger_zone_delete_button": "حذف حسابي نهائيًا",
     "danger_zone_deleting": "جارٍ الحذف…",
-    "manage_modules_link": "إدارة وحدات القطاع"
+    "manage_modules_link": "إدارة وحدات القطاع",
+    "danger_zone_confirm_word": "ELIMINA"
   },
   "portal": {
     "title": "منطقة العملاء",
@@ -546,7 +548,8 @@
   "common": {
     "logout": "تسجيل الخروج",
     "loading": "جارٍ التحميل...",
-    "cancel": "إلغاء"
+    "cancel": "إلغاء",
+    "entering": "جارٍ تسجيل الدخول..."
   },
   "modules": {
     "title": "وحدات القطاع",

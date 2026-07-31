@@ -18,7 +18,8 @@
     "engineering": "技术项目",
     "agencyProjects": "代理项目",
     "realEstate": "房产",
-    "hospitality": "餐饮住宿"
+    "hospitality": "餐饮住宿",
+    "super_admin": "超级管理员"
   },
   "pilotModules": {
     "common": {
@@ -414,7 +415,8 @@
     "danger_zone_password_label": "当前密码",
     "danger_zone_delete_button": "永久删除我的账户",
     "danger_zone_deleting": "正在删除…",
-    "manage_modules_link": "管理行业模块"
+    "manage_modules_link": "管理行业模块",
+    "danger_zone_confirm_word": "ELIMINA"
   },
   "portal": {
     "title": "客户专区",
@@ -546,7 +548,8 @@
   "common": {
     "logout": "退出登录",
     "loading": "加载中...",
-    "cancel": "取消"
+    "cancel": "取消",
+    "entering": "正在登录…"
   },
   "modules": {
     "title": "行业模块",

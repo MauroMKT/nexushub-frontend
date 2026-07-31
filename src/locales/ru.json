@@ -18,7 +18,8 @@
     "engineering": "Технические проекты",
     "agencyProjects": "Проекты агентства",
     "realEstate": "Объекты недвижимости",
-    "hospitality": "Hospitality"
+    "hospitality": "Hospitality",
+    "super_admin": "Супер-администратор"
   },
   "pilotModules": {
     "common": {
@@ -414,7 +415,8 @@
     "danger_zone_password_label": "Текущий пароль",
     "danger_zone_delete_button": "Удалить мой аккаунт навсегда",
     "danger_zone_deleting": "Удаление…",
-    "manage_modules_link": "Управление отраслевыми модулями"
+    "manage_modules_link": "Управление отраслевыми модулями",
+    "danger_zone_confirm_word": "ELIMINA"
   },
   "portal": {
     "title": "Личный кабинет клиента",
@@ -546,7 +548,8 @@
   "common": {
     "logout": "Выйти",
     "loading": "Загрузка...",
-    "cancel": "Отмена"
+    "cancel": "Отмена",
+    "entering": "Выполняется вход..."
   },
   "modules": {
     "title": "Отраслевые модули",
