@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import { api } from "../api";
 import Card from "../components/Card";
@@ -11,10 +11,10 @@ const PLANS = ["free", "premium", "enterprise"];
 // Testo solo in italiano: è uno strumento interno di Mauro per gestire tutte
 // le agenzie clienti, non una funzionalità rivolta ai clienti finali del CRM.
 export default function PlatformAdmin() {
-  const { user } = useAuth();
+  const { user, enterTenantView } = useAuth();
+  const navigate = useNavigate();
   const [stats, setStats] = useState(null);
   const [tenants, setTenants] = useState([]);
-  const [impersonateLink, setImpersonateLink] = useState(null);
   const [busyId, setBusyId] = useState(null);
   const [error, setError] = useState(null);
 
@@ -61,15 +61,13 @@ export default function PlatformAdmin() {
     }
   }
 
-  async function handleImpersonate(tenant) {
-    setError(null);
-    try {
-      const res = await api.platformAdminImpersonate(tenant.id);
-      const link = `${window.location.origin}/impersonate#token=${res.access_token}`;
-      setImpersonateLink({ tenant: tenant.name, email: res.impersonated_user_email, link });
-    } catch (e) {
-      setError(e.message);
-    }
+  // Entra nei dati del tenant restando autenticato come Super Admin: nessun
+  // nuovo token, nessun login con le credenziali dell'iscritto. Le pagine
+  // normali del CRM (Clienti, Pipeline, Impostazioni, ...) si aprono con i
+  // dati di questo tenant, con una barra in alto per uscire in ogni momento.
+  function handleEnterAsTenant(tenant) {
+    enterTenantView(tenant.id);
+    navigate("/dashboard");
   }
 
   return (
@@ -89,24 +87,6 @@ export default function PlatformAdmin() {
             {Object.entries(stats.tenants_by_plan || {}).map(([plan, count]) => (
               <Stat key={plan} label={`Piano ${plan}`} value={count} />
             ))}
-          </div>
-        </Card>
-      )}
-
-      {impersonateLink && (
-        <Card className="border-2 border-primary">
-          <h2 className="font-semibold mb-2">Link di accesso come {impersonateLink.email} ({impersonateLink.tenant})</h2>
-          <p className="text-xs text-ink/60 mb-2">
-            Apri questo link in una finestra in incognito: se lo apri nella stessa finestra rischi di sovrascrivere
-            la tua sessione da super admin.
-          </p>
-          <div className="flex gap-2 items-center">
-            <input readOnly value={impersonateLink.link} className="flex-1 border border-slate-200 rounded-xl2 px-3 py-2 text-xs" />
-            <a href={impersonateLink.link} target="_blank" rel="noreferrer"
-               className="bg-primary hover:bg-primary/80 text-ink font-semibold rounded-xl2 px-4 py-2 text-sm whitespace-nowrap">
-              Apri
-            </a>
-            <button onClick={() => setImpersonateLink(null)} className="text-sm text-ink/50 px-2">✕</button>
           </div>
         </Card>
       )}
@@ -157,10 +137,10 @@ export default function PlatformAdmin() {
                       {t.is_active ? "Sospendi" : "Riattiva"}
                     </button>
                     <button
-                      onClick={() => handleImpersonate(t)}
+                      onClick={() => handleEnterAsTenant(t)}
                       className="text-xs px-2 py-1 rounded-xl2 bg-secondary/60 hover:bg-secondary"
                     >
-                      Accedi come
+                      Entra (come Super Admin)
                     </button>
                   </td>
                 </tr>
