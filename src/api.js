@@ -246,6 +246,13 @@ export const api = {
   createMenuItem: (payload) => request("/hospitality/menu-items", { method: "POST", body: payload }),
   updateMenuItem: (id, payload) => request(`/hospitality/menu-items/${id}`, { method: "PATCH", body: payload }),
   deleteMenuItem: (id) => request(`/hospitality/menu-items/${id}`, { method: "DELETE" }),
+
+  // --- Moduli di settore "generici" (Fase 9.3): copre i settori senza uno
+  // schema dedicato bespoke, tramite una pagina unica parametrizzata per slug ---
+  listSectorRecords: (slug) => request(`/sector-records/${slug}`),
+  createSectorRecord: (slug, payload) => request(`/sector-records/${slug}`, { method: "POST", body: payload }),
+  updateSectorRecord: (slug, id, payload) => request(`/sector-records/${slug}/${id}`, { method: "PATCH", body: payload }),
+  deleteSectorRecord: (slug, id) => request(`/sector-records/${slug}/${id}`, { method: "DELETE" }),
 };
 
 // --- Token separato per la sessione del portale clienti (non va mai mischiato
