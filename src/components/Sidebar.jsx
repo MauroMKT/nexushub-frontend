@@ -35,21 +35,26 @@ const PILOT_NAV_META = {
 };
 
 export default function Sidebar() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
-  const [pilotRoutes, setPilotRoutes] = useState([]);
+  // Voci di navigazione per QUALSIASI modulo attivo con una pagina dedicata:
+  // sia i 4 pilota bespoke di Fase 9.1 (route fissa in PILOT_NAV_META, con
+  // etichetta tradotta in 9 lingue) sia i ~18 moduli "generici" di Fase 9.3
+  // (route dinamica /sector/<slug>, etichetta presa dal nome del modulo nel
+  // catalogo, non ancora tradotto in tutte le lingue come il resto dell'app).
+  const [dedicatedModules, setDedicatedModules] = useState([]);
 
   useEffect(() => {
     api.listModulesCatalog()
       .then((catalog) => {
-        const activeRoutes = [...new Set(
-          catalog
-            .filter((m) => m.is_active_for_tenant && m.has_dedicated_feature && m.dedicated_route)
-            .map((m) => m.dedicated_route)
-        )];
-        setPilotRoutes(activeRoutes);
+        const active = catalog.filter((m) => m.is_active_for_tenant && m.has_dedicated_feature && m.dedicated_route);
+        const byRoute = new Map();
+        active.forEach((m) => {
+          if (!byRoute.has(m.dedicated_route)) byRoute.set(m.dedicated_route, m);
+        });
+        setDedicatedModules([...byRoute.values()]);
       })
-      .catch(() => setPilotRoutes([]));
+      .catch(() => setDedicatedModules([]));
   }, []);
 
   return (
@@ -71,21 +76,22 @@ export default function Sidebar() {
             <span>{t(`nav.${item.key}`)}</span>
           </NavLink>
         ))}
-        {pilotRoutes.map((route) => {
-          const meta = PILOT_NAV_META[route];
-          if (!meta) return null;
+        {dedicatedModules.map((m) => {
+          const meta = PILOT_NAV_META[m.dedicated_route];
+          const label = meta ? t(`nav.${meta.key}`) : (i18n.language?.startsWith("it") ? m.name_it : m.name_en);
+          const icon = meta ? meta.icon : "📋";
           return (
             <NavLink
-              key={route}
-              to={route}
+              key={m.dedicated_route}
+              to={m.dedicated_route}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2 rounded-xl2 text-sm font-medium transition-colors ${
                   isActive ? "bg-primary/40 text-ink" : "text-ink/70 hover:bg-secondary/30"
                 }`
               }
             >
-              <span aria-hidden="true">{meta.icon}</span>
-              <span>{t(`nav.${meta.key}`)}</span>
+              <span aria-hidden="true">{icon}</span>
+              <span>{label}</span>
             </NavLink>
           );
         })}
