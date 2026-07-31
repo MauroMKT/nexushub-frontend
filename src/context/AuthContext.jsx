@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { api, clearToken, hasToken, saveToken } from "../api";
+import { api, clearToken, clearViewTenantId, hasToken, saveToken, setViewTenantId } from "../api";
 import { changeLanguage } from "../i18n";
 import { applyTenantTheme } from "../theme";
 
@@ -16,6 +16,13 @@ function loadThemeSilently() {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  // Tenant che il super admin sta attualmente "visualizzando" (Fase 7 rivista):
+  // resta SEMPRE autenticato con il proprio account (vedi api.js), questo id
+  // serve solo a far scopare al backend le pagine normali del CRM sui dati di
+  // quel tenant, invece di fare un vero login con le credenziali del cliente.
+  const [viewTenantId, setViewTenantIdState] = useState(
+    () => localStorage.getItem("nexushub_view_tenant_id") || null
+  );
 
   useEffect(() => {
     if (hasToken()) {
@@ -52,11 +59,31 @@ export function AuthProvider({ children }) {
 
   function logout() {
     clearToken();
+    clearViewTenantId();
+    setViewTenantIdState(null);
     setUser(null);
   }
 
+  // Il super admin entra "come Super Admin" nei dati di un'agenzia: nessun nuovo
+  // token, nessun logout/login con l'account dell'iscritto. Ricarica anche il
+  // tema (colori white-label) del tenant selezionato, così le pagine del CRM
+  // che si aprono di seguito appaiono visivamente come quelle del cliente.
+  function enterTenantView(tenantId) {
+    setViewTenantId(tenantId);
+    setViewTenantIdState(tenantId);
+    loadThemeSilently();
+  }
+
+  function exitTenantView() {
+    clearViewTenantId();
+    setViewTenantIdState(null);
+    loadThemeSilently();
+  }
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, setUser }}>
+    <AuthContext.Provider
+      value={{ user, loading, login, register, logout, setUser, viewTenantId, enterTenantView, exitTenantView }}
+    >
       {children}
     </AuthContext.Provider>
   );
