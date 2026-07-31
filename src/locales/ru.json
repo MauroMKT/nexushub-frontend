@@ -102,6 +102,15 @@
       "category_altro": "Другое",
       "field_menu_price": "Цена",
       "field_menu_available": "Доступно"
+    },
+    "sectorWorkspace": {
+      "field_title": "Название",
+      "field_status": "Статус",
+      "status_aperto": "Открыт",
+      "status_in_corso": "В процессе",
+      "status_chiuso": "Закрыт",
+      "field_value": "Значение",
+      "field_date": "Дата"
     }
   },
   "login": {

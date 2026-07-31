@@ -102,6 +102,15 @@
       "category_altro": "آخر",
       "field_menu_price": "السعر",
       "field_menu_available": "متاح"
+    },
+    "sectorWorkspace": {
+      "field_title": "العنوان",
+      "field_status": "الحالة",
+      "status_aperto": "مفتوح",
+      "status_in_corso": "قيد التنفيذ",
+      "status_chiuso": "مغلق",
+      "field_value": "القيمة",
+      "field_date": "التاريخ"
     }
   },
   "login": {

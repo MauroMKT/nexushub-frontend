@@ -102,6 +102,15 @@
       "category_altro": "其他",
       "field_menu_price": "价格",
       "field_menu_available": "有货"
+    },
+    "sectorWorkspace": {
+      "field_title": "标题",
+      "field_status": "状态",
+      "status_aperto": "开放",
+      "status_in_corso": "进行中",
+      "status_chiuso": "已关闭",
+      "field_value": "数值",
+      "field_date": "日期"
     }
   },
   "login": {

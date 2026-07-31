@@ -102,6 +102,15 @@
       "category_altro": "Sonstiges",
       "field_menu_price": "Preis",
       "field_menu_available": "Verfügbar"
+    },
+    "sectorWorkspace": {
+      "field_title": "Titel",
+      "field_status": "Status",
+      "status_aperto": "Offen",
+      "status_in_corso": "In Bearbeitung",
+      "status_chiuso": "Abgeschlossen",
+      "field_value": "Wert",
+      "field_date": "Datum"
     }
   },
   "login": {

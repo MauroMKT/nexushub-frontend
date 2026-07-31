@@ -102,6 +102,15 @@
       "category_altro": "その他",
       "field_menu_price": "価格",
       "field_menu_available": "提供可能"
+    },
+    "sectorWorkspace": {
+      "field_title": "タイトル",
+      "field_status": "ステータス",
+      "status_aperto": "オープン",
+      "status_in_corso": "進行中",
+      "status_chiuso": "完了",
+      "field_value": "金額",
+      "field_date": "日付"
     }
   },
   "login": {
