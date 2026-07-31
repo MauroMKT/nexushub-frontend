@@ -3,6 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
+import ViewTenantBanner from "./ViewTenantBanner";
 
 export default function ProtectedLayout() {
   const { user, loading } = useAuth();
@@ -14,6 +15,7 @@ export default function ProtectedLayout() {
     <div className="flex min-h-screen bg-bg">
       <Sidebar />
       <div className="flex-1 flex flex-col">
+        <ViewTenantBanner />
         <Topbar />
         <main className="flex-1 p-6">
           <Outlet />
