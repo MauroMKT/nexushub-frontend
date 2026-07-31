@@ -61,6 +61,8 @@ export const api = {
   me: () => request("/auth/me"),
   updateMe: (payload) => request("/auth/me", { method: "PATCH", body: payload }),
   vatLookup: (vatNumber) => request(`/auth/vat-lookup?vat_number=${encodeURIComponent(vatNumber)}`, { auth: false }),
+  // Catalogo settori per il menu a tendina in registrazione (nessuna sessione ancora attiva)
+  listPublicModulesCatalog: () => request("/modules/public-catalog", { auth: false }),
 
   listClients: () => request("/clients"),
   previewClientImport: (payload) => request("/clients/import/preview", { method: "POST", body: payload }),
@@ -214,6 +216,36 @@ export const api = {
   listModulesCatalog: () => request("/modules/catalog"),
   activateModule: (slug) => request(`/modules/${slug}`, { method: "POST" }),
   deactivateModule: (slug) => request(`/modules/${slug}`, { method: "DELETE" }),
+  // Acquisto singolo di un modulo a pagamento, indipendente dal piano (Fase 9.2)
+  checkoutModulePurchase: (slug) => request(`/modules/${slug}/checkout`, { method: "POST" }),
+
+  // --- Modulo pilota: Servizi di Ingegneria (Fase 9.1) ---
+  listEngineeringProjects: () => request("/engineering/projects"),
+  createEngineeringProject: (payload) => request("/engineering/projects", { method: "POST", body: payload }),
+  updateEngineeringProject: (id, payload) => request(`/engineering/projects/${id}`, { method: "PATCH", body: payload }),
+  deleteEngineeringProject: (id) => request(`/engineering/projects/${id}`, { method: "DELETE" }),
+
+  // --- Modulo pilota: Servizi IT & Marketing (Fase 9.1) ---
+  listAgencyProjects: () => request("/agency/projects"),
+  createAgencyProject: (payload) => request("/agency/projects", { method: "POST", body: payload }),
+  updateAgencyProject: (id, payload) => request(`/agency/projects/${id}`, { method: "PATCH", body: payload }),
+  deleteAgencyProject: (id) => request(`/agency/projects/${id}`, { method: "DELETE" }),
+
+  // --- Modulo pilota: Agenzie Immobiliari (Fase 9.1) ---
+  listRealEstateProperties: () => request("/real-estate/properties"),
+  createRealEstateProperty: (payload) => request("/real-estate/properties", { method: "POST", body: payload }),
+  updateRealEstateProperty: (id, payload) => request(`/real-estate/properties/${id}`, { method: "PATCH", body: payload }),
+  deleteRealEstateProperty: (id) => request(`/real-estate/properties/${id}`, { method: "DELETE" }),
+
+  // --- Modulo pilota: Ristorazione & Hospitality (Fase 9.1) ---
+  listReservations: () => request("/hospitality/reservations"),
+  createReservation: (payload) => request("/hospitality/reservations", { method: "POST", body: payload }),
+  updateReservation: (id, payload) => request(`/hospitality/reservations/${id}`, { method: "PATCH", body: payload }),
+  deleteReservation: (id) => request(`/hospitality/reservations/${id}`, { method: "DELETE" }),
+  listMenuItems: () => request("/hospitality/menu-items"),
+  createMenuItem: (payload) => request("/hospitality/menu-items", { method: "POST", body: payload }),
+  updateMenuItem: (id, payload) => request(`/hospitality/menu-items/${id}`, { method: "PATCH", body: payload }),
+  deleteMenuItem: (id) => request(`/hospitality/menu-items/${id}`, { method: "DELETE" }),
 };
 
 // --- Token separato per la sessione del portale clienti (non va mai mischiato

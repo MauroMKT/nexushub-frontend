@@ -21,6 +21,10 @@ import TeamChat from "./pages/TeamChat";
 import Accounting from "./pages/Accounting";
 import Guide from "./pages/Guide";
 import Modules from "./pages/Modules";
+import EngineeringProjects from "./pages/EngineeringProjects";
+import AgencyProjects from "./pages/AgencyProjects";
+import RealEstateProperties from "./pages/RealEstateProperties";
+import Hospitality from "./pages/Hospitality";
 
 // Routing Fase 1, 2 & estensioni (rubrica, notifiche, white-label, portale clienti, calendar).
 export default function App() {
@@ -51,6 +55,10 @@ export default function App() {
         <Route path="/guide" element={<Guide />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/modules" element={<Modules />} />
+        <Route path="/engineering" element={<EngineeringProjects />} />
+        <Route path="/agency-projects" element={<AgencyProjects />} />
+        <Route path="/real-estate" element={<RealEstateProperties />} />
+        <Route path="/hospitality" element={<Hospitality />} />
         <Route path="/platform-admin" element={<PlatformAdmin />} />
       </Route>
 
