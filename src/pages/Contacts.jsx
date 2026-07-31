@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { api } from "../api";
 import Card from "../components/Card";
+import ImportContactsModal from "../components/ImportContactsModal";
 
 const emptyForm = { full_name: "", phone: "", mobile: "", whatsapp: "", email: "", company: "", category: "altro", notes: "" };
 const CATEGORIES = ["cliente", "fornitore", "collega", "altro"];
@@ -14,6 +15,7 @@ export default function Contacts() {
   const [showForm, setShowForm] = useState(false);
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
+  const [showImport, setShowImport] = useState(false);
 
   function refresh() {
     api.listContacts(search, categoryFilter).then(setContacts).catch(() => {});
@@ -43,7 +45,13 @@ export default function Contacts() {
     <div>
       <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
         <h1 className="text-2xl font-bold">{t("contacts.title")}</h1>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
+          <button
+            onClick={() => setShowImport(true)}
+            className="bg-white border border-slate-200 hover:bg-slate-50 text-ink font-medium rounded-xl2 px-4 py-2 text-sm"
+          >
+            {t("contacts.import_from_file")}
+          </button>
           <button
             onClick={handleImport}
             className="bg-white border border-slate-200 hover:bg-slate-50 text-ink font-medium rounded-xl2 px-4 py-2 text-sm"
@@ -77,6 +85,10 @@ export default function Contacts() {
           ))}
         </select>
       </div>
+
+      {showImport && (
+        <ImportContactsModal onClose={() => setShowImport(false)} onImported={refresh} />
+      )}
 
       {showForm && (
         <Card className="mb-6">
@@ -114,6 +126,13 @@ export default function Contacts() {
               {c.whatsapp && <div>💬 {c.whatsapp}</div>}
               {c.email && <div>✉️ {c.email}</div>}
             </div>
+            {c.extra_fields && Object.keys(c.extra_fields).length > 0 && (
+              <div className="text-xs text-ink/50 mt-2 pt-2 border-t border-slate-100 space-y-0.5">
+                {Object.entries(c.extra_fields).map(([k, v]) => (
+                  <div key={k}><span className="italic">{k}</span>: {v}</div>
+                ))}
+              </div>
+            )}
           </Card>
         ))}
         {contacts.length === 0 && (

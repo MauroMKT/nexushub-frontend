@@ -117,6 +117,13 @@ export default function Clients() {
               {c.phone && <div>📞 {c.phone}</div>}
               {c.sector && <div>🏷️ {c.sector}</div>}
             </div>
+            {c.extra_fields && Object.keys(c.extra_fields).length > 0 && (
+              <div className="text-xs text-ink/50 mt-2 pt-2 border-t border-slate-100 space-y-0.5">
+                {Object.entries(c.extra_fields).map(([k, v]) => (
+                  <div key={k}><span className="italic">{k}</span>: {v}</div>
+                ))}
+              </div>
+            )}
             {c.tags?.length > 0 && (
               <div className="flex gap-1 mt-2 flex-wrap">
                 {c.tags.map((tag) => (
