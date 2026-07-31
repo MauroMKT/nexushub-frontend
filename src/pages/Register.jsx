@@ -7,6 +7,7 @@ import LanguageFlagSelect, { findLanguageOption } from "../components/LanguageFl
 import i18n, { changeLanguage } from "../i18n";
 import { useAuth } from "../context/AuthContext";
 import { api } from "../api";
+import { getModuleName, getSectorGroupName } from "../utils/moduleI18n";
 
 // Paesi supportati per la selezione esplicita in fase di registrazione azienda.
 // L'esempio di formato è una stringa universale (cifre/lettere), non richiede
@@ -197,8 +198,11 @@ export default function Register() {
   useEffect(() => {
     api.listPublicModulesCatalog().then(setSectorCatalog).catch(() => setSectorCatalog([]));
   }, []);
+  // Raggruppa per sector_group (chiave italiana stabile), etichetta del
+  // gruppo mostrata sempre nella lingua di visualizzazione corrente (Fase 9.4).
   const sectorGroups = sectorCatalog.reduce((acc, m) => {
-    (acc[m.sector_group] = acc[m.sector_group] || []).push(m);
+    (acc[m.sector_group] = acc[m.sector_group] || { label: getSectorGroupName(m, i18n.language), items: [] });
+    acc[m.sector_group].items.push(m);
     return acc;
   }, {});
 
@@ -447,8 +451,9 @@ function Select({ label, value, onChange, options }) {
 // Menu a tendina "Settore" raggruppato per sector_group (Fase 9.1): il valore
 // selezionato è lo slug stabile del modulo, così può essere autoattivato subito
 // dopo la registrazione senza bisogno di alcun matching testuale lato backend.
+// Fase 9.4: sia il nome del modulo che l'intestazione del gruppo sono ora
+// tradotti in tutte le 9 lingue (prima ricadevano sull'inglese oltre it/en).
 function GroupedSelect({ label, value, onChange, groups }) {
-  const lang = i18n.language?.slice(0, 2) === "it" ? "name_it" : "name_en";
   return (
     <div>
       <label className="text-sm font-medium block mb-1">{label}</label>
@@ -458,10 +463,10 @@ function GroupedSelect({ label, value, onChange, groups }) {
         className="w-full border border-slate-200 rounded-xl2 px-3 py-2 bg-white"
       >
         <option value="">—</option>
-        {Object.entries(groups).map(([groupName, items]) => (
-          <optgroup key={groupName} label={groupName}>
+        {Object.entries(groups).map(([groupName, { label: groupLabel, items }]) => (
+          <optgroup key={groupName} label={groupLabel}>
             {items.map((m) => (
-              <option key={m.slug} value={m.slug}>{m[lang] || m.name_it}</option>
+              <option key={m.slug} value={m.slug}>{getModuleName(m, i18n.language)}</option>
             ))}
           </optgroup>
         ))}

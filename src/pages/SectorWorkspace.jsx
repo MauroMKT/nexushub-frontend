@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 import { api } from "../api";
 import Card from "../components/Card";
+import { getModuleName, getRecordLabel } from "../utils/moduleI18n";
 
 const STATUSES = ["aperto", "in_corso", "chiuso"];
 const emptyForm = { title: "", client_id: "", status: "aperto", value: "", reference_date: "", notes: "" };
@@ -12,12 +13,12 @@ const emptyForm = { title: "", client_id: "", status: "aperto", value: "", refer
 // (Fase 9.3): la stessa pagina serve tutti i ~18 settori "generici" del
 // catalogo, cambiando solo etichetta ("Pratica Legale", "Intervento in
 // Officina", ecc.) e nome del modulo, letti dal catalogo tramite lo slug
-// nella rotta (/sector/:slug).
+// nella rotta (/sector/:slug). Fase 9.4: entrambi tradotti in tutte le 9
+// lingue dell'app (vedi utils/moduleI18n.js), non solo it/en.
 export default function SectorWorkspace() {
   const { slug } = useParams();
   const { t, i18n } = useTranslation();
   const tp = (k) => t(`pilotModules.${k}`);
-  const isItalian = i18n.language?.startsWith("it");
 
   const [moduleInfo, setModuleInfo] = useState(null);
   const [records, setRecords] = useState([]);
@@ -46,11 +47,11 @@ export default function SectorWorkspace() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
-  const moduleName = moduleInfo ? (isItalian ? moduleInfo.name_it : moduleInfo.name_en) : slug;
+  const moduleName = moduleInfo ? getModuleName(moduleInfo, i18n.language) : slug;
   const recordLabel = useMemo(() => {
     if (!moduleInfo) return tp("sectorWorkspace.field_title");
-    return (isItalian ? moduleInfo.record_label_it : moduleInfo.record_label_en) || moduleName;
-  }, [moduleInfo, isItalian, moduleName]);
+    return getRecordLabel(moduleInfo, i18n.language);
+  }, [moduleInfo, i18n.language]);
 
   async function handleSubmit(e) {
     e.preventDefault();

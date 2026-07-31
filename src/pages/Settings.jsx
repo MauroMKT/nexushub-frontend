@@ -318,11 +318,11 @@ export default function Settings() {
         </ul>
         {user?.role === "admin" && (
           <form onSubmit={handleInvite} className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <input placeholder="Nome" required value={inviteName} onChange={(e) => setInviteName(e.target.value)}
+            <input placeholder={t("clients.name")} required value={inviteName} onChange={(e) => setInviteName(e.target.value)}
                    className="border border-slate-200 rounded-xl2 px-3 py-2 text-sm" />
-            <input placeholder="Email" type="email" required value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)}
+            <input placeholder={t("clients.email")} type="email" required value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)}
                    className="border border-slate-200 rounded-xl2 px-3 py-2 text-sm" />
-            <input placeholder="Password" type="password" required value={invitePassword} onChange={(e) => setInvitePassword(e.target.value)}
+            <input placeholder={t("login.password")} type="password" required value={invitePassword} onChange={(e) => setInvitePassword(e.target.value)}
                    className="border border-slate-200 rounded-xl2 px-3 py-2 text-sm" />
             <button type="submit" className="sm:col-span-3 bg-secondary hover:bg-secondary/80 text-ink font-semibold rounded-xl2 px-4 py-2 text-sm">
               {t("settings.invite")}
@@ -462,7 +462,7 @@ export default function Settings() {
               <input
                 value={deleteConfirmText}
                 onChange={(e) => setDeleteConfirmText(e.target.value)}
-                placeholder="ELIMINA"
+                placeholder={t("settings.danger_zone_confirm_word")}
                 className="w-full border border-red-200 rounded-xl2 px-3 py-2 text-sm"
               />
             </div>

@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 import { api } from "../api";
 import Card from "../components/Card";
+import { getModuleName, getSectorGroupName } from "../utils/moduleI18n";
 
-// Catalogo dei moduli di settore attivabili (Fase 9). I nomi dei moduli
-// arrivano dal backend in italiano/inglese (name_it/name_en): il catalogo
-// dei ~25 settori non è ancora tradotto in tutte le 9 lingue dell'app,
-// quindi qui si sceglie name_en per le lingue non italiane come fallback
-// ragionevole finché non viene fatta una localizzazione dedicata.
+// Catalogo dei moduli di settore attivabili (Fase 9). Il backend manda il
+// nome del modulo e il gruppo di settore in tutte le 9 lingue dell'app
+// (Fase 9.4): getModuleName/getSectorGroupName scelgono quella corrente,
+// con fallback su inglese poi italiano (vedi utils/moduleI18n.js).
 export default function Modules() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -60,10 +60,14 @@ export default function Modules() {
     }
   }
 
-  const moduleName = (m) => (i18n.language?.startsWith("it") ? m.name_it : m.name_en);
+  const moduleName = (m) => getModuleName(m, i18n.language);
 
+  // Raggruppa per sector_group (chiave italiana stabile, non tradotta: serve
+  // solo a tenere insieme le righe dello stesso gruppo), ma mostra sempre
+  // l'etichetta tradotta con getSectorGroupName.
   const grouped = catalog.reduce((acc, m) => {
-    (acc[m.sector_group] = acc[m.sector_group] || []).push(m);
+    (acc[m.sector_group] = acc[m.sector_group] || { label: getSectorGroupName(m, i18n.language), items: [] });
+    acc[m.sector_group].items.push(m);
     return acc;
   }, {});
 
@@ -83,9 +87,9 @@ export default function Modules() {
 
       {loading && <p className="text-sm text-ink/50">{t("modules.loading")}</p>}
 
-      {!loading && Object.entries(grouped).map(([group, mods]) => (
+      {!loading && Object.entries(grouped).map(([group, { label, items: mods }]) => (
         <Card key={group}>
-          <h2 className="font-semibold mb-3">{group}</h2>
+          <h2 className="font-semibold mb-3">{label}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {mods.map((m) => (
               <div key={m.slug} className={`border rounded-xl2 p-3 ${m.is_active_for_tenant ? "border-secondary bg-secondary/10" : "border-slate-200"}`}>
