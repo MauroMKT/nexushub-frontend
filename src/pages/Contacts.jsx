@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { api } from "../api";
@@ -16,12 +16,23 @@ export default function Contacts() {
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [showImport, setShowImport] = useState(false);
+  const [sortOrder, setSortOrder] = useState("az");
 
   function refresh() {
     api.listContacts(search, categoryFilter).then(setContacts).catch(() => {});
   }
 
   useEffect(refresh, [search, categoryFilter]);
+
+  // Il backend restituisce già in ordine alfabetico crescente; qui gestiamo
+  // solo la possibilità di invertire l'ordine dall'interfaccia.
+  const displayedContacts = useMemo(() => {
+    const list = [...contacts];
+    list.sort((a, b) =>
+      sortOrder === "za" ? b.full_name.localeCompare(a.full_name) : a.full_name.localeCompare(b.full_name)
+    );
+    return list;
+  }, [contacts, sortOrder]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -84,6 +95,14 @@ export default function Contacts() {
             <option key={c} value={c}>{t(`contacts.category_${c}`)}</option>
           ))}
         </select>
+        <select
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+          className="border border-slate-200 rounded-xl2 px-3 py-2 text-sm"
+        >
+          <option value="az">{t("common.sort_az")}</option>
+          <option value="za">{t("common.sort_za")}</option>
+        </select>
       </div>
 
       {showImport && (
@@ -110,7 +129,7 @@ export default function Contacts() {
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {contacts.map((c) => (
+        {displayedContacts.map((c) => (
           <Card key={c.id}>
             <div className="flex items-start justify-between">
               <div className="font-semibold">{c.full_name}</div>
@@ -135,7 +154,7 @@ export default function Contacts() {
             )}
           </Card>
         ))}
-        {contacts.length === 0 && (
+        {displayedContacts.length === 0 && (
           <p className="text-ink/50 text-sm">{t("contacts.empty")}</p>
         )}
       </div>

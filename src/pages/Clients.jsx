@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { api } from "../api";
@@ -51,6 +51,8 @@ export default function Clients() {
   const [openChatId, setOpenChatId] = useState(null);
   const [openDocsId, setOpenDocsId] = useState(null);
   const [showImport, setShowImport] = useState(false);
+  const [sectorFilter, setSectorFilter] = useState("");
+  const [sortOrder, setSortOrder] = useState("az");
 
   function refresh() {
     api.listClients().then(setClients).catch(() => {});
@@ -65,6 +67,23 @@ export default function Clients() {
     setShowForm(false);
     refresh();
   }
+
+  // Elenco settori realmente presenti tra i clienti del tenant, per il filtro
+  // a tendina — non serve una lista fissa, il "settore" è testo libero.
+  const sectors = useMemo(() => {
+    const set = new Set(clients.map((c) => c.sector).filter(Boolean));
+    return [...set].sort((a, b) => a.localeCompare(b));
+  }, [clients]);
+
+  const displayedClients = useMemo(() => {
+    let list = sectorFilter ? clients.filter((c) => c.sector === sectorFilter) : clients;
+    if (sortOrder !== "none") {
+      list = [...list].sort((a, b) =>
+        sortOrder === "za" ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name)
+      );
+    }
+    return list;
+  }, [clients, sectorFilter, sortOrder]);
 
   return (
     <div>
@@ -90,6 +109,27 @@ export default function Clients() {
         <ImportClientsModal onClose={() => setShowImport(false)} onImported={refresh} />
       )}
 
+      <div className="flex gap-2 mb-4 flex-wrap">
+        <select
+          value={sectorFilter}
+          onChange={(e) => setSectorFilter(e.target.value)}
+          className="border border-slate-200 rounded-xl2 px-3 py-2 text-sm"
+        >
+          <option value="">{t("clients.all_sectors")}</option>
+          {sectors.map((s) => (
+            <option key={s} value={s}>{s}</option>
+          ))}
+        </select>
+        <select
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+          className="border border-slate-200 rounded-xl2 px-3 py-2 text-sm"
+        >
+          <option value="az">{t("common.sort_az")}</option>
+          <option value="za">{t("common.sort_za")}</option>
+        </select>
+      </div>
+
       {showForm && (
         <Card className="mb-6">
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -108,7 +148,7 @@ export default function Clients() {
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {clients.map((c) => (
+        {displayedClients.map((c) => (
           <Card key={c.id}>
             <div className="font-semibold">{c.name}</div>
             {c.company && <div className="text-sm text-ink/60">{c.company}</div>}
