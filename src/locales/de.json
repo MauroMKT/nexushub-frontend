@@ -226,7 +226,13 @@
     "portal_invited": "Portal-Zugang aktiviert",
     "portal_invite_send": "Zugangsdaten senden",
     "notes": "Notizen",
-    "all_sectors": "Alle Branchen"
+    "all_sectors": "Alle Branchen",
+    "add_from_contacts": "Aus dem Adressbuch hinzufügen",
+    "pick_contact_title": "Kontakt aus dem Adressbuch auswählen",
+    "pick_contact_search_placeholder": "Suche nach Name, Firma, Telefon...",
+    "pick_contact_select": "Zu Kunde machen",
+    "pick_contact_empty": "Keine Kontakte gefunden.",
+    "pick_contact_already_client": "Bereits Kunde"
   },
   "contacts": {
     "title": "Telefonbuch",
@@ -364,7 +370,11 @@
     "save_sequence_button": "Sequenz speichern",
     "triggered_at_label": "Ausgelöst bei Pipeline-Phasenwechsel",
     "day_label": "Tag",
-    "no_sequences": "Keine aktiven Follow-up-Sequenzen."
+    "no_sequences": "Keine aktiven Follow-up-Sequenzen.",
+    "smtp_not_configured_hint": "Um Kampagnen wirklich zu versenden, konfiguriere deinen SMTP-Server in den Einstellungen.",
+    "sending_label": "Wird gesendet…",
+    "retry_button": "Erneut senden",
+    "failed_label": "Fehlgeschlagen"
   },
   "tasks": {
     "title": "Aufgaben & Erinnerungen",
@@ -419,7 +429,19 @@
     "danger_zone_delete_button": "Mein Konto endgültig löschen",
     "danger_zone_deleting": "Wird gelöscht…",
     "manage_modules_link": "Branchenmodule verwalten",
-    "danger_zone_confirm_word": "ELIMINA"
+    "danger_zone_confirm_word": "ELIMINA",
+    "smtp_title": "E-Mail-Versand (SMTP)",
+    "smtp_hint": "Gib die Daten deines SMTP-Servers ein, um Email-Marketing-Kampagnen wirklich zu versenden (z. B. Gmail, Outlook, dedizierte Anbieter wie SendGrid).",
+    "smtp_configured_yes": "SMTP konfiguriert: Kampagnen werden wirklich versendet.",
+    "smtp_configured_no": "SMTP noch nicht konfiguriert: Kampagnen können nicht versendet werden.",
+    "smtp_host": "SMTP-Host",
+    "smtp_port": "Port",
+    "smtp_username": "Benutzername",
+    "smtp_password": "Passwort (leer lassen, um es nicht zu ändern)",
+    "smtp_from_email": "Absender-E-Mail",
+    "smtp_from_name": "Absendername",
+    "smtp_use_tls": "Sichere Verbindung verwenden (TLS)",
+    "smtp_saved": "SMTP-Einstellungen gespeichert"
   },
   "portal": {
     "title": "Kundenbereich",

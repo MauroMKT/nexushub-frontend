@@ -226,7 +226,13 @@
     "portal_invited": "顧客ポータルが有効化されました",
     "portal_invite_send": "ログイン情報を送信",
     "notes": "メモ",
-    "all_sectors": "すべての業種"
+    "all_sectors": "すべての業種",
+    "add_from_contacts": "アドレス帳から追加",
+    "pick_contact_title": "アドレス帳から連絡先を選択",
+    "pick_contact_search_placeholder": "名前、会社名、電話番号で検索...",
+    "pick_contact_select": "顧客にする",
+    "pick_contact_empty": "連絡先が見つかりません。",
+    "pick_contact_already_client": "すでに顧客です"
   },
   "contacts": {
     "title": "連絡先",
@@ -364,7 +370,11 @@
     "save_sequence_button": "シーケンスを保存",
     "triggered_at_label": "パイプラインステージ変更時に発動",
     "day_label": "日目",
-    "no_sequences": "有効なフォローアップシーケンスはありません。"
+    "no_sequences": "有効なフォローアップシーケンスはありません。",
+    "smtp_not_configured_hint": "キャンペーンを実際に送信するには、設定でSMTPサーバーを構成してください。",
+    "sending_label": "送信中…",
+    "retry_button": "再送信",
+    "failed_label": "失敗"
   },
   "tasks": {
     "title": "タスク＆リマインダー",
@@ -419,7 +429,19 @@
     "danger_zone_delete_button": "アカウントを完全に削除する",
     "danger_zone_deleting": "削除中…",
     "manage_modules_link": "業種別モジュールを管理",
-    "danger_zone_confirm_word": "ELIMINA"
+    "danger_zone_confirm_word": "ELIMINA",
+    "smtp_title": "メール送信（SMTP）",
+    "smtp_hint": "メールマーケティングキャンペーンを実際に送信するには、SMTPサーバーの情報を入力してください（例：Gmail、Outlook、SendGridなどの専用プロバイダー）。",
+    "smtp_configured_yes": "SMTPが設定されています：キャンペーンは実際に送信されます。",
+    "smtp_configured_no": "SMTPがまだ設定されていません：キャンペーンを送信できません。",
+    "smtp_host": "SMTPホスト",
+    "smtp_port": "ポート",
+    "smtp_username": "ユーザー名",
+    "smtp_password": "パスワード（変更しない場合は空欄のまま）",
+    "smtp_from_email": "送信者メールアドレス",
+    "smtp_from_name": "送信者名",
+    "smtp_use_tls": "セキュア接続（TLS）を使用する",
+    "smtp_saved": "SMTP設定を保存しました"
   },
   "portal": {
     "title": "顧客ポータル",

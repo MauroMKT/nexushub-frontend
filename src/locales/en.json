@@ -226,7 +226,13 @@
     "portal_invited": "Portal access enabled",
     "portal_invite_send": "Send credentials",
     "notes": "Notes",
-    "all_sectors": "All sectors"
+    "all_sectors": "All sectors",
+    "add_from_contacts": "Add from Contacts",
+    "pick_contact_title": "Choose a contact from your Contacts",
+    "pick_contact_search_placeholder": "Search by name, company, phone...",
+    "pick_contact_select": "Make client",
+    "pick_contact_empty": "No contacts found.",
+    "pick_contact_already_client": "Already a client"
   },
   "contacts": {
     "title": "Phonebook",
@@ -364,7 +370,11 @@
     "save_sequence_button": "Save Sequence",
     "triggered_at_label": "Triggered on pipeline stage change",
     "day_label": "Day",
-    "no_sequences": "No active follow-up sequences."
+    "no_sequences": "No active follow-up sequences.",
+    "smtp_not_configured_hint": "To actually send campaigns, configure your SMTP server in Settings.",
+    "sending_label": "Sending…",
+    "retry_button": "Retry send",
+    "failed_label": "Failed"
   },
   "tasks": {
     "title": "Tasks & Reminders",
@@ -419,7 +429,19 @@
     "danger_zone_delete_button": "Permanently delete my account",
     "danger_zone_deleting": "Deleting…",
     "manage_modules_link": "Manage sector modules",
-    "danger_zone_confirm_word": "ELIMINA"
+    "danger_zone_confirm_word": "ELIMINA",
+    "smtp_title": "Email Sending (SMTP)",
+    "smtp_hint": "Enter your SMTP server details to actually send Email Marketing campaigns (e.g. Gmail, Outlook, dedicated providers like SendGrid).",
+    "smtp_configured_yes": "SMTP configured: campaigns will be sent for real.",
+    "smtp_configured_no": "SMTP not configured yet: campaigns cannot be sent.",
+    "smtp_host": "SMTP host",
+    "smtp_port": "Port",
+    "smtp_username": "Username",
+    "smtp_password": "Password (leave blank to keep it unchanged)",
+    "smtp_from_email": "Sender email",
+    "smtp_from_name": "Sender name",
+    "smtp_use_tls": "Use secure connection (TLS)",
+    "smtp_saved": "SMTP settings saved"
   },
   "portal": {
     "title": "Client Area",

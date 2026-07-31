@@ -226,7 +226,13 @@
     "portal_invited": "Acceso al portal activado",
     "portal_invite_send": "Enviar credenciales",
     "notes": "Notas",
-    "all_sectors": "Todos los sectores"
+    "all_sectors": "Todos los sectores",
+    "add_from_contacts": "Añadir desde la agenda",
+    "pick_contact_title": "Elige un contacto de la agenda",
+    "pick_contact_search_placeholder": "Buscar por nombre, empresa, teléfono...",
+    "pick_contact_select": "Convertir en cliente",
+    "pick_contact_empty": "No se encontraron contactos.",
+    "pick_contact_already_client": "Ya es cliente"
   },
   "contacts": {
     "title": "Agenda Telefónica",
@@ -364,7 +370,11 @@
     "save_sequence_button": "Guardar Secuencia",
     "triggered_at_label": "Activada al cambiar de fase del pipeline",
     "day_label": "Día",
-    "no_sequences": "No hay secuencias de seguimiento activas."
+    "no_sequences": "No hay secuencias de seguimiento activas.",
+    "smtp_not_configured_hint": "Para enviar realmente las campañas, configura tu servidor SMTP en Ajustes.",
+    "sending_label": "Enviando…",
+    "retry_button": "Reintentar envío",
+    "failed_label": "Fallidas"
   },
   "tasks": {
     "title": "Tareas & Recordatorios",
@@ -419,7 +429,19 @@
     "danger_zone_delete_button": "Eliminar mi cuenta definitivamente",
     "danger_zone_deleting": "Eliminando…",
     "manage_modules_link": "Gestionar módulos sectoriales",
-    "danger_zone_confirm_word": "ELIMINA"
+    "danger_zone_confirm_word": "ELIMINA",
+    "smtp_title": "Envío de correo (SMTP)",
+    "smtp_hint": "Introduce los datos de tu servidor SMTP para enviar realmente las campañas de Email Marketing (ej. Gmail, Outlook, proveedores dedicados como SendGrid).",
+    "smtp_configured_yes": "SMTP configurado: las campañas se enviarán de verdad.",
+    "smtp_configured_no": "SMTP aún no configurado: las campañas no podrán enviarse.",
+    "smtp_host": "Host SMTP",
+    "smtp_port": "Puerto",
+    "smtp_username": "Nombre de usuario",
+    "smtp_password": "Contraseña (deja en blanco para no modificarla)",
+    "smtp_from_email": "Correo del remitente",
+    "smtp_from_name": "Nombre del remitente",
+    "smtp_use_tls": "Usar conexión segura (TLS)",
+    "smtp_saved": "Ajustes SMTP guardados"
   },
   "portal": {
     "title": "Área de Clientes",

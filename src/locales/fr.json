@@ -226,7 +226,13 @@
     "portal_invited": "Accès au portail activé",
     "portal_invite_send": "Envoyer les identifiants",
     "notes": "Notes",
-    "all_sectors": "Tous les secteurs"
+    "all_sectors": "Tous les secteurs",
+    "add_from_contacts": "Ajouter depuis le carnet d'adresses",
+    "pick_contact_title": "Choisir un contact dans le carnet d'adresses",
+    "pick_contact_search_placeholder": "Rechercher par nom, société, téléphone...",
+    "pick_contact_select": "Convertir en client",
+    "pick_contact_empty": "Aucun contact trouvé.",
+    "pick_contact_already_client": "Déjà client"
   },
   "contacts": {
     "title": "Répertoire Téléphonique",
@@ -364,7 +370,11 @@
     "save_sequence_button": "Enregistrer la séquence",
     "triggered_at_label": "Déclenchée au changement de phase du pipeline",
     "day_label": "Jour",
-    "no_sequences": "Aucune séquence de suivi active."
+    "no_sequences": "Aucune séquence de suivi active.",
+    "smtp_not_configured_hint": "Pour envoyer réellement les campagnes, configurez votre serveur SMTP dans Paramètres.",
+    "sending_label": "Envoi en cours…",
+    "retry_button": "Réessayer l'envoi",
+    "failed_label": "Échouées"
   },
   "tasks": {
     "title": "Tâches & Rappels",
@@ -419,7 +429,19 @@
     "danger_zone_delete_button": "Supprimer définitivement mon compte",
     "danger_zone_deleting": "Suppression en cours…",
     "manage_modules_link": "Gérer les modules sectoriels",
-    "danger_zone_confirm_word": "ELIMINA"
+    "danger_zone_confirm_word": "ELIMINA",
+    "smtp_title": "Envoi d'emails (SMTP)",
+    "smtp_hint": "Entrez les données de votre serveur SMTP pour envoyer réellement les campagnes Email Marketing (ex. Gmail, Outlook, fournisseurs dédiés comme SendGrid).",
+    "smtp_configured_yes": "SMTP configuré : les campagnes seront réellement envoyées.",
+    "smtp_configured_no": "SMTP non encore configuré : les campagnes ne pourront pas être envoyées.",
+    "smtp_host": "Hôte SMTP",
+    "smtp_port": "Port",
+    "smtp_username": "Nom d'utilisateur",
+    "smtp_password": "Mot de passe (laisser vide pour ne pas le modifier)",
+    "smtp_from_email": "Email de l'expéditeur",
+    "smtp_from_name": "Nom de l'expéditeur",
+    "smtp_use_tls": "Utiliser une connexion sécurisée (TLS)",
+    "smtp_saved": "Paramètres SMTP enregistrés"
   },
   "portal": {
     "title": "Espace Client",

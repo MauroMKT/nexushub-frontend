@@ -226,7 +226,13 @@
     "portal_invited": "Accesso portale attivato",
     "portal_invite_send": "Invia credenziali",
     "notes": "Note",
-    "all_sectors": "Tutti i settori"
+    "all_sectors": "Tutti i settori",
+    "add_from_contacts": "Aggiungi da Rubrica",
+    "pick_contact_title": "Scegli un contatto dalla Rubrica",
+    "pick_contact_search_placeholder": "Cerca per nome, azienda, telefono...",
+    "pick_contact_select": "Rendi cliente",
+    "pick_contact_empty": "Nessun contatto trovato.",
+    "pick_contact_already_client": "Già cliente"
   },
   "contacts": {
     "title": "Rubrica Telefonica",
@@ -364,7 +370,11 @@
     "save_sequence_button": "Salva Sequenza",
     "triggered_at_label": "Attivata al cambio fase pipeline",
     "day_label": "Giorno",
-    "no_sequences": "Nessuna sequenza di follow-up attiva."
+    "no_sequences": "Nessuna sequenza di follow-up attiva.",
+    "smtp_not_configured_hint": "Per inviare davvero le campagne, configura il tuo server SMTP in Impostazioni.",
+    "sending_label": "Invio in corso…",
+    "retry_button": "Riprova invio",
+    "failed_label": "Fallite"
   },
   "tasks": {
     "title": "Task & Reminder",
@@ -419,7 +429,19 @@
     "danger_zone_delete_button": "Cancella definitivamente il mio account",
     "danger_zone_deleting": "Cancellazione in corso…",
     "manage_modules_link": "Gestisci moduli di settore",
-    "danger_zone_confirm_word": "ELIMINA"
+    "danger_zone_confirm_word": "ELIMINA",
+    "smtp_title": "Invio Email (SMTP)",
+    "smtp_hint": "Inserisci i dati del tuo server SMTP per inviare davvero le campagne Email Marketing (es. Gmail, Outlook, provider dedicati come SendGrid o Aruba).",
+    "smtp_configured_yes": "SMTP configurato: le campagne verranno inviate realmente.",
+    "smtp_configured_no": "SMTP non ancora configurato: le campagne non potranno essere inviate.",
+    "smtp_host": "Host SMTP",
+    "smtp_port": "Porta",
+    "smtp_username": "Nome utente",
+    "smtp_password": "Password (lascia vuoto per non modificarla)",
+    "smtp_from_email": "Email mittente",
+    "smtp_from_name": "Nome mittente",
+    "smtp_use_tls": "Usa connessione sicura (TLS)",
+    "smtp_saved": "Impostazioni SMTP salvate"
   },
   "portal": {
     "title": "Area Clienti",

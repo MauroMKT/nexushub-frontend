@@ -226,7 +226,13 @@
     "portal_invited": "客户门户访问已启用",
     "portal_invite_send": "发送登录凭证",
     "notes": "备注",
-    "all_sectors": "所有行业"
+    "all_sectors": "所有行业",
+    "add_from_contacts": "从通讯录添加",
+    "pick_contact_title": "从通讯录选择联系人",
+    "pick_contact_search_placeholder": "按姓名、公司、电话搜索...",
+    "pick_contact_select": "转为客户",
+    "pick_contact_empty": "未找到联系人。",
+    "pick_contact_already_client": "已是客户"
   },
   "contacts": {
     "title": "通讯录",
@@ -364,7 +370,11 @@
     "save_sequence_button": "保存序列",
     "triggered_at_label": "在管道阶段变更时触发",
     "day_label": "第",
-    "no_sequences": "暂无启用的跟进序列。"
+    "no_sequences": "暂无启用的跟进序列。",
+    "smtp_not_configured_hint": "要真正发送营销活动，请在设置中配置您的 SMTP 服务器。",
+    "sending_label": "正在发送…",
+    "retry_button": "重试发送",
+    "failed_label": "失败"
   },
   "tasks": {
     "title": "任务与提醒",
@@ -419,7 +429,19 @@
     "danger_zone_delete_button": "永久删除我的账户",
     "danger_zone_deleting": "正在删除…",
     "manage_modules_link": "管理行业模块",
-    "danger_zone_confirm_word": "ELIMINA"
+    "danger_zone_confirm_word": "ELIMINA",
+    "smtp_title": "邮件发送（SMTP）",
+    "smtp_hint": "输入您的 SMTP 服务器信息以真正发送邮件营销活动（例如 Gmail、Outlook 或 SendGrid 等专用服务商）。",
+    "smtp_configured_yes": "SMTP 已配置：营销活动将被真实发送。",
+    "smtp_configured_no": "SMTP 尚未配置：营销活动无法发送。",
+    "smtp_host": "SMTP 主机",
+    "smtp_port": "端口",
+    "smtp_username": "用户名",
+    "smtp_password": "密码（留空则不修改）",
+    "smtp_from_email": "发件人邮箱",
+    "smtp_from_name": "发件人名称",
+    "smtp_use_tls": "使用安全连接（TLS）",
+    "smtp_saved": "SMTP 设置已保存"
   },
   "portal": {
     "title": "客户专区",

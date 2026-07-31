@@ -226,7 +226,13 @@
     "portal_invited": "تم تفعيل الوصول إلى البوابة",
     "portal_invite_send": "إرسال بيانات الدخول",
     "notes": "ملاحظات",
-    "all_sectors": "جميع القطاعات"
+    "all_sectors": "جميع القطاعات",
+    "add_from_contacts": "إضافة من جهات الاتصال",
+    "pick_contact_title": "اختر جهة اتصال من دفتر العناوين",
+    "pick_contact_search_placeholder": "ابحث بالاسم أو الشركة أو الهاتف...",
+    "pick_contact_select": "تحويل إلى عميل",
+    "pick_contact_empty": "لم يتم العثور على جهات اتصال.",
+    "pick_contact_already_client": "عميل بالفعل"
   },
   "contacts": {
     "title": "دفتر الهاتف",
@@ -364,7 +370,11 @@
     "save_sequence_button": "حفظ التسلسل",
     "triggered_at_label": "يتم تشغيله عند تغيير مرحلة خط المبيعات",
     "day_label": "اليوم",
-    "no_sequences": "لا توجد تسلسلات متابعة نشطة."
+    "no_sequences": "لا توجد تسلسلات متابعة نشطة.",
+    "smtp_not_configured_hint": "لإرسال الحملات فعليًا، قم بتكوين خادم SMTP الخاص بك في الإعدادات.",
+    "sending_label": "جارٍ الإرسال…",
+    "retry_button": "إعادة المحاولة",
+    "failed_label": "فشلت"
   },
   "tasks": {
     "title": "المهام والتذكيرات",
@@ -419,7 +429,19 @@
     "danger_zone_delete_button": "حذف حسابي نهائيًا",
     "danger_zone_deleting": "جارٍ الحذف…",
     "manage_modules_link": "إدارة وحدات القطاع",
-    "danger_zone_confirm_word": "ELIMINA"
+    "danger_zone_confirm_word": "ELIMINA",
+    "smtp_title": "إرسال البريد الإلكتروني (SMTP)",
+    "smtp_hint": "أدخل بيانات خادم SMTP الخاص بك لإرسال حملات التسويق عبر البريد الإلكتروني فعليًا (مثل Gmail وOutlook ومزودين متخصصين مثل SendGrid).",
+    "smtp_configured_yes": "تم تكوين SMTP: سيتم إرسال الحملات فعليًا.",
+    "smtp_configured_no": "لم يتم تكوين SMTP بعد: لا يمكن إرسال الحملات.",
+    "smtp_host": "مضيف SMTP",
+    "smtp_port": "المنفذ",
+    "smtp_username": "اسم المستخدم",
+    "smtp_password": "كلمة المرور (اتركها فارغة لعدم تغييرها)",
+    "smtp_from_email": "بريد المرسل",
+    "smtp_from_name": "اسم المرسل",
+    "smtp_use_tls": "استخدام اتصال آمن (TLS)",
+    "smtp_saved": "تم حفظ إعدادات SMTP"
   },
   "portal": {
     "title": "منطقة العملاء",

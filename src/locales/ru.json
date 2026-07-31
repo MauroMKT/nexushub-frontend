@@ -226,7 +226,13 @@
     "portal_invited": "Доступ к порталу включён",
     "portal_invite_send": "Отправить учётные данные",
     "notes": "Заметки",
-    "all_sectors": "Все отрасли"
+    "all_sectors": "Все отрасли",
+    "add_from_contacts": "Добавить из адресной книги",
+    "pick_contact_title": "Выберите контакт из адресной книги",
+    "pick_contact_search_placeholder": "Поиск по имени, компании, телефону...",
+    "pick_contact_select": "Сделать клиентом",
+    "pick_contact_empty": "Контакты не найдены.",
+    "pick_contact_already_client": "Уже клиент"
   },
   "contacts": {
     "title": "Телефонная книга",
@@ -364,7 +370,11 @@
     "save_sequence_button": "Сохранить последовательность",
     "triggered_at_label": "Запускается при смене этапа воронки",
     "day_label": "День",
-    "no_sequences": "Нет активных последовательностей отслеживания."
+    "no_sequences": "Нет активных последовательностей отслеживания.",
+    "smtp_not_configured_hint": "Чтобы действительно отправлять кампании, настройте SMTP-сервер в Настройках.",
+    "sending_label": "Отправка…",
+    "retry_button": "Повторить отправку",
+    "failed_label": "Не удалось"
   },
   "tasks": {
     "title": "Задачи и напоминания",
@@ -419,7 +429,19 @@
     "danger_zone_delete_button": "Удалить мой аккаунт навсегда",
     "danger_zone_deleting": "Удаление…",
     "manage_modules_link": "Управление отраслевыми модулями",
-    "danger_zone_confirm_word": "ELIMINA"
+    "danger_zone_confirm_word": "ELIMINA",
+    "smtp_title": "Отправка Email (SMTP)",
+    "smtp_hint": "Введите данные вашего SMTP-сервера, чтобы действительно отправлять email-кампании (например, Gmail, Outlook, выделенные провайдеры вроде SendGrid).",
+    "smtp_configured_yes": "SMTP настроен: кампании будут отправляться по-настоящему.",
+    "smtp_configured_no": "SMTP ещё не настроен: кампании не могут быть отправлены.",
+    "smtp_host": "SMTP-хост",
+    "smtp_port": "Порт",
+    "smtp_username": "Имя пользователя",
+    "smtp_password": "Пароль (оставьте пустым, чтобы не менять)",
+    "smtp_from_email": "Email отправителя",
+    "smtp_from_name": "Имя отправителя",
+    "smtp_use_tls": "Использовать безопасное соединение (TLS)",
+    "smtp_saved": "Настройки SMTP сохранены"
   },
   "portal": {
     "title": "Личный кабинет клиента",
