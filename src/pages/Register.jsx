@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -6,7 +6,66 @@ import Card from "../components/Card";
 import LanguageFlagSelect, { findLanguageOption } from "../components/LanguageFlagSelect";
 import i18n, { changeLanguage } from "../i18n";
 import { useAuth } from "../context/AuthContext";
-import { api } from "../api";
+
+// Paesi supportati per la selezione esplicita in fase di registrazione azienda.
+// L'esempio di formato è una stringa universale (cifre/lettere), non richiede
+// traduzione: viene mostrato come suggerimento sotto il campo codice fiscale
+// in base al paese selezionato, al posto del vecchio riconoscimento automatico
+// dal testo digitato (che con forme libere multi-paese non è più affidabile).
+const COMPANY_COUNTRIES = [
+  { code: "IT", format: "IT 12345678901" },
+  { code: "FR", format: "FR 12 345678901" },
+  { code: "DE", format: "DE 123456789" },
+  { code: "ES", format: "ES X1234567X" },
+  { code: "PT", format: "PT 123456789" },
+  { code: "GB", format: "GB 123456789" },
+  { code: "IE", format: "IE 1234567X" },
+  { code: "NL", format: "NL 123456789B01" },
+  { code: "BE", format: "BE 0123456789" },
+  { code: "AT", format: "ATU 12345678" },
+  { code: "CH", format: "CHE-123.456.789" },
+  { code: "LU", format: "LU 12345678" },
+  { code: "PL", format: "PL 1234567890" },
+  { code: "CZ", format: "CZ 12345678" },
+  { code: "SK", format: "SK 1234567890" },
+  { code: "HU", format: "HU 12345678" },
+  { code: "RO", format: "RO 12345678" },
+  { code: "GR", format: "EL 123456789" },
+  { code: "SE", format: "SE 123456789012" },
+  { code: "DK", format: "DK 12345678" },
+  { code: "FI", format: "FI 12345678" },
+  { code: "NO", format: "NO 123456789MVA" },
+  { code: "EE", format: "EE 123456789" },
+  { code: "LV", format: "LV 12345678901" },
+  { code: "LT", format: "LT 123456789" },
+  { code: "SI", format: "SI 12345678" },
+  { code: "HR", format: "HR 12345678901" },
+  { code: "BG", format: "BG 123456789" },
+  { code: "MT", format: "MT 12345678" },
+  { code: "CY", format: "CY 12345678X" },
+  { code: "US", format: "12-3456789 (EIN)" },
+  { code: "CA", format: "123456789 RT0001" },
+  { code: "AU", format: "12 345 678 901 (ABN)" },
+  { code: "CN", format: "91XXXXXXXXXXXXXXXX" },
+  { code: "JP", format: "T1234567890123" },
+  { code: "RU", format: "1234567890 (ИНН)" },
+  { code: "BR", format: "12.345.678/0001-90 (CNPJ)" },
+  { code: "MX", format: "AAA010101AAA (RFC)" },
+  { code: "IN", format: "22AAAAA0000A1Z5 (GSTIN)" },
+  { code: "AE", format: "100123456700003 (TRN)" },
+  { code: "SA", format: "300123456700003" },
+  { code: "TR", format: "1234567890 (VKN)" },
+  { code: "KR", format: "123-45-67890" },
+  { code: "ZA", format: "4123456789" },
+];
+
+function getCountryName(code, lang) {
+  try {
+    return new Intl.DisplayNames([lang], { type: "region" }).of(code) || code;
+  } catch {
+    return code;
+  }
+}
 
 const initialForm = {
   account_type: "azienda",
@@ -52,7 +111,6 @@ export default function Register() {
   const [accountLangVariant, setAccountLangVariant] = useState(
     () => findLanguageOption(initialForm.language).variant
   );
-  const [vatInfo, setVatInfo] = useState(null);
   const [error, setError] = useState(null);
   const [busy, setBusy] = useState(false);
 
@@ -60,17 +118,16 @@ export default function Register() {
     setForm((f) => ({ ...f, [field]: value }));
   }
 
-  // Riconoscimento paese dalla Partita IVA (debounced), per mostrare/nascondere la PEC.
-  useEffect(() => {
-    if (form.account_type !== "azienda" || !form.vat_number || form.vat_number.trim().length < 4) {
-      setVatInfo(null);
-      return;
-    }
-    const handle = setTimeout(() => {
-      api.vatLookup(form.vat_number).then(setVatInfo).catch(() => setVatInfo(null));
-    }, 400);
-    return () => clearTimeout(handle);
-  }, [form.vat_number, form.account_type]);
+  // Elenco paesi con nome localizzato nella lingua di visualizzazione corrente
+  // della pagina (Intl.DisplayNames, nessuna traduzione manuale necessaria).
+  const sortedCountries = [...COMPANY_COUNTRIES]
+    .map((c) => ({ ...c, name: getCountryName(c.code, i18n.language) }))
+    .sort((a, b) => a.name.localeCompare(b.name, i18n.language));
+
+  // Formato di esempio del codice fiscale in base al paese selezionato: il
+  // riconoscimento ora si basa sulla scelta esplicita dell'utente, non più su
+  // un tentativo di riconoscimento automatico dal testo digitato.
+  const selectedCountryFormat = COMPANY_COUNTRIES.find((c) => c.code === form.country)?.format || null;
 
   // Bandiera in alto: cambia SOLO la lingua di visualizzazione della pagina di
   // registrazione (non tocca form.language, la preferenza dell'account).
@@ -107,7 +164,7 @@ export default function Register() {
   }
 
   const isAzienda = form.account_type === "azienda";
-  const showPec = isAzienda && vatInfo?.is_italian;
+  const showPec = isAzienda && form.country === "IT";
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-bg px-4 py-8">
@@ -149,9 +206,13 @@ export default function Register() {
               <div className="grid grid-cols-2 gap-3">
                 <Field label={t("register.legal_name")} value={form.legal_name}
                        onChange={(v) => update("legal_name", v)} required />
-                <Field label={t("register.company_type")} value={form.company_type}
-                       onChange={(v) => update("company_type", v)} hint={t("register.company_type_hint")} />
+                <Select label={t("register.country")} value={form.country}
+                        onChange={(v) => update("country", v)}
+                        options={sortedCountries.map((c) => ({ value: c.code, label: c.name }))} />
               </div>
+
+              <Field label={t("register.company_type")} value={form.company_type}
+                     onChange={(v) => update("company_type", v)} hint={t("register.company_type_hint")} />
 
               <Field label={t("register.trade_name")} value={form.trade_name}
                      onChange={(v) => update("trade_name", v)} hint={t("register.trade_name_hint")} />
@@ -163,8 +224,8 @@ export default function Register() {
                 <Field label={t("register.vat_number")} value={form.vat_number}
                        onChange={(v) => update("vat_number", v)} />
                 <p className="text-xs text-ink/50 mt-1">
-                  {vatInfo?.country_name
-                    ? t("register.vat_country_detected", { country: vatInfo.country_name })
+                  {selectedCountryFormat
+                    ? `${t("register.tax_id_example_prefix")} ${selectedCountryFormat}`
                     : t("register.vat_number_hint")}
                 </p>
               </div>
@@ -176,11 +237,9 @@ export default function Register() {
 
               <Field label={t("register.address")} value={form.address}
                      onChange={(v) => update("address", v)} />
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 gap-3">
                 <Field label={t("register.zip_code")} value={form.zip_code}
                        onChange={(v) => update("zip_code", v)} />
-                <Field label={t("register.country")} value={form.country}
-                       onChange={(v) => update("country", v)} />
                 <Field label={t("register.company_phone")} value={form.phone}
                        onChange={(v) => update("phone", v)} />
               </div>
@@ -268,6 +327,24 @@ function ToggleButton({ active, onClick, label }) {
     >
       {label}
     </button>
+  );
+}
+
+function Select({ label, value, onChange, options }) {
+  return (
+    <div>
+      <label className="text-sm font-medium block mb-1">{label}</label>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full border border-slate-200 rounded-xl2 px-3 py-2 bg-white"
+      >
+        <option value="">—</option>
+        {options.map((o) => (
+          <option key={o.value} value={o.value}>{o.label}</option>
+        ))}
+      </select>
+    </div>
   );
 }
 
