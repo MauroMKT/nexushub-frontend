@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -6,6 +6,7 @@ import Card from "../components/Card";
 import LanguageFlagSelect, { findLanguageOption } from "../components/LanguageFlagSelect";
 import i18n, { changeLanguage } from "../i18n";
 import { useAuth } from "../context/AuthContext";
+import { api } from "../api";
 
 // Paesi supportati per la selezione esplicita in fase di registrazione azienda.
 // L'esempio di formato è una stringa universale (cifre/lettere), non richiede
@@ -188,6 +189,19 @@ export default function Register() {
   const [error, setError] = useState(null);
   const [busy, setBusy] = useState(false);
 
+  // Catalogo settori per il menu a tendina "Settore" (Fase 9.1): la stessa unica
+  // fonte di verità usata per attivare/mostrare i moduli nel resto dell'app,
+  // così il valore scelto qui corrisponde SEMPRE a uno slug di modulo reale e
+  // può essere autoattivato subito dopo la registrazione (vedi auth_router.py).
+  const [sectorCatalog, setSectorCatalog] = useState([]);
+  useEffect(() => {
+    api.listPublicModulesCatalog().then(setSectorCatalog).catch(() => setSectorCatalog([]));
+  }, []);
+  const sectorGroups = sectorCatalog.reduce((acc, m) => {
+    (acc[m.sector_group] = acc[m.sector_group] || []).push(m);
+    return acc;
+  }, {});
+
   function update(field, value) {
     setForm((f) => ({ ...f, [field]: value }));
   }
@@ -275,6 +289,17 @@ export default function Register() {
             <LanguageFlagSelect value={accountLangVariant} onChange={handleAccountLanguageChange} className="w-full" />
           </div>
 
+          {/* Settore: comune a entrambi i tipi di account, popolato dal catalogo
+              moduli (stessa fonte usata per attivare i moduli dopo il login).
+              Se il valore scelto corrisponde a un modulo di settore, viene
+              autoattivato subito per il nuovo tenant (vedi auth_router.py). */}
+          <GroupedSelect
+            label={t("register.sector")}
+            value={form.sector}
+            onChange={(v) => update("sector", v)}
+            groups={sectorGroups}
+          />
+
           {isAzienda ? (
             <>
               <div className="grid grid-cols-2 gap-3">
@@ -290,9 +315,6 @@ export default function Register() {
 
               <Field label={t("register.trade_name")} value={form.trade_name}
                      onChange={(v) => update("trade_name", v)} hint={t("register.trade_name_hint")} />
-
-              <Field label={t("register.sector")} value={form.sector}
-                     onChange={(v) => update("sector", v)} />
 
               <div>
                 <Field label={t("register.vat_number")} value={form.vat_number}
@@ -416,6 +438,32 @@ function Select({ label, value, onChange, options }) {
         <option value="">—</option>
         {options.map((o) => (
           <option key={o.value} value={o.value}>{o.label}</option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+// Menu a tendina "Settore" raggruppato per sector_group (Fase 9.1): il valore
+// selezionato è lo slug stabile del modulo, così può essere autoattivato subito
+// dopo la registrazione senza bisogno di alcun matching testuale lato backend.
+function GroupedSelect({ label, value, onChange, groups }) {
+  const lang = i18n.language?.slice(0, 2) === "it" ? "name_it" : "name_en";
+  return (
+    <div>
+      <label className="text-sm font-medium block mb-1">{label}</label>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full border border-slate-200 rounded-xl2 px-3 py-2 bg-white"
+      >
+        <option value="">—</option>
+        {Object.entries(groups).map(([groupName, items]) => (
+          <optgroup key={groupName} label={groupName}>
+            {items.map((m) => (
+              <option key={m.slug} value={m.slug}>{m[lang] || m.name_it}</option>
+            ))}
+          </optgroup>
         ))}
       </select>
     </div>
