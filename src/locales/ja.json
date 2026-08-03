@@ -154,7 +154,16 @@
       "leaderboard_col_trophies": "トロフィー数",
       "leaderboard_col_points": "合計ポイント",
       "show_details": "詳細を表示",
-      "hide_details": "詳細を隠す"
+      "hide_details": "詳細を隠す",
+      "field_birth_date": "生年月日",
+      "tab_birthdays": "誕生日",
+      "leaderboard_empty_birthdays": "近日中の誕生日はありません。",
+      "birthday_today": "今日！",
+      "birthday_tomorrow": "明日",
+      "birthday_in_days": "{{days}}日後",
+      "turning_age": "{{age}}歳になります",
+      "notification_sent": "送信済み",
+      "send_notification": "通知を送信"
     }
   },
   "login": {

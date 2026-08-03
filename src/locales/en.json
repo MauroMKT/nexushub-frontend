@@ -154,7 +154,16 @@
       "leaderboard_col_trophies": "Trophies",
       "leaderboard_col_points": "Total points",
       "show_details": "Show details",
-      "hide_details": "Hide details"
+      "hide_details": "Hide details",
+      "field_birth_date": "Date of birth",
+      "tab_birthdays": "Birthdays",
+      "leaderboard_empty_birthdays": "No upcoming birthdays.",
+      "birthday_today": "Today!",
+      "birthday_tomorrow": "Tomorrow",
+      "birthday_in_days": "In {{days}} days",
+      "turning_age": "turning {{age}}",
+      "notification_sent": "Sent",
+      "send_notification": "Send notification"
     }
   },
   "login": {

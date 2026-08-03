@@ -154,7 +154,16 @@
       "leaderboard_col_trophies": "Трофеи",
       "leaderboard_col_points": "Всего очков",
       "show_details": "Показать детали",
-      "hide_details": "Скрыть детали"
+      "hide_details": "Скрыть детали",
+      "field_birth_date": "Дата рождения",
+      "tab_birthdays": "Дни рождения",
+      "leaderboard_empty_birthdays": "Ближайших дней рождения нет.",
+      "birthday_today": "Сегодня!",
+      "birthday_tomorrow": "Завтра",
+      "birthday_in_days": "Через {{days}} дн.",
+      "turning_age": "исполняется {{age}} лет",
+      "notification_sent": "Отправлено",
+      "send_notification": "Отправить уведомление"
     }
   },
   "login": {

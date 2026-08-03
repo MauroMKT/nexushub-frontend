@@ -154,7 +154,16 @@
       "leaderboard_col_trophies": "奖杯数",
       "leaderboard_col_points": "总积分",
       "show_details": "显示详情",
-      "hide_details": "隐藏详情"
+      "hide_details": "隐藏详情",
+      "field_birth_date": "出生日期",
+      "tab_birthdays": "生日",
+      "leaderboard_empty_birthdays": "近期没有生日。",
+      "birthday_today": "今天！",
+      "birthday_tomorrow": "明天",
+      "birthday_in_days": "{{days}}天后",
+      "turning_age": "将满{{age}}岁",
+      "notification_sent": "已发送",
+      "send_notification": "发送通知"
     }
   },
   "login": {

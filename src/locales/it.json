@@ -154,7 +154,16 @@
       "leaderboard_col_trophies": "Trofei",
       "leaderboard_col_points": "Punti totali",
       "show_details": "Mostra dettagli",
-      "hide_details": "Nascondi dettagli"
+      "hide_details": "Nascondi dettagli",
+      "field_birth_date": "Data di nascita",
+      "tab_birthdays": "Compleanni",
+      "leaderboard_empty_birthdays": "Nessun compleanno in arrivo.",
+      "birthday_today": "Oggi!",
+      "birthday_tomorrow": "Domani",
+      "birthday_in_days": "Tra {{days}} giorni",
+      "turning_age": "compie {{age}} anni",
+      "notification_sent": "Inviata",
+      "send_notification": "Invia notifica"
     }
   },
   "login": {
