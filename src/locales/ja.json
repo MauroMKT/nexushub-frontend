@@ -19,7 +19,8 @@
     "agencyProjects": "代理店プロジェクト",
     "realEstate": "物件",
     "hospitality": "ホスピタリティ",
-    "super_admin": "スーパー管理者"
+    "super_admin": "スーパー管理者",
+    "gym": "ジム"
   },
   "pilotModules": {
     "common": {
@@ -112,6 +113,48 @@
       "status_chiuso": "完了",
       "field_value": "金額",
       "field_date": "日付"
+    },
+    "gym": {
+      "title": "ジム・スポーツセンター",
+      "subtitle": "会員、コース、診断書、トロフィーを管理します。",
+      "tab_members": "会員",
+      "tab_leaderboard": "クラブランキング",
+      "confirm_delete_member": "この会員を削除しますか?",
+      "field_full_name": "氏名",
+      "field_phone": "電話番号",
+      "field_email": "メール",
+      "field_address": "住所",
+      "field_fiscal_code": "納税者番号",
+      "field_vat_number": "VAT番号",
+      "field_card_number": "会員カード番号",
+      "field_federation_card": "連盟カード番号",
+      "medical_cert_ok": "診断書提出済み",
+      "medical_cert_missing": "診断書未提出",
+      "field_photo": "写真",
+      "upload_photo": "写真をアップロード",
+      "field_courses": "コース",
+      "no_courses": "コースはまだありません。",
+      "new_course_option": "+ 新しいコース",
+      "new_course_name_placeholder": "新しいコース名",
+      "martial_arts_label": "武道",
+      "grade_name_placeholder": "段位・帯",
+      "grade_year_placeholder": "取得年",
+      "add_course_button": "コースを追加",
+      "field_medical_certificate": "診断書",
+      "upload_medical_cert": "診断書をアップロード（PDFまたは写真）",
+      "field_other_documents": "その他の書類",
+      "field_trophies": "トロフィー",
+      "no_trophies": "トロフィーはまだありません。",
+      "trophy_title_placeholder": "トロフィー・大会名",
+      "trophy_placement_placeholder": "順位（例：1位）",
+      "trophy_points_placeholder": "ポイント",
+      "add_trophy_button": "トロフィーを追加",
+      "leaderboard_empty": "まだトロフィーが登録されていません。ランキングは自動的に作成されます。",
+      "leaderboard_col_member": "会員",
+      "leaderboard_col_trophies": "トロフィー数",
+      "leaderboard_col_points": "合計ポイント",
+      "show_details": "詳細を表示",
+      "hide_details": "詳細を隠す"
     }
   },
   "login": {

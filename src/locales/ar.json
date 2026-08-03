@@ -19,7 +19,8 @@
     "agencyProjects": "مشاريع الوكالة",
     "realEstate": "العقارات",
     "hospitality": "الضيافة",
-    "super_admin": "المشرف العام"
+    "super_admin": "المشرف العام",
+    "gym": "النادي الرياضي"
   },
   "pilotModules": {
     "common": {
@@ -112,6 +113,48 @@
       "status_chiuso": "مغلق",
       "field_value": "القيمة",
       "field_date": "التاريخ"
+    },
+    "gym": {
+      "title": "الصالات الرياضية والمراكز الرياضية",
+      "subtitle": "إدارة الأعضاء والدورات والشهادات والجوائز.",
+      "tab_members": "الأعضاء",
+      "tab_leaderboard": "ترتيب النادي",
+      "confirm_delete_member": "هل تريد حذف هذا العضو؟",
+      "field_full_name": "الاسم الكامل",
+      "field_phone": "الهاتف",
+      "field_email": "البريد الإلكتروني",
+      "field_address": "العنوان",
+      "field_fiscal_code": "الرمز الضريبي",
+      "field_vat_number": "الرقم الضريبي",
+      "field_card_number": "رقم بطاقة العضوية",
+      "field_federation_card": "رقم بطاقة الاتحاد",
+      "medical_cert_ok": "الشهادة الطبية متوفرة",
+      "medical_cert_missing": "الشهادة الطبية غير متوفرة",
+      "field_photo": "الصورة",
+      "upload_photo": "رفع صورة",
+      "field_courses": "الدورات",
+      "no_courses": "لا توجد دورات بعد.",
+      "new_course_option": "+ دورة جديدة",
+      "new_course_name_placeholder": "اسم الدورة الجديدة",
+      "martial_arts_label": "فن قتالي",
+      "grade_name_placeholder": "الدرجة / الحزام",
+      "grade_year_placeholder": "سنة الحصول",
+      "add_course_button": "إضافة دورة",
+      "field_medical_certificate": "الشهادة الطبية",
+      "upload_medical_cert": "رفع الشهادة (PDF أو صورة)",
+      "field_other_documents": "مستندات أخرى",
+      "field_trophies": "الجوائز",
+      "no_trophies": "لا توجد جوائز بعد.",
+      "trophy_title_placeholder": "اسم الجائزة / المسابقة",
+      "trophy_placement_placeholder": "الترتيب (مثال: الأول)",
+      "trophy_points_placeholder": "النقاط",
+      "add_trophy_button": "إضافة جائزة",
+      "leaderboard_empty": "لم يتم تسجيل أي جائزة بعد: سيتم إنشاء الترتيب تلقائياً.",
+      "leaderboard_col_member": "العضو",
+      "leaderboard_col_trophies": "الجوائز",
+      "leaderboard_col_points": "مجموع النقاط",
+      "show_details": "عرض التفاصيل",
+      "hide_details": "إخفاء التفاصيل"
     }
   },
   "login": {

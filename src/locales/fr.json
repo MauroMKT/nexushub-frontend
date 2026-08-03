@@ -19,7 +19,8 @@
     "agencyProjects": "Projets Agence",
     "realEstate": "Biens Immobiliers",
     "hospitality": "Hospitality",
-    "super_admin": "Super Admin"
+    "super_admin": "Super Admin",
+    "gym": "Salle de sport"
   },
   "pilotModules": {
     "common": {
@@ -112,6 +113,48 @@
       "status_chiuso": "Clôturé",
       "field_value": "Valeur",
       "field_date": "Date"
+    },
+    "gym": {
+      "title": "Salles de sport et Centres sportifs",
+      "subtitle": "Gérez les membres, cours, certificats et trophées.",
+      "tab_members": "Membres",
+      "tab_leaderboard": "Classement du Club",
+      "confirm_delete_member": "Supprimer ce membre ?",
+      "field_full_name": "Nom complet",
+      "field_phone": "Téléphone",
+      "field_email": "E-mail",
+      "field_address": "Adresse",
+      "field_fiscal_code": "Code fiscal",
+      "field_vat_number": "Numéro de TVA",
+      "field_card_number": "Numéro de carte de membre",
+      "field_federation_card": "Numéro de licence fédérale",
+      "medical_cert_ok": "Certificat médical présent",
+      "medical_cert_missing": "Certificat médical manquant",
+      "field_photo": "Photo",
+      "upload_photo": "Ajouter une photo",
+      "field_courses": "Cours",
+      "no_courses": "Aucun cours pour le moment.",
+      "new_course_option": "+ Nouveau cours",
+      "new_course_name_placeholder": "Nom du nouveau cours",
+      "martial_arts_label": "Art martial",
+      "grade_name_placeholder": "Grade / Ceinture",
+      "grade_year_placeholder": "Année d'obtention",
+      "add_course_button": "Ajouter le cours",
+      "field_medical_certificate": "Certificat médical",
+      "upload_medical_cert": "Ajouter le certificat (PDF ou photo)",
+      "field_other_documents": "Autres documents",
+      "field_trophies": "Trophées",
+      "no_trophies": "Aucun trophée pour le moment.",
+      "trophy_title_placeholder": "Titre du trophée / compétition",
+      "trophy_placement_placeholder": "Classement (ex. 1er)",
+      "trophy_points_placeholder": "Points",
+      "add_trophy_button": "Ajouter le trophée",
+      "leaderboard_empty": "Aucun trophée enregistré pour le moment : le classement se remplira automatiquement.",
+      "leaderboard_col_member": "Membre",
+      "leaderboard_col_trophies": "Trophées",
+      "leaderboard_col_points": "Points totaux",
+      "show_details": "Afficher les détails",
+      "hide_details": "Masquer les détails"
     }
   },
   "login": {

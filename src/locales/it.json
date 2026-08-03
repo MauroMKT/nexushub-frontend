@@ -19,7 +19,8 @@
     "agencyProjects": "Progetti Agenzia",
     "realEstate": "Immobili",
     "hospitality": "Hospitality",
-    "super_admin": "Super Admin"
+    "super_admin": "Super Admin",
+    "gym": "Palestra"
   },
   "pilotModules": {
     "common": {
@@ -112,6 +113,48 @@
       "status_chiuso": "Chiuso",
       "field_value": "Valore",
       "field_date": "Data"
+    },
+    "gym": {
+      "title": "Palestre e Centri Sportivi",
+      "subtitle": "Gestisci soci, corsi, certificati e trofei.",
+      "tab_members": "Soci",
+      "tab_leaderboard": "Classifica Sociale",
+      "confirm_delete_member": "Eliminare questo socio?",
+      "field_full_name": "Nome e cognome",
+      "field_phone": "Telefono",
+      "field_email": "Email",
+      "field_address": "Indirizzo",
+      "field_fiscal_code": "Codice fiscale",
+      "field_vat_number": "Partita IVA",
+      "field_card_number": "Numero tessera socio",
+      "field_federation_card": "Numero tessera federale",
+      "medical_cert_ok": "Certificato medico presente",
+      "medical_cert_missing": "Certificato medico mancante",
+      "field_photo": "Foto",
+      "upload_photo": "Carica foto",
+      "field_courses": "Corsi",
+      "no_courses": "Nessun corso associato.",
+      "new_course_option": "+ Nuovo corso",
+      "new_course_name_placeholder": "Nome del nuovo corso",
+      "martial_arts_label": "Arte marziale",
+      "grade_name_placeholder": "Grado / Cintura",
+      "grade_year_placeholder": "Anno conseguimento",
+      "add_course_button": "Aggiungi corso",
+      "field_medical_certificate": "Certificato medico",
+      "upload_medical_cert": "Carica certificato (PDF o foto)",
+      "field_other_documents": "Altri documenti",
+      "field_trophies": "Trofei",
+      "no_trophies": "Nessun trofeo ancora.",
+      "trophy_title_placeholder": "Titolo del trofeo / competizione",
+      "trophy_placement_placeholder": "Piazzamento (es. 1°)",
+      "trophy_points_placeholder": "Punti",
+      "add_trophy_button": "Aggiungi trofeo",
+      "leaderboard_empty": "Nessun trofeo registrato ancora: la classifica si popolerà automaticamente.",
+      "leaderboard_col_member": "Socio",
+      "leaderboard_col_trophies": "Trofei",
+      "leaderboard_col_points": "Punti totali",
+      "show_details": "Mostra dettagli",
+      "hide_details": "Nascondi dettagli"
     }
   },
   "login": {

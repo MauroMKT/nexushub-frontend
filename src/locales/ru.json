@@ -19,7 +19,8 @@
     "agencyProjects": "Проекты агентства",
     "realEstate": "Объекты недвижимости",
     "hospitality": "Hospitality",
-    "super_admin": "Супер-администратор"
+    "super_admin": "Супер-администратор",
+    "gym": "Спортзал"
   },
   "pilotModules": {
     "common": {
@@ -112,6 +113,48 @@
       "status_chiuso": "Закрыт",
       "field_value": "Значение",
       "field_date": "Дата"
+    },
+    "gym": {
+      "title": "Спортзалы и спортивные центры",
+      "subtitle": "Управляйте участниками, курсами, справками и трофеями.",
+      "tab_members": "Участники",
+      "tab_leaderboard": "Рейтинг клуба",
+      "confirm_delete_member": "Удалить этого участника?",
+      "field_full_name": "ФИО",
+      "field_phone": "Телефон",
+      "field_email": "Эл. почта",
+      "field_address": "Адрес",
+      "field_fiscal_code": "Налоговый код",
+      "field_vat_number": "Номер НДС",
+      "field_card_number": "Номер членской карты",
+      "field_federation_card": "Номер федеральной карты",
+      "medical_cert_ok": "Медсправка есть",
+      "medical_cert_missing": "Медсправка отсутствует",
+      "field_photo": "Фото",
+      "upload_photo": "Загрузить фото",
+      "field_courses": "Курсы",
+      "no_courses": "Курсов пока нет.",
+      "new_course_option": "+ Новый курс",
+      "new_course_name_placeholder": "Название нового курса",
+      "martial_arts_label": "Боевое искусство",
+      "grade_name_placeholder": "Степень / Пояс",
+      "grade_year_placeholder": "Год получения",
+      "add_course_button": "Добавить курс",
+      "field_medical_certificate": "Медицинская справка",
+      "upload_medical_cert": "Загрузить справку (PDF или фото)",
+      "field_other_documents": "Другие документы",
+      "field_trophies": "Трофеи",
+      "no_trophies": "Трофеев пока нет.",
+      "trophy_title_placeholder": "Название трофея / соревнования",
+      "trophy_placement_placeholder": "Место (напр. 1-е)",
+      "trophy_points_placeholder": "Очки",
+      "add_trophy_button": "Добавить трофей",
+      "leaderboard_empty": "Трофеи пока не зарегистрированы: рейтинг заполнится автоматически.",
+      "leaderboard_col_member": "Участник",
+      "leaderboard_col_trophies": "Трофеи",
+      "leaderboard_col_points": "Всего очков",
+      "show_details": "Показать детали",
+      "hide_details": "Скрыть детали"
     }
   },
   "login": {

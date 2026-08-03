@@ -19,7 +19,8 @@
     "agencyProjects": "Proyectos de Agencia",
     "realEstate": "Inmuebles",
     "hospitality": "Hospitality",
-    "super_admin": "Superadministrador"
+    "super_admin": "Superadministrador",
+    "gym": "Gimnasio"
   },
   "pilotModules": {
     "common": {
@@ -112,6 +113,48 @@
       "status_chiuso": "Cerrado",
       "field_value": "Valor",
       "field_date": "Fecha"
+    },
+    "gym": {
+      "title": "Gimnasios y Centros Deportivos",
+      "subtitle": "Gestiona socios, cursos, certificados y trofeos.",
+      "tab_members": "Socios",
+      "tab_leaderboard": "Clasificación del Club",
+      "confirm_delete_member": "¿Eliminar este socio?",
+      "field_full_name": "Nombre completo",
+      "field_phone": "Teléfono",
+      "field_email": "Correo electrónico",
+      "field_address": "Dirección",
+      "field_fiscal_code": "Código fiscal",
+      "field_vat_number": "Número de IVA",
+      "field_card_number": "Número de tarjeta de socio",
+      "field_federation_card": "Número de tarjeta federativa",
+      "medical_cert_ok": "Certificado médico presente",
+      "medical_cert_missing": "Falta el certificado médico",
+      "field_photo": "Foto",
+      "upload_photo": "Subir foto",
+      "field_courses": "Cursos",
+      "no_courses": "Ningún curso aún.",
+      "new_course_option": "+ Nuevo curso",
+      "new_course_name_placeholder": "Nombre del nuevo curso",
+      "martial_arts_label": "Arte marcial",
+      "grade_name_placeholder": "Grado / Cinturón",
+      "grade_year_placeholder": "Año de obtención",
+      "add_course_button": "Agregar curso",
+      "field_medical_certificate": "Certificado médico",
+      "upload_medical_cert": "Subir certificado (PDF o foto)",
+      "field_other_documents": "Otros documentos",
+      "field_trophies": "Trofeos",
+      "no_trophies": "Ningún trofeo aún.",
+      "trophy_title_placeholder": "Título del trofeo / competición",
+      "trophy_placement_placeholder": "Puesto (p. ej. 1º)",
+      "trophy_points_placeholder": "Puntos",
+      "add_trophy_button": "Agregar trofeo",
+      "leaderboard_empty": "Aún no hay trofeos registrados: la clasificación se completará automáticamente.",
+      "leaderboard_col_member": "Socio",
+      "leaderboard_col_trophies": "Trofeos",
+      "leaderboard_col_points": "Puntos totales",
+      "show_details": "Mostrar detalles",
+      "hide_details": "Ocultar detalles"
     }
   },
   "login": {

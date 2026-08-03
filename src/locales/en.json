@@ -19,7 +19,8 @@
     "agencyProjects": "Agency Projects",
     "realEstate": "Properties",
     "hospitality": "Hospitality",
-    "super_admin": "Super Admin"
+    "super_admin": "Super Admin",
+    "gym": "Gym"
   },
   "pilotModules": {
     "common": {
@@ -112,6 +113,48 @@
       "status_chiuso": "Closed",
       "field_value": "Value",
       "field_date": "Date"
+    },
+    "gym": {
+      "title": "Gyms & Sports Centers",
+      "subtitle": "Manage members, courses, certificates and trophies.",
+      "tab_members": "Members",
+      "tab_leaderboard": "Club Leaderboard",
+      "confirm_delete_member": "Delete this member?",
+      "field_full_name": "Full name",
+      "field_phone": "Phone",
+      "field_email": "Email",
+      "field_address": "Address",
+      "field_fiscal_code": "Fiscal code",
+      "field_vat_number": "VAT number",
+      "field_card_number": "Membership card number",
+      "field_federation_card": "Federation card number",
+      "medical_cert_ok": "Medical certificate on file",
+      "medical_cert_missing": "Medical certificate missing",
+      "field_photo": "Photo",
+      "upload_photo": "Upload photo",
+      "field_courses": "Courses",
+      "no_courses": "No courses yet.",
+      "new_course_option": "+ New course",
+      "new_course_name_placeholder": "New course name",
+      "martial_arts_label": "Martial art",
+      "grade_name_placeholder": "Grade / Belt",
+      "grade_year_placeholder": "Year obtained",
+      "add_course_button": "Add course",
+      "field_medical_certificate": "Medical certificate",
+      "upload_medical_cert": "Upload certificate (PDF or photo)",
+      "field_other_documents": "Other documents",
+      "field_trophies": "Trophies",
+      "no_trophies": "No trophies yet.",
+      "trophy_title_placeholder": "Trophy / competition title",
+      "trophy_placement_placeholder": "Placement (e.g. 1st)",
+      "trophy_points_placeholder": "Points",
+      "add_trophy_button": "Add trophy",
+      "leaderboard_empty": "No trophies recorded yet: the leaderboard will populate automatically.",
+      "leaderboard_col_member": "Member",
+      "leaderboard_col_trophies": "Trophies",
+      "leaderboard_col_points": "Total points",
+      "show_details": "Show details",
+      "hide_details": "Hide details"
     }
   },
   "login": {

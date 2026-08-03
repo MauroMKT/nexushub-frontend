@@ -19,7 +19,8 @@
     "agencyProjects": "代理项目",
     "realEstate": "房产",
     "hospitality": "餐饮住宿",
-    "super_admin": "超级管理员"
+    "super_admin": "超级管理员",
+    "gym": "健身房"
   },
   "pilotModules": {
     "common": {
@@ -112,6 +113,48 @@
       "status_chiuso": "已关闭",
       "field_value": "数值",
       "field_date": "日期"
+    },
+    "gym": {
+      "title": "健身房与体育中心",
+      "subtitle": "管理会员、课程、证明和奖杯。",
+      "tab_members": "会员",
+      "tab_leaderboard": "俱乐部排行榜",
+      "confirm_delete_member": "删除该会员?",
+      "field_full_name": "姓名",
+      "field_phone": "电话",
+      "field_email": "电子邮件",
+      "field_address": "地址",
+      "field_fiscal_code": "税号",
+      "field_vat_number": "增值税号",
+      "field_card_number": "会员卡号",
+      "field_federation_card": "联合会会员卡号",
+      "medical_cert_ok": "已提交体检证明",
+      "medical_cert_missing": "缺少体检证明",
+      "field_photo": "照片",
+      "upload_photo": "上传照片",
+      "field_courses": "课程",
+      "no_courses": "暂无课程。",
+      "new_course_option": "+ 新建课程",
+      "new_course_name_placeholder": "新课程名称",
+      "martial_arts_label": "武术",
+      "grade_name_placeholder": "段位/腰带",
+      "grade_year_placeholder": "获得年份",
+      "add_course_button": "添加课程",
+      "field_medical_certificate": "体检证明",
+      "upload_medical_cert": "上传证明（PDF或照片）",
+      "field_other_documents": "其他文件",
+      "field_trophies": "奖杯",
+      "no_trophies": "暂无奖杯。",
+      "trophy_title_placeholder": "奖杯/比赛名称",
+      "trophy_placement_placeholder": "名次（如第1名）",
+      "trophy_points_placeholder": "积分",
+      "add_trophy_button": "添加奖杯",
+      "leaderboard_empty": "尚未记录任何奖杯：排行榜将自动生成。",
+      "leaderboard_col_member": "会员",
+      "leaderboard_col_trophies": "奖杯数",
+      "leaderboard_col_points": "总积分",
+      "show_details": "显示详情",
+      "hide_details": "隐藏详情"
     }
   },
   "login": {

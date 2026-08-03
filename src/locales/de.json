@@ -19,7 +19,8 @@
     "agencyProjects": "Agenturprojekte",
     "realEstate": "Immobilien",
     "hospitality": "Hospitality",
-    "super_admin": "Super-Admin"
+    "super_admin": "Super-Admin",
+    "gym": "Fitnessstudio"
   },
   "pilotModules": {
     "common": {
@@ -112,6 +113,48 @@
       "status_chiuso": "Abgeschlossen",
       "field_value": "Wert",
       "field_date": "Datum"
+    },
+    "gym": {
+      "title": "Fitnessstudios & Sportzentren",
+      "subtitle": "Verwalte Mitglieder, Kurse, Atteste und Trophäen.",
+      "tab_members": "Mitglieder",
+      "tab_leaderboard": "Vereinsrangliste",
+      "confirm_delete_member": "Dieses Mitglied löschen?",
+      "field_full_name": "Vollständiger Name",
+      "field_phone": "Telefon",
+      "field_email": "E-Mail",
+      "field_address": "Adresse",
+      "field_fiscal_code": "Steuernummer",
+      "field_vat_number": "USt-IdNr.",
+      "field_card_number": "Mitgliedskartennummer",
+      "field_federation_card": "Verbandsausweisnummer",
+      "medical_cert_ok": "Ärztliches Attest vorhanden",
+      "medical_cert_missing": "Ärztliches Attest fehlt",
+      "field_photo": "Foto",
+      "upload_photo": "Foto hochladen",
+      "field_courses": "Kurse",
+      "no_courses": "Noch keine Kurse.",
+      "new_course_option": "+ Neuer Kurs",
+      "new_course_name_placeholder": "Name des neuen Kurses",
+      "martial_arts_label": "Kampfsport",
+      "grade_name_placeholder": "Grad / Gürtel",
+      "grade_year_placeholder": "Erlangungsjahr",
+      "add_course_button": "Kurs hinzufügen",
+      "field_medical_certificate": "Ärztliches Attest",
+      "upload_medical_cert": "Attest hochladen (PDF oder Foto)",
+      "field_other_documents": "Weitere Dokumente",
+      "field_trophies": "Trophäen",
+      "no_trophies": "Noch keine Trophäen.",
+      "trophy_title_placeholder": "Titel der Trophäe / des Wettbewerbs",
+      "trophy_placement_placeholder": "Platzierung (z. B. 1.)",
+      "trophy_points_placeholder": "Punkte",
+      "add_trophy_button": "Trophäe hinzufügen",
+      "leaderboard_empty": "Noch keine Trophäen erfasst: Die Rangliste füllt sich automatisch.",
+      "leaderboard_col_member": "Mitglied",
+      "leaderboard_col_trophies": "Trophäen",
+      "leaderboard_col_points": "Gesamtpunkte",
+      "show_details": "Details anzeigen",
+      "hide_details": "Details ausblenden"
     }
   },
   "login": {
