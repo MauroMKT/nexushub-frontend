@@ -12,7 +12,7 @@ import { downloadBase64File, fileToBase64 } from "../utils/downloadBase64";
 // documenti, foto socio e trofei per la classifica sociale del club.
 
 const emptyMember = {
-  full_name: "", phone: "", email: "", address: "",
+  full_name: "", phone: "", email: "", address: "", birth_date: "",
   fiscal_code: "", vat_number: "", card_number: "", federation_card_number: "",
   medical_certificate_ok: false, notes: "",
 };
@@ -30,9 +30,12 @@ export default function Gym() {
       </div>
       <div className="flex gap-2 mb-6">
         <TabButton active={tab === "members"} onClick={() => setTab("members")} label={tp("tab_members")} />
+        <TabButton active={tab === "birthdays"} onClick={() => setTab("birthdays")} label={tp("tab_birthdays")} />
         <TabButton active={tab === "leaderboard"} onClick={() => setTab("leaderboard")} label={tp("tab_leaderboard")} />
       </div>
-      {tab === "members" ? <MembersTab tp={tp} t={t} /> : <LeaderboardTab tp={tp} />}
+      {tab === "members" && <MembersTab tp={tp} t={t} />}
+      {tab === "birthdays" && <BirthdaysTab tp={tp} />}
+      {tab === "leaderboard" && <LeaderboardTab tp={tp} />}
     </div>
   );
 }
@@ -100,7 +103,7 @@ function MembersTab({ tp, t }) {
     e.preventDefault();
     setError(null);
     try {
-      await api.createGymMember(form);
+      await api.createGymMember({ ...form, birth_date: form.birth_date || null });
       setForm(emptyMember);
       setShowForm(false);
       refresh();
@@ -135,6 +138,8 @@ function MembersTab({ tp, t }) {
                    onChange={(v) => setForm({ ...form, email: v })} required />
             <Input label={tp("field_address")} value={form.address}
                    onChange={(v) => setForm({ ...form, address: v })} required />
+            <Input label={tp("field_birth_date")} type="date" value={form.birth_date}
+                   onChange={(v) => setForm({ ...form, birth_date: v })} />
             <Input label={tp("field_fiscal_code")} value={form.fiscal_code}
                    onChange={(v) => setForm({ ...form, fiscal_code: v })} />
             <Input label={tp("field_vat_number")} value={form.vat_number}
@@ -365,6 +370,7 @@ function MemberDetail({ member: initialMember, tp, t, onChanged }) {
         <div>📞 {member.phone}</div>
         <div>✉️ {member.email}</div>
         <div>🏠 {member.address}</div>
+        {member.birth_date && <div>🎂 {tp("field_birth_date")}: {member.birth_date}</div>}
         {member.fiscal_code && <div>🪪 {tp("field_fiscal_code")}: {member.fiscal_code}</div>}
         {member.vat_number && <div>🧾 {tp("field_vat_number")}: {member.vat_number}</div>}
         {member.federation_card_number && <div>🏅 {tp("field_federation_card")}: {member.federation_card_number}</div>}
@@ -502,6 +508,70 @@ function MemberDetail({ member: initialMember, tp, t, onChanged }) {
         </form>
       </div>
     </div>
+  );
+}
+
+function BirthdaysTab({ tp }) {
+  const [entries, setEntries] = useState([]);
+  const [sendingId, setSendingId] = useState(null);
+  const [sentIds, setSentIds] = useState({});
+  const [error, setError] = useState(null);
+
+  function refresh() {
+    api.gymBirthdays(60).then(setEntries).catch((e) => setError(e.message));
+  }
+
+  useEffect(refresh, []);
+
+  async function handleSend(memberId) {
+    setSendingId(memberId);
+    setError(null);
+    try {
+      await api.sendGymBirthdayNotification(memberId);
+      setSentIds((prev) => ({ ...prev, [memberId]: true }));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSendingId(null);
+    }
+  }
+
+  function formatDaysUntil(days) {
+    if (days === 0) return tp("birthday_today");
+    if (days === 1) return tp("birthday_tomorrow");
+    return tp("birthday_in_days").replace("{{days}}", days);
+  }
+
+  return (
+    <Card>
+      {error && <p className="text-xs text-red-600 mb-2">{error}</p>}
+      {entries.length === 0 ? (
+        <p className="text-ink/50 text-sm">{tp("leaderboard_empty_birthdays")}</p>
+      ) : (
+        <div className="space-y-2">
+          {entries.map((e) => (
+            <div key={e.member_id} className="flex items-center justify-between gap-3 bg-slate-50 rounded-xl2 px-3 py-2">
+              <div className="flex items-center gap-3 min-w-0">
+                <MemberPhoto memberId={e.member_id} hasPhoto={e.has_photo} size={36} />
+                <div className="min-w-0">
+                  <div className="font-medium truncate">{e.full_name}</div>
+                  <div className="text-xs text-ink/50">
+                    {formatDaysUntil(e.days_until)} · {tp("turning_age").replace("{{age}}", e.turning_age)}
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={() => handleSend(e.member_id)}
+                disabled={sendingId === e.member_id}
+                className="text-xs bg-secondary/60 hover:bg-secondary rounded-xl2 px-3 py-1.5 shrink-0 disabled:opacity-50"
+              >
+                {sentIds[e.member_id] || e.notified_today ? `✅ ${tp("notification_sent")}` : `🎂 ${tp("send_notification")}`}
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+    </Card>
   );
 }
 
