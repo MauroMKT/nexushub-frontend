@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { api } from "../api";
@@ -103,10 +103,14 @@ function MembersTab({ tp, t }) {
     e.preventDefault();
     setError(null);
     try {
-      await api.createGymMember({ ...form, birth_date: form.birth_date || null });
+      const created = await api.createGymMember({ ...form, birth_date: form.birth_date || null });
       setForm(emptyMember);
       setShowForm(false);
       refresh();
+      // Apre subito il dettaglio del socio appena creato: è lì che si carica
+      // la foto, il certificato medico e gli altri documenti, quindi evitiamo
+      // all'utente di doverlo cercare cliccando "Mostra dettagli" a parte.
+      setExpandedId(created.id);
     } catch (err) {
       setError(err.message);
     }
@@ -186,7 +190,19 @@ function MembersTab({ tp, t }) {
 }
 
 function MemberCard({ member, tp, t, expanded, onToggle, onDelete, onChanged }) {
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    if (expanded && cardRef.current) {
+      // Porta la scheda in vista quando si apre (in particolare subito dopo
+      // aver creato un nuovo socio): foto, certificato medico e documenti si
+      // caricano da qui, quindi l'utente deve vederli senza dover cercare.
+      cardRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [expanded]);
+
   return (
+    <div ref={cardRef}>
     <Card>
       <div className="flex items-start gap-3">
         <MemberPhoto memberId={member.id} hasPhoto={member.has_photo} size={48} />
@@ -220,6 +236,7 @@ function MemberCard({ member, tp, t, expanded, onToggle, onDelete, onChanged }) 
       </button>
       {expanded && <MemberDetail member={member} tp={tp} t={t} onChanged={onChanged} />}
     </Card>
+    </div>
   );
 }
 
