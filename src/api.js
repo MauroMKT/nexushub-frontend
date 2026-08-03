@@ -258,6 +258,31 @@ export const api = {
   createSectorRecord: (slug, payload) => request(`/sector-records/${slug}`, { method: "POST", body: payload }),
   updateSectorRecord: (slug, id, payload) => request(`/sector-records/${slug}/${id}`, { method: "PATCH", body: payload }),
   deleteSectorRecord: (slug, id) => request(`/sector-records/${slug}/${id}`, { method: "DELETE" }),
+
+  // --- Modulo pilota: Palestre e Centri Sportivi (Fase 9.9) ---
+  listGymMembers: () => request("/gym/members"),
+  createGymMember: (payload) => request("/gym/members", { method: "POST", body: payload }),
+  getGymMember: (id) => request(`/gym/members/${id}`),
+  updateGymMember: (id, payload) => request(`/gym/members/${id}`, { method: "PUT", body: payload }),
+  deleteGymMember: (id) => request(`/gym/members/${id}`, { method: "DELETE" }),
+  uploadGymMemberPhoto: (id, payload) => request(`/gym/members/${id}/photo`, { method: "POST", body: payload }),
+  getGymMemberPhoto: (id) => request(`/gym/members/${id}/photo`),
+  deleteGymMemberPhoto: (id) => request(`/gym/members/${id}/photo`, { method: "DELETE" }),
+  listGymCourses: () => request("/gym/courses"),
+  createGymCourse: (payload) => request("/gym/courses", { method: "POST", body: payload }),
+  createGymEnrollment: (memberId, payload) => request(`/gym/members/${memberId}/enrollments`, { method: "POST", body: payload }),
+  updateGymEnrollment: (memberId, enrollmentId, payload) =>
+    request(`/gym/members/${memberId}/enrollments/${enrollmentId}`, { method: "PUT", body: payload }),
+  deleteGymEnrollment: (memberId, enrollmentId) =>
+    request(`/gym/members/${memberId}/enrollments/${enrollmentId}`, { method: "DELETE" }),
+  listGymMemberDocuments: (memberId) => request(`/gym/members/${memberId}/documents`),
+  uploadGymMemberDocument: (memberId, payload) => request(`/gym/members/${memberId}/documents`, { method: "POST", body: payload }),
+  downloadGymMemberDocument: (memberId, docId) => request(`/gym/members/${memberId}/documents/${docId}`),
+  deleteGymMemberDocument: (memberId, docId) => request(`/gym/members/${memberId}/documents/${docId}`, { method: "DELETE" }),
+  listGymMemberTrophies: (memberId) => request(`/gym/members/${memberId}/trophies`),
+  createGymMemberTrophy: (memberId, payload) => request(`/gym/members/${memberId}/trophies`, { method: "POST", body: payload }),
+  deleteGymMemberTrophy: (memberId, trophyId) => request(`/gym/members/${memberId}/trophies/${trophyId}`, { method: "DELETE" }),
+  gymLeaderboard: () => request("/gym/leaderboard"),
 };
 
 // --- Token separato per la sessione del portale clienti (non va mai mischiato

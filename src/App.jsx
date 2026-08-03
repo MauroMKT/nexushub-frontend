@@ -25,6 +25,7 @@ import EngineeringProjects from "./pages/EngineeringProjects";
 import AgencyProjects from "./pages/AgencyProjects";
 import RealEstateProperties from "./pages/RealEstateProperties";
 import Hospitality from "./pages/Hospitality";
+import Gym from "./pages/Gym";
 import SectorWorkspace from "./pages/SectorWorkspace";
 
 // Routing Fase 1, 2 & estensioni (rubrica, notifiche, white-label, portale clienti, calendar).
@@ -60,6 +61,7 @@ export default function App() {
         <Route path="/agency-projects" element={<AgencyProjects />} />
         <Route path="/real-estate" element={<RealEstateProperties />} />
         <Route path="/hospitality" element={<Hospitality />} />
+        <Route path="/gym" element={<Gym />} />
         <Route path="/sector/:slug" element={<SectorWorkspace />} />
         <Route path="/platform-admin" element={<PlatformAdmin />} />
       </Route>
