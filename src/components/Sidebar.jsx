@@ -33,6 +33,7 @@ const PILOT_NAV_META = {
   "/agency-projects": { key: "agencyProjects", icon: "📁" },
   "/real-estate": { key: "realEstate", icon: "🏘️" },
   "/hospitality": { key: "hospitality", icon: "🍽️" },
+  "/gym": { key: "gym", icon: "🥋" },
 };
 
 export default function Sidebar() {
