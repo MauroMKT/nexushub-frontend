@@ -283,6 +283,10 @@ export const api = {
   createGymMemberTrophy: (memberId, payload) => request(`/gym/members/${memberId}/trophies`, { method: "POST", body: payload }),
   deleteGymMemberTrophy: (memberId, trophyId) => request(`/gym/members/${memberId}/trophies/${trophyId}`, { method: "DELETE" }),
   gymLeaderboard: () => request("/gym/leaderboard"),
+  // Compleanni soci (Fase 9.10): lista prossimi compleanni (con notifica
+  // automatica al team per chi compie gli anni oggi) + invio manuale esplicito.
+  gymBirthdays: (daysAhead = 30) => request(`/gym/birthdays?days_ahead=${daysAhead}`),
+  sendGymBirthdayNotification: (memberId) => request(`/gym/members/${memberId}/birthday-notification`, { method: "POST" }),
 };
 
 // --- Token separato per la sessione del portale clienti (non va mai mischiato
