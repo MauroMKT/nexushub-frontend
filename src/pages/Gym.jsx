@@ -11,6 +11,13 @@ import { downloadBase64File, fileToBase64 } from "../utils/downloadBase64";
 // arti marziali, certificato medico (check + upload PDF/foto), altri
 // documenti, foto socio e trofei per la classifica sociale del club.
 
+// Devono restare coerenti con MAX_PHOTO_SIZE_BYTES / MAX_DOCUMENT_SIZE_BYTES in
+// gym_router.py: controllo lato client PRIMA di leggere/inviare il file, così
+// l'utente vede subito un messaggio chiaro invece di un fallimento silenzioso
+// dopo aver aspettato l'upload di un file troppo grande (es. foto da smartphone).
+const MAX_PHOTO_MB = 12;
+const MAX_DOCUMENT_MB = 20;
+
 const emptyMember = {
   full_name: "", phone: "", email: "", address: "", birth_date: "",
   fiscal_code: "", vat_number: "", card_number: "", federation_card_number: "",
@@ -286,6 +293,14 @@ function MemberDetail({ member: initialMember, tp, t, onChanged }) {
     const file = e.target.files?.[0];
     e.target.value = "";
     if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      setError(tp("error_photo_not_image"));
+      return;
+    }
+    if (file.size > MAX_PHOTO_MB * 1024 * 1024) {
+      setError(tp("error_file_too_large").replace("{{maxMb}}", MAX_PHOTO_MB));
+      return;
+    }
     setUploadingPhoto(true);
     setError(null);
     try {
@@ -332,6 +347,14 @@ function MemberDetail({ member: initialMember, tp, t, onChanged }) {
     const file = e.target.files?.[0];
     e.target.value = "";
     if (!file) return;
+    if (docType === "medical_certificate" && !(file.type === "application/pdf" || file.type.startsWith("image/"))) {
+      setError(tp("error_medical_cert_format"));
+      return;
+    }
+    if (file.size > MAX_DOCUMENT_MB * 1024 * 1024) {
+      setError(tp("error_file_too_large").replace("{{maxMb}}", MAX_DOCUMENT_MB));
+      return;
+    }
     setError(null);
     try {
       const content_base64 = await fileToBase64(file);
@@ -381,7 +404,13 @@ function MemberDetail({ member: initialMember, tp, t, onChanged }) {
 
   return (
     <div className="mt-4 pt-4 border-t border-slate-100 space-y-4">
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      {error && (
+        <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl2 px-3 py-2">
+          <span>⚠️</span>
+          <span className="flex-1">{error}</span>
+          <button onClick={() => setError(null)} className="text-red-400 hover:text-red-700">✕</button>
+        </div>
+      )}
 
       <div className="text-xs text-ink/70 space-y-0.5">
         <div>📞 {member.phone}</div>
@@ -401,10 +430,13 @@ function MemberDetail({ member: initialMember, tp, t, onChanged }) {
           ) : (
             <div className="w-16 h-16 rounded-full bg-secondary/40 flex items-center justify-center text-2xl">🧑</div>
           )}
-          <label className="text-xs bg-secondary/60 hover:bg-secondary rounded-xl2 px-3 py-1.5 cursor-pointer">
-            {uploadingPhoto ? "…" : `📷 ${tp("upload_photo")}`}
-            <input type="file" accept="image/*" className="hidden" onChange={handlePhotoChange} disabled={uploadingPhoto} />
-          </label>
+          <div>
+            <label className="text-xs bg-secondary/60 hover:bg-secondary rounded-xl2 px-3 py-1.5 cursor-pointer inline-block">
+              {uploadingPhoto ? "…" : `📷 ${tp("upload_photo")}`}
+              <input type="file" accept="image/*" className="hidden" onChange={handlePhotoChange} disabled={uploadingPhoto} />
+            </label>
+            <div className="text-[10px] text-ink/40 mt-1">{tp("max_size_hint").replace("{{maxMb}}", MAX_PHOTO_MB)}</div>
+          </div>
         </div>
       </div>
 
@@ -474,6 +506,7 @@ function MemberDetail({ member: initialMember, tp, t, onChanged }) {
           📎 {tp("upload_medical_cert")}
           <input type="file" accept="application/pdf,image/*" className="hidden" onChange={(e) => handleDocUpload(e, "medical_certificate")} />
         </label>
+        <div className="text-[10px] text-ink/40 mt-1">{tp("max_size_hint").replace("{{maxMb}}", MAX_DOCUMENT_MB)}</div>
       </div>
 
       <div>
@@ -492,6 +525,7 @@ function MemberDetail({ member: initialMember, tp, t, onChanged }) {
           📎 {t("documents.upload")}
           <input type="file" className="hidden" onChange={(e) => handleDocUpload(e, "other")} />
         </label>
+        <div className="text-[10px] text-ink/40 mt-1">{tp("max_size_hint").replace("{{maxMb}}", MAX_DOCUMENT_MB)}</div>
       </div>
 
       <div>
