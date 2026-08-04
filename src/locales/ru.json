@@ -115,7 +115,8 @@
       "error_file_too_large": "Файл слишком большой (макс. {{maxMb}} МБ)",
       "error_not_video": "Файл должен быть видео (mp4, mov и т.д.)",
       "rooms_short": "комн.",
-      "bathrooms_short": "с/у"
+      "bathrooms_short": "с/у",
+      "multi_upload_hint": "можно выбрать сразу несколько файлов"
     },
     "hospitality": {
       "title": "Ресторан и гостеприимство",

@@ -115,7 +115,8 @@
       "error_file_too_large": "الملف كبير جداً (الحد الأقصى {{maxMb}} ميجابايت)",
       "error_not_video": "يجب أن يكون الملف فيديو (mp4، mov، إلخ)",
       "rooms_short": "غرف",
-      "bathrooms_short": "حمامات"
+      "bathrooms_short": "حمامات",
+      "multi_upload_hint": "يمكنك تحديد أكثر من ملف في نفس الوقت"
     },
     "hospitality": {
       "title": "المطاعم والضيافة",

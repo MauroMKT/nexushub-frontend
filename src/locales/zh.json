@@ -115,7 +115,8 @@
       "error_file_too_large": "文件过大（最大{{maxMb}}MB）",
       "error_not_video": "文件必须是视频（mp4、mov等）",
       "rooms_short": "间",
-      "bathrooms_short": "浴"
+      "bathrooms_short": "浴",
+      "multi_upload_hint": "可一次选择多个文件"
     },
     "hospitality": {
       "title": "餐饮与酒店服务",

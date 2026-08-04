@@ -115,7 +115,8 @@
       "error_file_too_large": "ファイルが大きすぎます（最大{{maxMb}}MB）",
       "error_not_video": "ファイルは動画である必要があります（mp4、movなど）",
       "rooms_short": "部屋",
-      "bathrooms_short": "浴室"
+      "bathrooms_short": "浴室",
+      "multi_upload_hint": "複数まとめて選択できます"
     },
     "hospitality": {
       "title": "飲食・ホスピタリティ",

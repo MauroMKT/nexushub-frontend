@@ -115,7 +115,8 @@
       "error_file_too_large": "Fichier trop volumineux (max {{maxMb}} Mo)",
       "error_not_video": "Le fichier doit être une vidéo (mp4, mov, etc.)",
       "rooms_short": "chambres",
-      "bathrooms_short": "sdb"
+      "bathrooms_short": "sdb",
+      "multi_upload_hint": "vous pouvez en sélectionner plusieurs à la fois"
     },
     "hospitality": {
       "title": "Restauration & Hospitality",
