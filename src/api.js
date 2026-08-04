@@ -236,11 +236,20 @@ export const api = {
   updateAgencyProject: (id, payload) => request(`/agency/projects/${id}`, { method: "PATCH", body: payload }),
   deleteAgencyProject: (id) => request(`/agency/projects/${id}`, { method: "DELETE" }),
 
-  // --- Modulo pilota: Agenzie Immobiliari (Fase 9.1) ---
+  // --- Modulo pilota: Agenzie Immobiliari (Fase 9.1, esteso in Fase 9.13
+  // con dettagli immobile, galleria foto, documenti e video) ---
   listRealEstateProperties: () => request("/real-estate/properties"),
   createRealEstateProperty: (payload) => request("/real-estate/properties", { method: "POST", body: payload }),
   updateRealEstateProperty: (id, payload) => request(`/real-estate/properties/${id}`, { method: "PATCH", body: payload }),
   deleteRealEstateProperty: (id) => request(`/real-estate/properties/${id}`, { method: "DELETE" }),
+  listRealEstatePhotos: (propertyId) => request(`/real-estate/properties/${propertyId}/photos`),
+  uploadRealEstatePhoto: (propertyId, payload) => request(`/real-estate/properties/${propertyId}/photos`, { method: "POST", body: payload }),
+  getRealEstatePhoto: (propertyId, photoId) => request(`/real-estate/properties/${propertyId}/photos/${photoId}`),
+  deleteRealEstatePhoto: (propertyId, photoId) => request(`/real-estate/properties/${propertyId}/photos/${photoId}`, { method: "DELETE" }),
+  listRealEstateDocuments: (propertyId) => request(`/real-estate/properties/${propertyId}/documents`),
+  uploadRealEstateDocument: (propertyId, payload) => request(`/real-estate/properties/${propertyId}/documents`, { method: "POST", body: payload }),
+  downloadRealEstateDocument: (propertyId, docId) => request(`/real-estate/properties/${propertyId}/documents/${docId}`),
+  deleteRealEstateDocument: (propertyId, docId) => request(`/real-estate/properties/${propertyId}/documents/${docId}`, { method: "DELETE" }),
 
   // --- Modulo pilota: Ristorazione & Hospitality (Fase 9.1) ---
   listReservations: () => request("/hospitality/reservations"),
