@@ -224,17 +224,35 @@ export const api = {
   // Acquisto singolo di un modulo a pagamento, indipendente dal piano (Fase 9.2)
   checkoutModulePurchase: (slug) => request(`/modules/${slug}/checkout`, { method: "POST" }),
 
-  // --- Modulo pilota: Servizi di Ingegneria (Fase 9.1) ---
+  // --- Modulo pilota: Servizi di Ingegneria (Fase 9.1, esteso in Fase 9.16
+  // con documenti/permessi, budget a consuntivo e storico cambi fase) ---
   listEngineeringProjects: () => request("/engineering/projects"),
   createEngineeringProject: (payload) => request("/engineering/projects", { method: "POST", body: payload }),
   updateEngineeringProject: (id, payload) => request(`/engineering/projects/${id}`, { method: "PATCH", body: payload }),
   deleteEngineeringProject: (id) => request(`/engineering/projects/${id}`, { method: "DELETE" }),
+  listEngineeringPhaseLog: (id) => request(`/engineering/projects/${id}/phase-log`),
+  listEngineeringDocuments: (id) => request(`/engineering/projects/${id}/documents`),
+  uploadEngineeringDocument: (id, payload) => request(`/engineering/projects/${id}/documents`, { method: "POST", body: payload }),
+  getEngineeringDocument: (id, docId) => request(`/engineering/projects/${id}/documents/${docId}`),
+  deleteEngineeringDocument: (id, docId) => request(`/engineering/projects/${id}/documents/${docId}`, { method: "DELETE" }),
 
-  // --- Modulo pilota: Servizi IT & Marketing (Fase 9.1) ---
+  // --- Modulo pilota: Servizi IT & Marketing (Fase 9.1, esteso in Fase 9.16
+  // con milestone, time tracking reale e documenti/deliverable) ---
   listAgencyProjects: () => request("/agency/projects"),
   createAgencyProject: (payload) => request("/agency/projects", { method: "POST", body: payload }),
   updateAgencyProject: (id, payload) => request(`/agency/projects/${id}`, { method: "PATCH", body: payload }),
   deleteAgencyProject: (id) => request(`/agency/projects/${id}`, { method: "DELETE" }),
+  listAgencyMilestones: (id) => request(`/agency/projects/${id}/milestones`),
+  createAgencyMilestone: (id, payload) => request(`/agency/projects/${id}/milestones`, { method: "POST", body: payload }),
+  updateAgencyMilestone: (id, milestoneId, payload) => request(`/agency/projects/${id}/milestones/${milestoneId}`, { method: "PATCH", body: payload }),
+  deleteAgencyMilestone: (id, milestoneId) => request(`/agency/projects/${id}/milestones/${milestoneId}`, { method: "DELETE" }),
+  listAgencyTimeEntries: (id) => request(`/agency/projects/${id}/time-entries`),
+  createAgencyTimeEntry: (id, payload) => request(`/agency/projects/${id}/time-entries`, { method: "POST", body: payload }),
+  deleteAgencyTimeEntry: (id, entryId) => request(`/agency/projects/${id}/time-entries/${entryId}`, { method: "DELETE" }),
+  listAgencyDocuments: (id) => request(`/agency/projects/${id}/documents`),
+  uploadAgencyDocument: (id, payload) => request(`/agency/projects/${id}/documents`, { method: "POST", body: payload }),
+  getAgencyDocument: (id, docId) => request(`/agency/projects/${id}/documents/${docId}`),
+  deleteAgencyDocument: (id, docId) => request(`/agency/projects/${id}/documents/${docId}`, { method: "DELETE" }),
 
   // --- Modulo pilota: Agenzie Immobiliari (Fase 9.1, esteso in Fase 9.13
   // con dettagli immobile, galleria foto, documenti e video) ---
@@ -251,7 +269,8 @@ export const api = {
   downloadRealEstateDocument: (propertyId, docId) => request(`/real-estate/properties/${propertyId}/documents/${docId}`),
   deleteRealEstateDocument: (propertyId, docId) => request(`/real-estate/properties/${propertyId}/documents/${docId}`, { method: "DELETE" }),
 
-  // --- Modulo pilota: Ristorazione & Hospitality (Fase 9.1) ---
+  // --- Modulo pilota: Ristorazione & Hospitality (Fase 9.1, esteso in Fase
+  // 9.15 con POS ristorante: tavoli, comande cucina/asporto/delivery, conto) ---
   listReservations: () => request("/hospitality/reservations"),
   createReservation: (payload) => request("/hospitality/reservations", { method: "POST", body: payload }),
   updateReservation: (id, payload) => request(`/hospitality/reservations/${id}`, { method: "PATCH", body: payload }),
@@ -260,13 +279,35 @@ export const api = {
   createMenuItem: (payload) => request("/hospitality/menu-items", { method: "POST", body: payload }),
   updateMenuItem: (id, payload) => request(`/hospitality/menu-items/${id}`, { method: "PATCH", body: payload }),
   deleteMenuItem: (id) => request(`/hospitality/menu-items/${id}`, { method: "DELETE" }),
+  getHospitalityProfile: () => request("/hospitality/profile"),
+  updateHospitalityProfile: (payload) => request("/hospitality/profile", { method: "PUT", body: payload }),
+  listRestaurantTables: () => request("/hospitality/tables"),
+  createRestaurantTable: (payload) => request("/hospitality/tables", { method: "POST", body: payload }),
+  updateRestaurantTable: (id, payload) => request(`/hospitality/tables/${id}`, { method: "PATCH", body: payload }),
+  deleteRestaurantTable: (id) => request(`/hospitality/tables/${id}`, { method: "DELETE" }),
+  listKitchenOrders: (params = {}) => {
+    const q = new URLSearchParams(params).toString();
+    return request(`/hospitality/orders${q ? `?${q}` : ""}`);
+  },
+  createKitchenOrder: (payload) => request("/hospitality/orders", { method: "POST", body: payload }),
+  updateKitchenOrderStatus: (id, status) => request(`/hospitality/orders/${id}/status`, { method: "PATCH", body: { status } }),
+  previewTableBill: (tableId) => request(`/hospitality/tables/${tableId}/bill`),
+  closeTableBill: (tableId, payload) => request(`/hospitality/tables/${tableId}/bill/close`, { method: "POST", body: payload }),
+  closeOrderBill: (orderId, payload) => request(`/hospitality/orders/${orderId}/bill/close`, { method: "POST", body: payload }),
+  listBills: () => request("/hospitality/bills"),
 
-  // --- Moduli di settore "generici" (Fase 9.3): copre i settori senza uno
-  // schema dedicato bespoke, tramite una pagina unica parametrizzata per slug ---
+  // --- Moduli di settore "generici" (Fase 9.3, esteso in Fase 9.16 con
+  // priorità, scadenza, assegnatario, tag, campi personalizzati e documenti):
+  // copre i settori senza uno schema dedicato bespoke, tramite una pagina
+  // unica parametrizzata per slug ---
   listSectorRecords: (slug) => request(`/sector-records/${slug}`),
   createSectorRecord: (slug, payload) => request(`/sector-records/${slug}`, { method: "POST", body: payload }),
   updateSectorRecord: (slug, id, payload) => request(`/sector-records/${slug}/${id}`, { method: "PATCH", body: payload }),
   deleteSectorRecord: (slug, id) => request(`/sector-records/${slug}/${id}`, { method: "DELETE" }),
+  listSectorRecordDocuments: (slug, id) => request(`/sector-records/${slug}/${id}/documents`),
+  uploadSectorRecordDocument: (slug, id, payload) => request(`/sector-records/${slug}/${id}/documents`, { method: "POST", body: payload }),
+  getSectorRecordDocument: (slug, id, docId) => request(`/sector-records/${slug}/${id}/documents/${docId}`),
+  deleteSectorRecordDocument: (slug, id, docId) => request(`/sector-records/${slug}/${id}/documents/${docId}`, { method: "DELETE" }),
 
   // --- Modulo pilota: Palestre e Centri Sportivi (Fase 9.9) ---
   listGymMembers: () => request("/gym/members"),
