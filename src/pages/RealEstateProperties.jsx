@@ -278,28 +278,42 @@ function PropertyDetail({ property, tp, t, onChanged }) {
   }, []);
 
   async function handlePhotoChange(e) {
-    const file = e.target.files?.[0];
+    // Caricamento massivo: si possono selezionare più foto insieme (dalla
+    // galleria del telefono o con Ctrl/Cmd+click sul PC), caricate una alla
+    // volta in sequenza. Un file non valido viene segnalato ma non blocca
+    // il caricamento degli altri già in coda.
+    const files = Array.from(e.target.files || []);
     e.target.value = "";
-    if (!file) return;
-    if (!file.type.startsWith("image/")) {
-      setError(tp("realEstate.error_photo_not_image"));
-      return;
-    }
-    if (file.size > MAX_PHOTO_MB * 1024 * 1024) {
-      setError(tp("realEstate.error_file_too_large").replace("{{maxMb}}", MAX_PHOTO_MB));
-      return;
-    }
-    setUploadingPhoto(true);
+    if (files.length === 0) return;
     setError(null);
-    try {
-      const content_base64 = await fileToBase64(file);
-      await api.uploadRealEstatePhoto(property.id, { content_type: file.type, content_base64 });
+    let uploaded = 0;
+    let failed = 0;
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      setUploadingPhoto(files.length > 1 ? `${i + 1}/${files.length}` : true);
+      if (!file.type.startsWith("image/")) {
+        setError(`${file.name}: ${tp("realEstate.error_photo_not_image")}`);
+        failed += 1;
+        continue;
+      }
+      if (file.size > MAX_PHOTO_MB * 1024 * 1024) {
+        setError(`${file.name}: ${tp("realEstate.error_file_too_large").replace("{{maxMb}}", MAX_PHOTO_MB)}`);
+        failed += 1;
+        continue;
+      }
+      try {
+        const content_base64 = await fileToBase64(file);
+        await api.uploadRealEstatePhoto(property.id, { content_type: file.type, content_base64 });
+        uploaded += 1;
+      } catch (err) {
+        setError(`${file.name}: ${err.message}`);
+        failed += 1;
+      }
+    }
+    setUploadingPhoto(false);
+    if (uploaded > 0) {
       refreshPhotos();
       onChanged();
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setUploadingPhoto(false);
     }
   }
 
@@ -310,26 +324,33 @@ function PropertyDetail({ property, tp, t, onChanged }) {
   }
 
   async function handleDocUpload(e, docType) {
-    const file = e.target.files?.[0];
+    // I documenti (planimetrie, atti, APE...) si possono selezionare in blocco;
+    // il video resta a singolo file (accade raramente di caricarne più di uno
+    // alla volta e i limiti di dimensione sono più stringenti).
+    const files = Array.from(e.target.files || []);
     e.target.value = "";
-    if (!file) return;
-    if (docType === "video" && !file.type.startsWith("video/")) {
-      setError(tp("realEstate.error_not_video"));
-      return;
-    }
+    if (files.length === 0) return;
     const maxMb = docType === "video" ? MAX_VIDEO_MB : MAX_DOCUMENT_MB;
-    if (file.size > maxMb * 1024 * 1024) {
-      setError(tp("realEstate.error_file_too_large").replace("{{maxMb}}", maxMb));
-      return;
-    }
     setError(null);
-    try {
-      const content_base64 = await fileToBase64(file);
-      await api.uploadRealEstateDocument(property.id, { doc_type: docType, filename: file.name, content_type: file.type, content_base64 });
-      refreshDocs();
-    } catch (err) {
-      setError(err.message);
+    let uploaded = 0;
+    for (const file of files) {
+      if (docType === "video" && !file.type.startsWith("video/")) {
+        setError(`${file.name}: ${tp("realEstate.error_not_video")}`);
+        continue;
+      }
+      if (file.size > maxMb * 1024 * 1024) {
+        setError(`${file.name}: ${tp("realEstate.error_file_too_large").replace("{{maxMb}}", maxMb)}`);
+        continue;
+      }
+      try {
+        const content_base64 = await fileToBase64(file);
+        await api.uploadRealEstateDocument(property.id, { doc_type: docType, filename: file.name, content_type: file.type, content_base64 });
+        uploaded += 1;
+      } catch (err) {
+        setError(`${file.name}: ${err.message}`);
+      }
     }
+    if (uploaded > 0) refreshDocs();
   }
 
   async function handleDocDownload(doc) {
@@ -390,10 +411,12 @@ function PropertyDetail({ property, tp, t, onChanged }) {
           {photos.length === 0 && <p className="text-xs text-ink/40">{tp("realEstate.no_photos")}</p>}
         </div>
         <label className="text-xs bg-secondary/60 hover:bg-secondary rounded-xl2 px-3 py-1.5 cursor-pointer inline-block">
-          {uploadingPhoto ? "…" : `📷 ${tp("realEstate.upload_photo")}`}
-          <input type="file" accept="image/*" className="hidden" onChange={handlePhotoChange} disabled={uploadingPhoto} />
+          {uploadingPhoto ? `⏳ ${typeof uploadingPhoto === "string" ? uploadingPhoto : "…"}` : `📷 ${tp("realEstate.upload_photo")}`}
+          <input type="file" accept="image/*" multiple className="hidden" onChange={handlePhotoChange} disabled={!!uploadingPhoto} />
         </label>
-        <div className="text-[10px] text-ink/40 mt-1">{tp("realEstate.max_size_hint").replace("{{maxMb}}", MAX_PHOTO_MB)}</div>
+        <div className="text-[10px] text-ink/40 mt-1">
+          {tp("realEstate.max_size_hint").replace("{{maxMb}}", MAX_PHOTO_MB)} · {tp("realEstate.multi_upload_hint")}
+        </div>
       </div>
 
       <div>
@@ -410,9 +433,11 @@ function PropertyDetail({ property, tp, t, onChanged }) {
         {documents.length === 0 && <p className="text-xs text-ink/40 mb-1">{t("documents.empty")}</p>}
         <label className="inline-block text-xs bg-secondary/60 hover:bg-secondary rounded-xl2 px-3 py-1.5 cursor-pointer">
           📎 {tp("realEstate.upload_document")}
-          <input type="file" className="hidden" onChange={(e) => handleDocUpload(e, "documento")} />
+          <input type="file" multiple className="hidden" onChange={(e) => handleDocUpload(e, "documento")} />
         </label>
-        <div className="text-[10px] text-ink/40 mt-1">{tp("realEstate.max_size_hint").replace("{{maxMb}}", MAX_DOCUMENT_MB)}</div>
+        <div className="text-[10px] text-ink/40 mt-1">
+          {tp("realEstate.max_size_hint").replace("{{maxMb}}", MAX_DOCUMENT_MB)} · {tp("realEstate.multi_upload_hint")}
+        </div>
       </div>
 
       <div>
