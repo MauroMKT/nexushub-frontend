@@ -163,7 +163,11 @@
       "birthday_in_days": "In {{days}} days",
       "turning_age": "turning {{age}}",
       "notification_sent": "Sent",
-      "send_notification": "Send notification"
+      "send_notification": "Send notification",
+      "error_file_too_large": "File too large (max {{maxMb}} MB)",
+      "error_photo_not_image": "The photo must be an image file (jpg, png, etc.)",
+      "error_medical_cert_format": "The medical certificate must be a PDF or a photo",
+      "max_size_hint": "Max {{maxMb}} MB"
     }
   },
   "login": {

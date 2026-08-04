@@ -163,7 +163,11 @@
       "birthday_in_days": "خلال {{days}} يوم",
       "turning_age": "يكمل {{age}} سنة",
       "notification_sent": "تم الإرسال",
-      "send_notification": "إرسال إشعار"
+      "send_notification": "إرسال إشعار",
+      "error_file_too_large": "الملف كبير جداً (الحد الأقصى {{maxMb}} ميجابايت)",
+      "error_photo_not_image": "الصورة يجب أن تكون ملف صورة (jpg, png...)",
+      "error_medical_cert_format": "الشهادة الطبية يجب أن تكون PDF أو صورة",
+      "max_size_hint": "الحد الأقصى {{maxMb}} ميجابايت"
     }
   },
   "login": {

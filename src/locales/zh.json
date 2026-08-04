@@ -163,7 +163,11 @@
       "birthday_in_days": "{{days}}天后",
       "turning_age": "将满{{age}}岁",
       "notification_sent": "已发送",
-      "send_notification": "发送通知"
+      "send_notification": "发送通知",
+      "error_file_too_large": "文件过大（最大{{maxMb}}MB）",
+      "error_photo_not_image": "照片必须是图片文件（jpg、png等）",
+      "error_medical_cert_format": "体检证明必须是PDF或照片",
+      "max_size_hint": "最大{{maxMb}}MB"
     }
   },
   "login": {

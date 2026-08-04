@@ -163,7 +163,11 @@
       "birthday_in_days": "{{days}}日後",
       "turning_age": "{{age}}歳になります",
       "notification_sent": "送信済み",
-      "send_notification": "通知を送信"
+      "send_notification": "通知を送信",
+      "error_file_too_large": "ファイルが大きすぎます（最大{{maxMb}}MB）",
+      "error_photo_not_image": "写真は画像ファイルである必要があります（jpg、pngなど）",
+      "error_medical_cert_format": "診断書はPDFまたは写真である必要があります",
+      "max_size_hint": "最大{{maxMb}}MB"
     }
   },
   "login": {

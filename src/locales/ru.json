@@ -163,7 +163,11 @@
       "birthday_in_days": "Через {{days}} дн.",
       "turning_age": "исполняется {{age}} лет",
       "notification_sent": "Отправлено",
-      "send_notification": "Отправить уведомление"
+      "send_notification": "Отправить уведомление",
+      "error_file_too_large": "Файл слишком большой (макс. {{maxMb}} МБ)",
+      "error_photo_not_image": "Фото должно быть файлом изображения (jpg, png и т.д.)",
+      "error_medical_cert_format": "Справка должна быть в формате PDF или фото",
+      "max_size_hint": "Макс. {{maxMb}} МБ"
     }
   },
   "login": {

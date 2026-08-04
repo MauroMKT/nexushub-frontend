@@ -163,7 +163,11 @@
       "birthday_in_days": "In {{days}} Tagen",
       "turning_age": "wird {{age}} Jahre alt",
       "notification_sent": "Gesendet",
-      "send_notification": "Benachrichtigung senden"
+      "send_notification": "Benachrichtigung senden",
+      "error_file_too_large": "Datei zu groß (max. {{maxMb}} MB)",
+      "error_photo_not_image": "Das Foto muss eine Bilddatei sein (jpg, png usw.)",
+      "error_medical_cert_format": "Das Attest muss ein PDF oder ein Foto sein",
+      "max_size_hint": "Max. {{maxMb}} MB"
     }
   },
   "login": {
